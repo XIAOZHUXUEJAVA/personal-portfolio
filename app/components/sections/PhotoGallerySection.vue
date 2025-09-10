@@ -17,13 +17,13 @@
           <button
             v-for="category in categories"
             :key="category"
-            @click="activeCategory = category"
             :class="[
               'px-6 py-2 rounded-full transition-all duration-300',
               activeCategory === category
                 ? 'bg-primary text-primary-foreground shadow-lg'
                 : 'text-muted-foreground hover:text-foreground',
             ]"
+            @click="activeCategory = category"
           >
             {{ category }}
           </button>
@@ -41,38 +41,35 @@
         <ExpandableGallery :images="featuredImages" />
       </div>
 
-      <!-- Apple Card Carousel -->
+      <!-- Featured Photos Grid -->
       <div class="mt-20">
-        <h3 class="text-2xl font-bold text-center mb-8">作品集锦</h3>
-        <AppleCardCarousel :initial-scroll="0">
-          <AppleCarouselItem
+        <h3 class="text-2xl font-bold text-center mb-8">精选作品</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
             v-for="(photo, index) in photoGalleryData.slice(0, 6)"
             :key="photo.src"
-            :index="index"
+            class="group relative overflow-hidden rounded-2xl bg-card border border-border/50 hover:shadow-2xl transition-all duration-300"
           >
-            <AppleCard
-              :card="{
-                src: photo.src,
-                title: photo.title,
-                category: photo.category,
-              }"
-              :index="index"
-              :layout="true"
-            >
-              <div class="p-6 space-y-4">
-                <h4 class="text-xl font-semibold">{{ photo.title }}</h4>
-                <p class="text-muted-foreground">{{ photo.description }}</p>
-                <div class="flex items-center space-x-2">
-                  <span
-                    class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
-                  >
-                    {{ photo.category }}
-                  </span>
-                </div>
-              </div>
-            </AppleCard>
-          </AppleCarouselItem>
-        </AppleCardCarousel>
+            <div class="aspect-[4/3] overflow-hidden">
+              <img
+                :src="photo.src"
+                :alt="photo.title"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6 space-y-3">
+              <h4 class="text-xl font-semibold">{{ photo.title }}</h4>
+              <p class="text-muted-foreground text-sm">
+                {{ photo.description }}
+              </p>
+              <span
+                class="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+              >
+                {{ photo.category }}
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -81,11 +78,6 @@
 <script setup lang="ts">
 import { PhotoGallery } from "~/components/ui/photo-gallery";
 import { ExpandableGallery } from "~/components/ui/expandable-gallery";
-import {
-  AppleCardCarousel,
-  AppleCarouselItem,
-  AppleCard,
-} from "~/components/ui/apple-card-carousel";
 import { photoGalleryData } from "~/data/staticData";
 
 // Categories for filtering

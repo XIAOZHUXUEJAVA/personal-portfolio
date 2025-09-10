@@ -11,6 +11,9 @@
       <!-- About Section -->
       <AboutSection />
 
+      <!-- Featured Works Section -->
+      <FeaturedWorksSection />
+
       <!-- Photo Gallery Section -->
       <PhotoGallerySection />
 
@@ -33,6 +36,7 @@ import { useColorMode } from "@vueuse/core";
 import NavigationDock from "~/components/layout/NavigationDock.vue";
 import HeroSection from "~/components/sections/HeroSection.vue";
 import AboutSection from "~/components/sections/AboutSection.vue";
+import FeaturedWorksSection from "~/components/sections/FeaturedWorksSection.vue";
 import PhotoGallerySection from "~/components/sections/PhotoGallerySection.vue";
 import TimelineSection from "~/components/sections/TimelineSection.vue";
 import ContactSection from "~/components/sections/ContactSection.vue";

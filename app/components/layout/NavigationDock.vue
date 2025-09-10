@@ -35,7 +35,16 @@
 
 <script setup lang="ts">
 import { useColorMode } from "@vueuse/core";
-import { Home, User, Camera, Clock, Mail, Sun, Moon } from "lucide-vue-next";
+import {
+  Home,
+  User,
+  Briefcase,
+  Camera,
+  Clock,
+  Mail,
+  Sun,
+  Moon,
+} from "lucide-vue-next";
 import { Dock, DockIcon, DockSeparator } from "~/components/ui/dock";
 
 const colorMode = useColorMode();
@@ -44,6 +53,7 @@ const isDark = computed(() => colorMode.value === "dark");
 const navigationItems = [
   { id: "home", label: "首页", href: "#hero", icon: Home },
   { id: "about", label: "关于", href: "#about", icon: User },
+  { id: "works", label: "作品", href: "#featured-works", icon: Briefcase },
   { id: "gallery", label: "照片", href: "#gallery", icon: Camera },
   { id: "timeline", label: "时间线", href: "#timeline", icon: Clock },
   { id: "contact", label: "联系", href: "#contact", icon: Mail },
