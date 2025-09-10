@@ -1,29 +1,72 @@
 <template>
-  <div>
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
-  </div>
-  <div
-    class="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
-  >
-    <span
-      class="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10"
-    >
-      Particles
-    </span>
-    <ParticlesBg
-      class="absolute inset-0"
-      :quantity="100"
-      :ease="100"
-      :color="isDark ? '#FFF' : '#000'"
-      :staticity="10"
-      refresh
-    />
+  <div class="min-h-screen bg-background text-foreground">
+    <!-- Navigation Dock -->
+    <NavigationDock />
+
+    <!-- Main Content -->
+    <main class="relative">
+      <!-- Hero Section -->
+      <HeroSection />
+
+      <!-- About Section -->
+      <AboutSection />
+
+      <!-- Photo Gallery Section -->
+      <PhotoGallerySection />
+
+      <!-- Timeline Section -->
+      <TimelineSection />
+
+      <!-- Contact Section -->
+      <ContactSection />
+    </main>
+
+    <!-- Meteors Background Effect -->
+    <Meteors :number="20" />
   </div>
 </template>
-<script setup lang="ts">
-import { computed } from "vue";
-import { useColorMode } from "@vueuse/core";
-import ParticlesBg from "@/components/ui/particles-bg/ParticlesBg.vue";
 
-const isDark = computed(() => useColorMode().value == "dark");
+<script setup lang="ts">
+import { useColorMode } from "@vueuse/core";
+
+// Components
+import NavigationDock from "~/components/layout/NavigationDock.vue";
+import HeroSection from "~/components/sections/HeroSection.vue";
+import AboutSection from "~/components/sections/AboutSection.vue";
+import PhotoGallerySection from "~/components/sections/PhotoGallerySection.vue";
+import TimelineSection from "~/components/sections/TimelineSection.vue";
+import ContactSection from "~/components/sections/ContactSection.vue";
+import { Meteors } from "~/components/ui/meteors";
+
+// SEO Meta
+useHead({
+  title: "个人主页 - 分享生活的美好时光",
+  meta: [
+    {
+      name: "description",
+      content: "欢迎来到我的个人主页，在这里分享生活、照片、感悟和记录。",
+    },
+    { name: "keywords", content: "个人主页, 生活分享, 照片, 感悟, 记录" },
+    { property: "og:title", content: "个人主页 - 分享生活的美好时光" },
+    {
+      property: "og:description",
+      content: "欢迎来到我的个人主页，在这里分享生活、照片、感悟和记录。",
+    },
+    { property: "og:type", content: "website" },
+  ],
+});
+
+// Color mode setup
+const colorMode = useColorMode();
 </script>
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+</style>
