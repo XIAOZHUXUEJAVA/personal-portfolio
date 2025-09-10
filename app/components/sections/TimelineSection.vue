@@ -32,7 +32,7 @@
                 <img
                   :src="item.image"
                   :alt="item.title"
-                  class="w-full h-48 object-cover rounded-xl"
+                  class="w-full h-48 object-cover rounded-xl hover:scale-105 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-out cursor-pointer"
                 />
               </div>
 

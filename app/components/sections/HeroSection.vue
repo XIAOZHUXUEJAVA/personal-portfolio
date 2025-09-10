@@ -19,9 +19,9 @@
         <!-- Avatar with 3D Card Effect -->
         <CardContainer class="mx-auto w-fit">
           <CardBody
-            class="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-black border-black/[0.1] w-auto sm:w-[20rem] h-auto rounded-xl p-6 border"
+            class="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-transparent border-black/[0.1] w-auto sm:w-[20rem] h-auto rounded-xl p-6 border"
           >
-            <CardItem translateZ="50" class="w-full">
+            <CardItem translate-z="50" class="w-full">
               <img
                 :src="heroData.avatar"
                 :alt="heroData.name"
@@ -49,13 +49,13 @@
         <div
           class="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <RainbowButton @click="scrollToSection('#about')" class="px-8 py-3">
+          <RainbowButton class="px-8 py-3" @click="scrollToSection('#about')">
             了解更多
           </RainbowButton>
 
           <button
-            @click="scrollToSection('#gallery')"
             class="px-8 py-3 rounded-full border border-border bg-background/50 backdrop-blur-sm hover:bg-accent transition-colors"
+            @click="scrollToSection('#gallery')"
           >
             查看作品
           </button>

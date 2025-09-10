@@ -41,9 +41,8 @@ export interface ContactInfo {
 export const heroData: HeroData = {
   name: "张小明",
   description:
-    "热爱生活的摄影师与设计师，用镜头记录世界的美好，用文字分享内心的感悟。在这里，我与你分享我的生活点滴、创作灵感和人生思考。",
-  avatar:
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    "热爱生活的摄影师与设计师，用镜头记录世界的美好，用文字分享内心的感悟。在这里，我与你分享我的生活点滴、创作灵感和人生思考。(以下内容纯属虚拟数据，用于填充测试)",
+  avatar: "/avatar/avatar.jpg",
 };
 
 // About Section Data
