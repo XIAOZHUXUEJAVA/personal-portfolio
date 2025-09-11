@@ -1,75 +1,46 @@
-# Nuxt Minimal Starter
+# 个人主页项目
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+一个基于 Nuxt 3 构建的个人主页网站，展示个人信息、作品集、照片画廊和生活时间线。
 
-## Setup
+展示链接： 🌻 https://piggyportfolio.netlify.app/.
 
-Make sure to install dependencies:
+## ✨ 项目特色
+
+- 🎨 **现代化组件库** - 采用 Tailwind CSS 4.0 + shadcn/ui + Inspira UI 组件库
+- 🌟 **丰富动效** - 集成 GSAP、Three.js 和多种自定义动画组件
+- 📱 **响应式布局** - 适配各种设备尺寸
+- 🎭 **3D 交互效果** - 卡片悬浮、粒子背景、流星效果等
+- 📸 **照片画廊** - 多种展示模式（轮播、网格、可展开画廊）
+
+## 🛠️ 技术栈
+
+- **框架**: Nuxt 3 + Vue 3 + TypeScript
+- **样式**: Tailwind CSS 4.0 + shadcn/ui + Inspira UI
+- **动画**: GSAP + Motion-v + CSS 动画
+- **3D 效果**: Three.js + OGL
+- **图标**: Lucide Vue Next
+- **工具**: ESLint + Nuxt Image + VueUse
+
+## 🚀 快速开始
+
+### 安装依赖
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+### 开发环境
 
-Start the development server on `http://localhost:3000`:
+启动开发服务器（默认运行在 http://localhost:3000）：
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+### 生产构建
 
-Build the application for production:
+构建生产版本：
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
