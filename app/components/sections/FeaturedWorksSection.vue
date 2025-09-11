@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto">
       <!-- Section Title -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">些许寻常</h2>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">我的小天地</h2>
         <p class="text-xl text-muted-foreground max-w-2xl mx-auto" />
       </div>
 
@@ -16,7 +16,7 @@
             class="inter-var"
           >
             <CardBody
-              class="group/card relative size-auto rounded-xl border border-black/[0.1] bg-gray-50 p-6 sm:w-[30rem] dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]"
+              class="group/card relative w-full h-full rounded-xl border border-black/[0.1] bg-gray-50 p-6 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]"
             >
               <!-- Title -->
               <CardItem
@@ -60,15 +60,12 @@
               <!-- Action Buttons -->
               <div class="mt-6 flex items-center justify-between">
                 <CardItem
-                  v-if="work.demoUrl"
                   :translate-z="20"
-                  as="a"
-                  :href="work.demoUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  as="button"
                   class="rounded-xl px-4 py-2 text-xs font-normal text-neutral-600 hover:text-primary transition-colors dark:text-white"
+                  @click="viewLargeImage(work.image, work.title)"
                 >
-                  查看演示 →
+                  查看大图 →
                 </CardItem>
 
                 <CardItem
@@ -80,10 +77,10 @@
                   rel="noopener noreferrer"
                   class="rounded-xl bg-black px-4 py-2 text-xs font-bold text-white hover:bg-gray-800 transition-colors dark:bg-white dark:text-black dark:hover:bg-gray-200"
                 >
-                  源代码
+                  了解更多
                 </CardItem>
 
-                <CardItem
+                <!-- <CardItem
                   v-if="!work.sourceUrl && !work.demoUrl"
                   :translate-z="20"
                   as="button"
@@ -91,7 +88,7 @@
                   @click="showWorkDetails(work)"
                 >
                   了解更多
-                </CardItem>
+                </CardItem> -->
               </div>
             </CardBody>
           </CardContainer>
@@ -117,10 +114,9 @@ const featuredWorks = [
   },
   {
     id: 2,
-    title: "旅行日记",
-    description: "用文字和图片记录旅途中的见闻感悟，分享不同地方的文化和风景",
-    image:
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    title: "游玩游戏",
+    description: "喜欢打会儿单机游戏",
+    image: "/images/game.jpg",
     tags: ["旅行", "文字", "分享"],
     demoUrl: "#timeline",
     sourceUrl: null,
@@ -157,13 +153,12 @@ const featuredWorks = [
   },
   {
     id: 6,
-    title: "技术学习笔记",
+    title: "代码仓库",
     description: "记录学习新技术的过程和心得，与同行分享经验和见解",
-    image:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/images/github.jpg",
     tags: ["技术", "学习", "分享"],
     demoUrl: null,
-    sourceUrl: "https://github.com",
+    sourceUrl: "https://github.com/XIAOZHUXUEJAVA",
   },
 ];
 
@@ -171,6 +166,71 @@ const featuredWorks = [
 const showWorkDetails = (work: any) => {
   // 可以实现弹窗或跳转到详情页
   console.log("Show details for:", work.title);
+};
+
+const viewLargeImage = (imageUrl: string, title: string) => {
+  // 在新窗口中打开大图
+  const newWindow = window.open("", "_blank");
+  if (newWindow) {
+    newWindow.document.write(`
+      <html>
+        <head>
+          <title>${title} - 大图查看</title>
+          <style>
+            body {
+              margin: 0;
+              padding: 20px;
+              background: #000;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              min-height: 100vh;
+              font-family: Arial, sans-serif;
+            }
+            img {
+              max-width: 100%;
+              max-height: 100vh;
+              object-fit: contain;
+              border-radius: 8px;
+              box-shadow: 0 4px 20px rgba(255,255,255,0.1);
+            }
+            .title {
+              position: fixed;
+              top: 20px;
+              left: 20px;
+              color: white;
+              font-size: 18px;
+              font-weight: bold;
+              background: rgba(0,0,0,0.7);
+              padding: 10px 15px;
+              border-radius: 6px;
+            }
+            .close-btn {
+              position: fixed;
+              top: 20px;
+              right: 20px;
+              background: rgba(255,255,255,0.2);
+              color: white;
+              border: none;
+              padding: 10px 15px;
+              border-radius: 6px;
+              cursor: pointer;
+              font-size: 14px;
+            }
+            .close-btn:hover {
+              background: rgba(255,255,255,0.3);
+            }
+          </style>
+        </head>
+        <body>
+          <div class="title">${title}</div>
+          <button class="close-btn" onclick="window.close()">关闭</button>
+          <img src="${imageUrl}" alt="${title}" onclick="window.close()" style="cursor: pointer;" />
+        </body>
+      </html>
+    `);
+    newWindow.document.close();
+  }
 };
 </script>
 
