@@ -3,10 +3,8 @@
     <div class="max-w-7xl mx-auto">
       <!-- Section Title -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">精选作品</h2>
-        <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-          展示我最引以为豪的创作和项目，每一个都承载着独特的故事
-        </p>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">些许寻常</h2>
+        <p class="text-xl text-muted-foreground max-w-2xl mx-auto" />
       </div>
 
       <!-- 3D Cards Grid -->
@@ -45,7 +43,7 @@
                   height="1000"
                   width="1000"
                   class="h-60 w-full rounded-xl object-cover group-hover/card:shadow-xl transition-shadow duration-300"
-                >
+                />
               </CardItem>
 
               <!-- Tags -->
@@ -110,11 +108,10 @@ import { CardContainer, CardBody, CardItem } from "~/components/ui/card-3d";
 const featuredWorks = [
   {
     id: 1,
-    title: "个人摄影作品集",
-    description: "记录生活中美好瞬间的摄影作品，展现不同视角下的世界之美",
-    image:
-      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["摄影", "艺术", "生活"],
+    title: "个人桌面",
+    description: "似乎也是有一点凌乱",
+    image: "/images/desktop.jpg",
+    tags: ["桌面", "生活"],
     demoUrl: "#gallery",
     sourceUrl: null,
   },

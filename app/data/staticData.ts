@@ -39,9 +39,8 @@ export interface ContactInfo {
 
 // Hero Section Data
 export const heroData: HeroData = {
-  name: "张小明",
-  description:
-    "热爱生活的摄影师与设计师，用镜头记录世界的美好，用文字分享内心的感悟。在这里，我与你分享我的生活点滴、创作灵感和人生思考。(以下内容纯属虚拟数据，用于填充测试)",
+  name: "xiaozhu",
+  description: "简简单单地记录生活的滴滴点点~",
   avatar: "/avatar/avatar.jpg",
 };
 
@@ -76,46 +75,110 @@ export const aboutData: AboutItem[] = [
 // Photo Gallery Data
 export const photoGalleryData: PhotoItem[] = [
   {
-    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-    title: "山间晨雾",
-    category: "风景",
+    src: "/images/dengziqi1.jpg",
+    title: "绝顶",
+    category: "演唱会",
     description: "清晨的山间，薄雾缭绕，仿佛仙境一般",
-    location: "黄山",
-    date: "2024-03-15",
+    location: "泰山",
+    date: "2023-08-06",
   },
   {
-    src: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&h=600&fit=crop",
+    src: "/images/dengziqi2.jpg",
     title: "城市夜景",
-    category: "城市",
+    category: "演唱会",
     description: "华灯初上的城市，霓虹闪烁，充满生机",
     location: "上海外滩",
     date: "2024-05-20",
   },
   {
-    src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop",
+    src: "/images/dengziqi3.jpg",
     title: "森林小径",
-    category: "自然",
+    category: "演唱会",
     description: "阳光透过树叶洒在小径上，静谧而美好",
     location: "九寨沟",
     date: "2024-04-10",
   },
   {
-    src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop",
+    src: "/images/dengziqi4.jpg",
     title: "海边日落",
-    category: "风景",
+    category: "演唱会",
     description: "夕阳西下，海天一色，美得令人窒息",
   },
   {
-    src: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&h=600&fit=crop",
+    src: "/images/dengziqi5.jpg",
     title: "咖啡时光",
-    category: "生活",
+    category: "演唱会",
     description: "午后的咖啡时光，享受片刻的宁静",
   },
   {
-    src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=600&fit=crop",
+    src: "/images/dengziqi6.jpg",
     title: "雪山远景",
-    category: "风景",
+    category: "演唱会",
     description: "远山如黛，雪峰巍峨，大自然的鬼斧神工",
+  },
+];
+
+// 精选作品数据 - 用于 ExpandableGallery
+export const featuredWorksData: PhotoItem[] = [
+  {
+    src: "/images/liushui.jpg",
+    title: "星空银河",
+    category: "风景",
+    description: "璀璨的银河横跨夜空，星光点点如钻石般闪耀",
+    location: "内蒙古草原",
+    date: "2024-08-15",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop",
+    title: "古镇水乡",
+    category: "城市",
+    description: "江南水乡的古朴韵味，小桥流水人家",
+    location: "乌镇",
+    date: "2024-04-22",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop",
+    title: "云海奇观",
+    category: "自然",
+    description: "云海翻腾，山峰若隐若现，宛如仙境",
+    location: "泰山",
+    date: "2024-05-01",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop",
+    title: "田园风光",
+    category: "自然",
+    description: "金黄的麦田在夕阳下闪闪发光，丰收的喜悦",
+    location: "河南",
+    date: "2024-06-30",
+  },
+];
+
+// 精选照片数据 - 用于 FlipCard
+export const highlightPhotosData: PhotoItem[] = [
+  {
+    src: "/images/taishan.jpg",
+    title: "绝顶",
+    category: "风景",
+    description: "时隔三年，再次登临泰山之巅",
+    location: "泰山",
+    date: "2023-08-06",
+  },
+  {
+    src: "/images/qianfoshan.jpg",
+    title: "日落",
+    category: "自然",
+    description: "千佛山的落日似乎也能打动人心",
+    location: "千佛山",
+    date: "2024-03-28",
+  },
+  {
+    src: "/images/qingdao.png",
+    title: "看海",
+    category: "风景",
+    description: "就算大雨让这座城市倾倒",
+    location: "青岛",
+    date: "2025-08-21",
   },
 ];
 
@@ -173,8 +236,8 @@ export const contactInfo: ContactInfo = {
 
 // Quotes for inspiration
 export const inspirationalQuotes = [
-  "生活不是等待暴风雨过去，而是学会在雨中跳舞。",
-  "每一个不曾起舞的日子，都是对生命的辜负。",
-  "世界那么大，我想去看看。",
-  "用心感受生活，用镜头记录美好。",
+  "苦杏仁的气味总是让他想起爱情受阻后的命运",
+  // "每一个不曾起舞的日子，都是对生命的辜负。",
+  // "世界那么大，我想去看看。",
+  // "用心感受生活，用镜头记录美好。",
 ];

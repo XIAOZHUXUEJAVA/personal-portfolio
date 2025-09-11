@@ -46,7 +46,7 @@
         <h3 class="text-2xl font-bold text-center mb-8">精选照片</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <FlipCard
-            v-for="photo in photoGalleryData.slice(0, 3)"
+            v-for="photo in highlightPhotosData"
             :key="photo.src"
             class="h-80 w-full"
           >
@@ -116,10 +116,14 @@ import { PhotoGallery } from "~/components/ui/photo-gallery";
 import { ExpandableGallery } from "~/components/ui/expandable-gallery";
 import { FlipCard } from "~/components/ui/flip-card";
 import { RotateCcw, Eye, Share2 } from "lucide-vue-next";
-import { photoGalleryData } from "~/data/staticData";
+import {
+  photoGalleryData,
+  featuredWorksData,
+  highlightPhotosData,
+} from "~/data/staticData";
 
 // Categories for filtering
-const categories = ["全部", "风景", "城市", "自然", "生活"];
+const categories = ["全部", "风景", "演唱会", "自然", "生活"];
 const activeCategory = ref("全部");
 
 // Filtered photos based on active category
@@ -134,7 +138,7 @@ const filteredPhotos = computed(() => {
 
 // Featured images for expandable gallery
 const featuredImages = computed(() => {
-  return photoGalleryData.slice(0, 4).map((photo) => photo.src);
+  return featuredWorksData.map((photo) => photo.src);
 });
 
 // Photo interaction methods
