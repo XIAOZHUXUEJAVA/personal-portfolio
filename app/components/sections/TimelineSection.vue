@@ -4,22 +4,17 @@
       <!-- Section Title -->
       <div class="text-center mb-16">
         <h2 class="text-4xl md:text-5xl font-bold mb-4">时间线</h2>
-        <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <!-- <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
           记录生活中的重要时刻和美好回忆
-        </p>
+        </p> -->
       </div>
 
       <!-- Timeline Component -->
-      <Timeline
-        :items="timelineItems"
-        title="我的生活记录"
-        description="每一个时刻都值得被记住"
-        class="mb-16"
-      />
+      <!-- <Timeline :items="timelineItems" title="" description="" class="mb-16" /> -->
 
       <!-- Detailed Timeline Cards -->
       <div class="mt-20">
-        <h3 class="text-2xl font-bold text-center mb-12">详细时间线</h3>
+        <!-- <h3 class="text-2xl font-bold text-center mb-12">详细时间线</h3> -->
         <div class="space-y-8">
           <div
             v-for="(item, index) in timelineData"

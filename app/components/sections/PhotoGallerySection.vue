@@ -36,10 +36,10 @@
       </div>
 
       <!-- Expandable Gallery -->
-      <div class="mt-16">
+      <!-- <div class="mt-16">
         <h3 class="text-2xl font-bold text-center mb-8">精选作品</h3>
         <ExpandableGallery :images="featuredImages" />
-      </div>
+      </div> -->
 
       <!-- Featured Photos with Flip Cards -->
       <div class="mt-20">

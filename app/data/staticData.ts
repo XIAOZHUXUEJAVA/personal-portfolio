@@ -185,51 +185,49 @@ export const highlightPhotosData: PhotoItem[] = [
 // Timeline Data
 export const timelineData: TimelineItem[] = [
   {
-    id: "2024-01",
-    label: "新的开始",
-    date: "2024年1月",
-    title: "开启个人博客之旅",
+    id: "2022-01",
+    label: "学习编程",
+    date: "2022年1月",
+    title: "开启代码学习之路",
     description:
-      "决定开始记录生活，分享摄影作品和人生感悟。这是一个全新的开始，希望能够通过文字和图片与更多人产生连接。",
+      "22年的新年，开始认真的学习编程，选择的语言是Java。还算认真的去学习，似乎还没找到真正的编程之道",
     image:
       "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop",
   },
   {
-    id: "2024-03",
-    label: "春日踏青",
-    date: "2024年3月",
-    title: "樱花季的京都之行",
-    description:
-      "春天的京都，樱花盛开，粉色的花瓣如雪花般飘落。在这里感受到了日本文化的深厚底蕴，也拍摄了许多珍贵的照片。",
+    id: "2023-06",
+    label: "实习工作",
+    date: "2023年6月",
+    title: "第一份实习工作",
+    description: "两个月左右的实习工作，似乎也让我明白了什么是职场",
     image:
       "https://images.unsplash.com/photo-1522383225653-ed111181a951?w=400&h=300&fit=crop",
   },
   {
-    id: "2024-06",
-    label: "夏日回忆",
-    date: "2024年6月",
-    title: "海边的夏日时光",
-    description:
-      "炎热的夏天，来到海边度假。蔚蓝的大海、金色的沙滩、温暖的阳光，这些都成为了美好的回忆。",
+    id: "2024-07",
+    label: "正式工作",
+    date: "2024年7月",
+    title: "正式参加工作",
+    description: "工作至今，尽量让自己保持学习的状态，不断探索最新的技术",
     image:
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop",
   },
-  {
-    id: "2024-09",
-    label: "秋日感悟",
-    date: "2024年9月",
-    title: "金秋时节的思考",
-    description:
-      "秋天是收获的季节，也是思考的季节。在这个时候，我开始反思过去的一年，思考未来的方向。",
-    image:
-      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop",
-  },
+  // {
+  //   id: "2024-09",
+  //   label: "秋日感悟",
+  //   date: "2024年9月",
+  //   title: "金秋时节的思考",
+  //   description:
+  //     "秋天是收获的季节，也是思考的季节。在这个时候，我开始反思过去的一年，思考未来的方向。",
+  //   image:
+  //     "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop",
+  // },
 ];
 
 // Contact Information
 export const contactInfo: ContactInfo = {
   email: "xiaozhuzhulzq@163.com",
-  github: "https://github.com/username",
+  github: "https://github.com/XIAOZHUXUEJAVA",
   twitter: "https://twitter.com/username",
   linkedin: "https://linkedin.com/in/username",
 };

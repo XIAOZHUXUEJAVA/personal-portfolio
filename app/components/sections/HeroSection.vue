@@ -57,7 +57,7 @@
             class="px-8 py-3 rounded-full border border-border bg-background/50 backdrop-blur-sm hover:bg-accent transition-colors"
             @click="scrollToSection('#gallery')"
           >
-            查看作品
+            点点滴滴
           </button>
         </div>
       </div>
