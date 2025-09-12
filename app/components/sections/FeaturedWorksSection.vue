@@ -122,36 +122,6 @@ const featuredWorks = [
     sourceUrl: null,
   },
   {
-    id: 3,
-    title: "生活感悟集",
-    description: "记录日常生活中的思考和感悟，用心感受生活的点点滴滴",
-    image:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["思考", "感悟", "成长"],
-    demoUrl: "#about",
-    sourceUrl: null,
-  },
-  {
-    id: 4,
-    title: "创意设计项目",
-    description: "探索视觉设计的无限可能，用创意表达内心的想法和情感",
-    image:
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["设计", "创意", "视觉"],
-    demoUrl: null,
-    sourceUrl: null,
-  },
-  {
-    id: 5,
-    title: "音乐与生活",
-    description: "分享喜欢的音乐和它们背后的故事，音乐是生活中不可缺少的调味剂",
-    image:
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["音乐", "分享", "情感"],
-    demoUrl: null,
-    sourceUrl: null,
-  },
-  {
     id: 6,
     title: "代码仓库",
     description: "记录学习新技术的过程和心得，与同行分享经验和见解",

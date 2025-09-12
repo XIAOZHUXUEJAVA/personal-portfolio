@@ -3,10 +3,10 @@
     <div class="max-w-7xl mx-auto">
       <!-- Section Title -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">照片画廊</h2>
-        <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">些许瞬间</h2>
+        <!-- <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
           用镜头记录生活的美好瞬间，每一张照片都有它独特的故事
-        </p>
+        </p> -->
       </div>
 
       <!-- Gallery Tabs -->

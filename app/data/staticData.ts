@@ -47,28 +47,28 @@ export const heroData: HeroData = {
 // About Section Data
 export const aboutData: AboutItem[] = [
   {
-    title: "摄影爱好者",
+    title: "程序开发人员",
     description:
-      "用镜头捕捉生活中的美好瞬间，从街头巷尾到山川湖海，每一张照片都承载着独特的故事和情感。",
+      "会点后端(潦潦草草)，懂点前端(全靠AI)，摸点运维(全靠运气)， 喜欢折腾(闲不下来)",
     icon: "Camera",
     gradientColor: "#3b82f6",
-    tags: ["风景摄影", "人像摄影", "街拍", "后期处理"],
+    tags: ["职业", "技术"],
   },
   {
-    title: "设计师",
+    title: "摩托杀手",
     description:
-      "专注于用户体验设计和视觉设计，相信好的设计能够改变世界，让生活变得更加美好和便利。",
+      "练习时长10年+（小时候偷偷骑），但仅限于正常骑行，最近正在骑巡航",
     icon: "Palette",
     gradientColor: "#8b5cf6",
-    tags: ["UI/UX", "平面设计", "品牌设计", "插画"],
+    tags: ["爱好", "骑行"],
   },
   {
-    title: "生活记录者",
+    title: "喜欢单曲循环",
     description:
-      "喜欢用文字记录生活的点点滴滴，分享旅行见闻、读书心得和人生感悟，希望能与更多人产生共鸣。",
+      "喜欢听音乐，喜欢邓紫棋，喜欢单曲循环某一首歌，最近在听 ‘像中枪一样’",
     icon: "BookOpen",
     gradientColor: "#06b6d4",
-    tags: ["写作", "阅读", "旅行", "思考"],
+    tags: ["音乐", "邓紫棋"],
   },
 ];
 
@@ -228,7 +228,7 @@ export const timelineData: TimelineItem[] = [
 
 // Contact Information
 export const contactInfo: ContactInfo = {
-  email: "hello@example.com",
+  email: "xiaozhuzhulzq@163.com",
   github: "https://github.com/username",
   twitter: "https://twitter.com/username",
   linkedin: "https://linkedin.com/in/username",
@@ -236,7 +236,7 @@ export const contactInfo: ContactInfo = {
 
 // Quotes for inspiration
 export const inspirationalQuotes = [
-  "苦杏仁的气味总是让他想起爱情受阻后的命运",
+  "Actions > Words",
   // "每一个不曾起舞的日子，都是对生命的辜负。",
   // "世界那么大，我想去看看。",
   // "用心感受生活，用镜头记录美好。",

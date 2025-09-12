@@ -57,7 +57,7 @@
               >
                 <Github class="h-5 w-5" />
               </a>
-              <a
+              <!-- <a
                 :href="contactInfo.twitter"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -72,7 +72,7 @@
                 class="p-2 rounded-full bg-blue-600/10 text-blue-600 hover:bg-blue-600/20 transition-colors"
               >
                 <Linkedin class="h-5 w-5" />
-              </a>
+              </a> -->
             </div>
           </div>
         </CardSpotlight>
@@ -81,12 +81,12 @@
       <!-- Call to Action -->
       <div class="text-center">
         <div class="space-y-6">
-          <h3 class="text-2xl font-bold">让我们保持联系</h3>
+          <!-- <h3 class="text-2xl font-bold">让我们保持联系</h3>
           <p class="text-muted-foreground max-w-2xl mx-auto">
             如果你喜欢我的作品或想要交流摄影心得，随时欢迎与我联系。
             我很乐意与志同道合的朋友分享经验和想法。
-          </p>
-          <RainbowButton @click="scrollToTop" class="px-8 py-3">
+          </p> -->
+          <RainbowButton class="px-8 py-3" @click="scrollToTop">
             回到顶部
           </RainbowButton>
         </div>
