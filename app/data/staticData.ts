@@ -110,12 +110,12 @@ export const photoGalleryData: PhotoItem[] = [
     category: "演唱会",
     description: "午后的咖啡时光，享受片刻的宁静",
   },
-  {
-    src: "/images/dengziqi6.jpg",
-    title: "雪山远景",
-    category: "演唱会",
-    description: "远山如黛，雪峰巍峨，大自然的鬼斧神工",
-  },
+  // {
+  //   // src: "/images/dengziqi6.jpg",
+  //   // title: "雪山远景",
+  //   // category: "演唱会",
+  //   // description: "远山如黛，雪峰巍峨，大自然的鬼斧神工",
+  // },
 ];
 
 // 精选作品数据 - 用于 ExpandableGallery
