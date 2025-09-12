@@ -155,7 +155,7 @@ const viewLargeImage = (imageUrl: string, title: string) => {
               justify-content: center;
               align-items: center;
               min-height: 100vh;
-              font-family: Arial, sans-serif;
+              font-family: "LXGW WenKai", "Inter", Arial, sans-serif;
             }
             img {
               max-width: 100%;
@@ -206,6 +206,6 @@ const viewLargeImage = (imageUrl: string, title: string) => {
 
 <style scoped>
 .inter-var {
-  font-family: "Inter", sans-serif;
+  font-family: "LXGW WenKai", "Inter", sans-serif;
 }
 </style>
