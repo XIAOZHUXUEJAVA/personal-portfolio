@@ -163,31 +163,26 @@ const viewFullPhoto = (photo: any) => {
 
 const sharePhoto = async (photo: any) => {
   try {
-    // 创建分享数据
-    const shareData = {
-      title: photo.title,
-      description: photo.description,
-      src: photo.src,
-      location: photo.location,
-      date: photo.date,
-      category: photo.category,
-    };
-
-    // 编码数据
-    const encodedData = encodeURIComponent(JSON.stringify(shareData));
-
-    // 生成分享链接
+    // 获取基础URL
     const baseUrl = import.meta.client
       ? window.location.origin
       : "http://localhost:3000";
-    const shareUrl = `${baseUrl}/share?data=${encodedData}`;
 
-    // 复制分享链接到剪贴板
-    await navigator.clipboard.writeText(shareUrl);
-    showCopyToast("分享链接已复制到剪贴板");
+    // 确保图片链接是完整的绝对URL
+    let fullImageUrl = photo.src;
+    if (!photo.src.startsWith("http")) {
+      // 如果src不是完整URL，则拼接域名
+      fullImageUrl = photo.src.startsWith("/")
+        ? `${baseUrl}${photo.src}`
+        : `${baseUrl}/${photo.src}`;
+    }
+
+    // 直接复制图片URL到剪贴板
+    await navigator.clipboard.writeText(fullImageUrl);
+    showCopyToast("图片链接已复制到剪贴板");
   } catch (err) {
-    console.error("生成分享链接失败:", err);
-    showCopyToast("生成分享链接失败");
+    console.error("复制图片链接失败:", err);
+    showCopyToast("复制图片链接失败");
   }
 };
 
