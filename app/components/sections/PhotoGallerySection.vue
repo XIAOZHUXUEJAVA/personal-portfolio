@@ -32,7 +32,16 @@
 
       <!-- Photo Gallery Component -->
       <div class="mb-12">
-        <PhotoGallery :items="filteredPhotos" />
+        <ClientOnly>
+          <PhotoGallery :items="filteredPhotos" />
+          <template #fallback>
+            <div class="flex justify-center items-center h-64">
+              <div
+                class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"
+              />
+            </div>
+          </template>
+        </ClientOnly>
       </div>
 
       <!-- Expandable Gallery -->
@@ -51,10 +60,15 @@
             class="h-80 w-full"
           >
             <template #default>
-              <img
+              <NuxtImg
                 :src="photo.src"
                 :alt="photo.title"
                 class="size-full rounded-2xl object-cover shadow-2xl shadow-black/40"
+                loading="lazy"
+                :placeholder="[40, 40, 75, 5]"
+                format="webp"
+                quality="85"
+                sizes="sm:300px md:400px lg:500px"
               />
               <div
                 class="absolute bottom-4 left-4 text-xl font-bold text-white"
