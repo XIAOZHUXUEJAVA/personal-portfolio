@@ -199,13 +199,13 @@ export const timelineData: TimelineItem[] = [
     label: "实习工作",
     date: "2023年6月",
     title: "第一份实习工作",
-    description: "两个月左右的实习工作，似乎也让我明白了什么是职场",
+    description: "几个月左右的实习工作，似乎也让我明白了什么是职场",
     image:
       "https://images.unsplash.com/photo-1522383225653-ed111181a951?w=400&h=300&fit=crop",
   },
   {
     id: "2024-07",
-    label: "正式工作",
+    label: "正式工我的生活记录作",
     date: "2024年7月",
     title: "正式参加工作",
     description: "工作至今，尽量让自己保持学习的状态，不断探索最新的技术",

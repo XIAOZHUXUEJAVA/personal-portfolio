@@ -113,7 +113,7 @@
                     class="flex-1 px-3 py-2 bg-white/20 text-white rounded-lg text-sm font-medium hover:bg-white/30 transition-colors backdrop-blur-sm"
                     @click="sharePhoto(photo)"
                   >
-                    分享照片
+                    分享图片
                   </button>
                 </div>
               </div>
@@ -161,18 +161,77 @@ const viewFullPhoto = (photo: any) => {
   window.open(photo.src, "_blank");
 };
 
-const sharePhoto = (photo: any) => {
-  // 可以实现分享功能
-  if (navigator.share) {
-    navigator.share({
+const sharePhoto = async (photo: any) => {
+  try {
+    // 创建分享数据
+    const shareData = {
       title: photo.title,
-      text: photo.description,
-      url: photo.src,
-    });
-  } else {
-    // 备用方案：复制链接到剪贴板
-    navigator.clipboard.writeText(photo.src);
-    console.log("照片链接已复制到剪贴板");
+      description: photo.description,
+      src: photo.src,
+      location: photo.location,
+      date: photo.date,
+      category: photo.category,
+    };
+
+    // 编码数据
+    const encodedData = encodeURIComponent(JSON.stringify(shareData));
+
+    // 生成分享链接
+    const baseUrl = import.meta.client
+      ? window.location.origin
+      : "http://localhost:3000";
+    const shareUrl = `${baseUrl}/share?data=${encodedData}`;
+
+    // 复制分享链接到剪贴板
+    await navigator.clipboard.writeText(shareUrl);
+    showCopyToast("分享链接已复制到剪贴板");
+  } catch (err) {
+    console.error("生成分享链接失败:", err);
+    showCopyToast("生成分享链接失败");
   }
+};
+
+// 显示复制成功提示
+const showCopyToast = (message: string = "操作成功") => {
+  const toast = document.createElement("div");
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 9999;
+    animation: slideIn 0.3s ease-out;
+  `;
+
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+  `;
+  document.head.appendChild(style);
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.animation = "slideOut 0.3s ease-out";
+    setTimeout(() => {
+      if (document.body.contains(toast)) {
+        document.body.removeChild(toast);
+      }
+      if (document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
+    }, 300);
+  }, 3000);
 };
 </script>
