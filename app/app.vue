@@ -44,7 +44,7 @@ import { Meteors } from "~/components/ui/meteors";
 
 // SEO Meta
 useHead({
-  title: "个人主页 - 分享生活的美好时光",
+  title: "个人主页 - xiaozhu",
   meta: [
     {
       name: "description",
