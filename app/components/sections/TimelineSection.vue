@@ -1,63 +1,33 @@
 <template>
   <section id="timeline" class="py-20 px-6">
-    <div class="max-w-4xl mx-auto">
-      <!-- Section Title -->
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">时间线</h2>
-        <!-- <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-          记录生活中的重要时刻和美好回忆
-        </p> -->
-      </div>
-
-      <!-- Timeline Component -->
-      <!-- <Timeline :items="timelineItems" title="" description="" class="mb-16" /> -->
-
-      <!-- Detailed Timeline Cards -->
-      <div class="mt-20">
-        <!-- <h3 class="text-2xl font-bold text-center mb-12">详细时间线</h3> -->
-        <div class="space-y-8">
-          <div
-            v-for="(item, index) in timelineData"
-            :key="item.id"
-            class="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-8 hover:shadow-xl transition-all duration-300"
-          >
-            <div class="flex flex-col md:flex-row gap-6">
-              <!-- Image -->
-              <div v-if="item.image" class="md:w-1/3">
-                <img
-                  :src="item.image"
-                  :alt="item.title"
-                  class="w-full h-48 object-cover rounded-xl hover:scale-105 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-out cursor-pointer"
-                />
-              </div>
-
-              <!-- Content -->
-              <div class="flex-1 space-y-4">
-                <div class="flex items-center space-x-3">
-                  <span
-                    class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
-                  >
-                    {{ item.date }}
-                  </span>
-                </div>
-
-                <h4 class="text-2xl font-bold">{{ item.title }}</h4>
-
-                <p class="text-muted-foreground leading-relaxed">
-                  {{ item.description }}
-                </p>
-              </div>
-            </div>
+    <div class="max-w-7xl mx-auto">
+      <!-- Timeline Component with Custom Content -->
+      <Timeline
+        :items="timelineItems"
+        title="Timeline"
+        description="时间过得好快"
+        class="mb-16"
+      >
+        <!-- Custom content for each timeline item -->
+        <template v-for="item in timelineData" :key="item.id" #[item.id]>
+          <div class="relative ml-8 pb-20">
+            <TimelineCard
+              :item="item"
+              :index="timelineData.findIndex((t) => t.id === item.id)"
+              @click="handleTimelineItemClick"
+              @view-more="handleViewMore"
+            />
           </div>
-        </div>
-      </div>
+        </template>
+      </Timeline>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
 import { Timeline } from "~/components/ui/timeline";
-import { timelineData } from "~/data/staticData";
+import TimelineCard from "~/components/ui/timeline/TimelineCard.vue";
+import { timelineData, type TimelineItem } from "~/data/staticData";
 
 // Transform timeline data for Timeline component
 const timelineItems = computed(() => {
@@ -66,4 +36,18 @@ const timelineItems = computed(() => {
     label: item.label,
   }));
 });
+
+// Handle timeline item click
+const handleTimelineItemClick = (itemId: string) => {
+  console.log("Timeline item clicked:", itemId);
+  // Add your click handling logic here
+  // For example, scroll to item or show modal
+};
+
+// Handle view more action
+const handleViewMore = (item: TimelineItem) => {
+  console.log("View more for item:", item);
+  // Add your view more logic here
+  // For example, open modal with detailed information
+};
 </script>

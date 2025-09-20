@@ -4,18 +4,22 @@
     class="w-full bg-white font-sans md:px-10 dark:bg-neutral-950"
   >
     <div class="mx-auto max-w-7xl px-4 py-20 lg:px-10 md:px-8">
-      <h2 class="mb-4 max-w-4xl text-lg text-black md:text-4xl dark:text-white">
-        {{ title }}
-      </h2>
-      <p class="max-w-sm text-sm text-neutral-700 md:text-base dark:text-neutral-300">
-        {{ description }}
-      </p>
+      <div class="text-center mb-16">
+        <h2
+          class="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white"
+        >
+          {{ title }}
+        </h2>
+        <p
+          v-if="description"
+          class="text-xl text-neutral-700 max-w-2xl mx-auto dark:text-neutral-300"
+        >
+          {{ description }}
+        </p>
+      </div>
     </div>
 
-    <div
-      ref="timelineRef"
-      class="relative z-0 mx-auto max-w-7xl pb-20"
-    >
+    <div ref="timelineRef" class="relative z-0 mx-auto max-w-7xl pb-20">
       <div
         v-for="(item, index) in props.items"
         :key="item.id + index"
@@ -37,7 +41,7 @@
             {{ item.label }}
           </h3>
         </div>
-        <slot :name="item.id"></slot>
+        <slot :name="item.id" />
       </div>
       <div
         :style="{
@@ -52,8 +56,7 @@
             opacity: opacityTransform,
           }"
           class="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t from-purple-500 from-0% via-blue-500 via-10% to-transparent"
-        >
-        </Motion>
+        />
       </div>
     </div>
   </div>

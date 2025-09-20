@@ -205,7 +205,7 @@ export const timelineData: TimelineItem[] = [
   },
   {
     id: "2024-07",
-    label: "正式工我的生活记录作",
+    label: "木牛流马",
     date: "2024年7月",
     title: "正式参加工作",
     description: "工作至今，尽量让自己保持学习的状态，不断探索最新的技术",
