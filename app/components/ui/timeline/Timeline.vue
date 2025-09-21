@@ -3,8 +3,8 @@
     ref="timelineContainerRef"
     class="w-full bg-white font-sans md:px-10 dark:bg-neutral-950"
   >
-    <div class="mx-auto max-w-7xl px-4 py-20 lg:px-10 md:px-8">
-      <div class="text-center mb-16">
+    <div class="mx-auto max-w-7xl px-4 py-5 lg:px-10 md:px-8">
+      <div class="text-center mb-1">
         <h2
           class="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white"
         >

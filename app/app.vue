@@ -17,6 +17,9 @@
       <!-- Photo Gallery Section -->
       <PhotoGallerySection />
 
+      <!-- Reading Section -->
+      <ReadingSection />
+
       <!-- Timeline Section -->
       <TimelineSection />
 
@@ -38,6 +41,7 @@ import HeroSection from "~/components/sections/HeroSection.vue";
 import AboutSection from "~/components/sections/AboutSection.vue";
 import FeaturedWorksSection from "~/components/sections/FeaturedWorksSection.vue";
 import PhotoGallerySection from "~/components/sections/PhotoGallerySection.vue";
+import ReadingSection from "~/components/sections/ReadingSection.vue";
 import TimelineSection from "~/components/sections/TimelineSection.vue";
 import ContactSection from "~/components/sections/ContactSection.vue";
 import { Meteors } from "~/components/ui/meteors";
