@@ -52,13 +52,9 @@
           <RainbowButton class="px-8 py-3" @click="scrollToSection('#about')">
             了解更多
           </RainbowButton>
-
-          <button
-            class="px-8 py-3 rounded-full border border-border bg-background/50 backdrop-blur-sm hover:bg-accent transition-colors"
-            @click="scrollToSection('#gallery')"
-          >
+          <RainbowButton class="px-8 py-3" @click="scrollToSection('#gallery')">
             点点滴滴
-          </button>
+          </RainbowButton>
         </div>
       </div>
     </div>
@@ -79,6 +75,7 @@ import { ParticlesBg } from "~/components/ui/particles-bg";
 import { CardContainer, CardBody, CardItem } from "~/components/ui/card-3d";
 import { TextReveal } from "~/components/ui/text-reveal";
 import { RainbowButton } from "~/components/ui/rainbow-button";
+import { ShimmerButton } from "~/components/ui/shimmer-button";
 import { heroData } from "~/data/staticData";
 
 const colorMode = useColorMode();
