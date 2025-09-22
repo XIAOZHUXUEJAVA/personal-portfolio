@@ -26,28 +26,51 @@
 import { BendingGallery } from "~/components/ui/bending-gallery";
 const items = ref<Array<{ image: string; text: string }>>([
   {
-    image:
-      "https://images.pexels.com/photos/799443/pexels-photo-799443.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/images/games/33.png",
     text: "",
   },
   {
-    image:
-      "https://images.pexels.com/photos/16245254/pexels-photo-16245254/free-photo-of-chatgpt-a-chatbot-for-your-website.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/images/games/bloodborne.jpg",
     text: "",
   },
   {
-    image:
-      "https://images.pexels.com/photos/1910236/pexels-photo-1910236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/images/games/dark-souls-iii.jpg",
     text: "",
   },
   {
-    image:
-      "https://images.pexels.com/photos/2832382/pexels-photo-2832382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/images/games/eldenring.png",
     text: "",
   },
   {
-    image:
-      "https://images.pexels.com/photos/2333293/pexels-photo-2333293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/images/games/god-of-war.png",
+    text: "",
+  },
+  {
+    image: "/images/games/nioh2.png",
+    text: "",
+  },
+  {
+    image: "/images/games/sekiro.png",
+    text: "",
+  },
+  {
+    image: "/images/games/spider2.png",
+    text: "",
+  },
+  {
+    image: "/images/games/the-last-of-us-part1.png",
+    text: "",
+  },
+  {
+    image: "/images/games/the-last-of-us-part2.png",
+    text: "",
+  },
+  {
+    image: "/images/games/wolong.png",
+    text: "",
+  },
+  {
+    image: "/images/games/wukong.png",
     text: "",
   },
 ]);
