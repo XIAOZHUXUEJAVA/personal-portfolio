@@ -17,6 +17,8 @@
       <!-- Photo Gallery Section -->
       <PhotoGallerySection />
 
+      <GamingSection />
+
       <!-- Reading Section -->
       <ReadingSection />
 
@@ -45,6 +47,7 @@ import ReadingSection from "~/components/sections/ReadingSection.vue";
 import TimelineSection from "~/components/sections/TimelineSection.vue";
 import ContactSection from "~/components/sections/ContactSection.vue";
 import { Meteors } from "~/components/ui/meteors";
+import GamingSection from "./components/sections/GamingSection.vue";
 
 // SEO Meta
 useHead({
