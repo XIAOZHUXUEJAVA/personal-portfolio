@@ -8,7 +8,7 @@
       <div class="relative group">
         <!-- 渐变边框容器 -->
         <div
-          class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 rounded-2xl blur-sm opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"
+          class="absolute -inset-px bg-gradient-to-r from-emerald-200 via-teal-300 to-cyan-300 rounded-2xl blur-sm opacity-20 group-hover:opacity-35 transition duration-1000 group-hover:duration-200 animate-tilt"
         />
 
         <!-- 内容容器 -->
