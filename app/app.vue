@@ -1,8 +1,10 @@
 <template>
   <div class="relative min-h-screen bg-background text-foreground">
     <!-- Very Light Gradient Background -->
-    <div class="fixed inset-0 bg-gradient-to-br from-green-100/20 via-orange-100/15 to-yellow-100/20 pointer-events-none z-0"/>
-    
+    <div
+      class="fixed inset-0 bg-gradient-to-br from-green-100/20 via-orange-100/15 to-yellow-100/20 pointer-events-none z-0"
+    />
+
     <!-- Global Particles Background -->
     <ParticlesBg
       class="fixed inset-0 z-10"
@@ -94,5 +96,14 @@ html {
 body {
   font-family: "LXGW WenKai", "Inter", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, sans-serif;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 </style>

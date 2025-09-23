@@ -4,7 +4,11 @@
       <!-- Section Title -->
       <div class="text-center mb-16">
         <h2
-          class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 via-green-500 to-yellow-500 bg-clip-text text-transparent"
+          class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-500 via-green-600 to-yellow-500 bg-clip-text text-transparent"
+          style="
+            background-size: 200% 100%;
+            animation: gradient-shift 3s ease-in-out infinite alternate;
+          "
         >
           些许瞬间
         </h2>
@@ -57,7 +61,11 @@
       <!-- Featured Photos with Flip Cards -->
       <div class="mt-20">
         <h3
-          class="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-orange-400 via-green-500 to-yellow-500 bg-clip-text text-transparent"
+          class="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-orange-500 via-green-600 to-yellow-500 bg-clip-text text-transparent"
+          style="
+            background-size: 200% 100%;
+            animation: gradient-shift 3s ease-in-out infinite alternate;
+          "
         >
           精选照片
         </h3>
