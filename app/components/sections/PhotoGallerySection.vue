@@ -3,7 +3,11 @@
     <div class="max-w-7xl mx-auto">
       <!-- Section Title -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">些许瞬间</h2>
+        <h2
+          class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 via-green-500 to-yellow-500 bg-clip-text text-transparent"
+        >
+          些许瞬间
+        </h2>
         <!-- <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
           用镜头记录生活的美好瞬间，每一张照片都有它独特的故事
         </p> -->
@@ -52,7 +56,11 @@
 
       <!-- Featured Photos with Flip Cards -->
       <div class="mt-20">
-        <h3 class="text-2xl font-bold text-center mb-8">精选照片</h3>
+        <h3
+          class="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-orange-400 via-green-500 to-yellow-500 bg-clip-text text-transparent"
+        >
+          精选照片
+        </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <FlipCard
             v-for="photo in highlightPhotosData"

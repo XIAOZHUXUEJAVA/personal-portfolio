@@ -3,7 +3,11 @@
     <div class="max-w-7xl mx-auto">
       <!-- Section Title -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">最近在读</h2>
+        <h2
+          class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 via-green-500 to-yellow-500 bg-clip-text text-transparent"
+        >
+          最近在读
+        </h2>
         <!-- <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
           阅读是与智者对话，每本书都是一次心灵的旅行
         </p> -->

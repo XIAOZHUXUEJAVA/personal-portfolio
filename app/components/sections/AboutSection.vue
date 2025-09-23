@@ -3,7 +3,11 @@
     <div class="max-w-6xl mx-auto">
       <!-- Section Title -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">关于我</h2>
+        <h2
+          class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 via-green-500 to-yellow-500 bg-clip-text text-transparent"
+        >
+          关于我
+        </h2>
         <!-- <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
           分享我的故事、兴趣和人生感悟
         </p> -->

@@ -6,7 +6,7 @@
     <div class="mx-auto max-w-7xl px-4 py-5 lg:px-10 md:px-8">
       <div class="text-center mb-1">
         <h2
-          class="text-4xl md:text-5xl font-bold mb-4 text-green-700 dark:text-green-300"
+          class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 via-green-500 to-yellow-500 bg-clip-text text-transparent"
         >
           {{ title }}
         </h2>

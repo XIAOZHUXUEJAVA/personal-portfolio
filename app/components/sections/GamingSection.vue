@@ -3,7 +3,11 @@
     <div class="max-w-7xl mx-auto">
       <!-- Section Title -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">最近游玩</h2>
+        <h2
+          class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 via-green-500 to-yellow-500 bg-clip-text text-transparent"
+        >
+          最近游玩
+        </h2>
       </div>
       <div class="relative group">
         <!-- 渐变边框容器 -->
