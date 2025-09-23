@@ -1,7 +1,7 @@
 <template>
   <div
     ref="timelineContainerRef"
-    class="w-full bg-white font-sans md:px-10 dark:bg-neutral-950"
+    class="w-full bg-transparent font-sans md:px-10"
   >
     <div class="mx-auto max-w-7xl px-4 py-5 lg:px-10 md:px-8">
       <div class="text-center mb-1">
