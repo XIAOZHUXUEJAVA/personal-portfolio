@@ -17,14 +17,16 @@
           :gradient-size="300"
           :gradient-color="item.gradientColor"
           :gradient-opacity="0.6"
-          class="p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm"
+          class="p-8 rounded-2xl border border-green-200/40 bg-gradient-to-br from-green-50/80 via-yellow-50/70 to-orange-50/80 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300"
         >
           <div class="space-y-4">
             <div class="flex items-center space-x-3">
-              <div class="p-3 rounded-full bg-primary/10">
+              <div
+                class="p-3 rounded-full bg-gradient-to-br from-green-100/80 to-yellow-100/80 shadow-md"
+              >
                 <component
                   :is="getIcon(item.icon)"
-                  class="h-6 w-6 text-primary"
+                  class="h-6 w-6 text-green-600"
                 />
               </div>
               <h3 class="text-xl font-semibold">{{ item.title }}</h3>
@@ -39,7 +41,7 @@
               <span
                 v-for="tag in item.tags"
                 :key="tag"
-                class="px-3 py-1 text-sm bg-secondary/50 rounded-full text-secondary-foreground"
+                class="px-3 py-1 text-sm bg-gradient-to-r from-green-100/70 to-yellow-100/70 rounded-full text-green-700 border border-green-200/50 shadow-sm"
               >
                 {{ tag }}
               </span>
