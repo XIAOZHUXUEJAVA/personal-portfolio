@@ -12,7 +12,7 @@
       <!-- Gallery Tabs -->
       <div class="flex justify-center mb-12">
         <div
-          class="flex space-x-2 bg-background/50 backdrop-blur-sm rounded-full p-1 border border-border/50"
+          class="flex space-x-2 bg-gradient-to-r from-green-50/80 via-yellow-50/80 to-orange-50/80 backdrop-blur-md rounded-full p-1 border border-green-200/50 shadow-lg dark:from-green-950/60 dark:via-yellow-950/60 dark:to-orange-950/60 dark:border-green-700/30"
         >
           <button
             v-for="category in categories"
@@ -20,8 +20,8 @@
             :class="[
               'px-6 py-2 rounded-full transition-all duration-300',
               activeCategory === category
-                ? 'bg-primary text-primary-foreground shadow-lg'
-                : 'text-muted-foreground hover:text-foreground',
+                ? 'bg-gradient-to-r from-green-500 to-yellow-500 text-white shadow-lg hover:from-green-600 hover:to-yellow-600'
+                : 'text-green-600/80 hover:text-green-700 hover:bg-green-100/50 dark:text-green-400/80 dark:hover:text-green-300 dark:hover:bg-green-800/30',
             ]"
             @click="activeCategory = category"
           >
@@ -78,33 +78,33 @@
             </template>
             <template #back>
               <div
-                class="flex min-h-full flex-col gap-2 p-6 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl"
+                class="flex min-h-full flex-col gap-2 p-6 bg-gradient-to-br from-green-100/95 via-yellow-50/90 to-orange-100/95 rounded-2xl backdrop-blur-sm shadow-lg"
               >
-                <h1 class="text-xl font-bold text-white">
+                <h1 class="text-xl font-bold text-gray-800">
                   {{ photo.title }}
                 </h1>
                 <p
-                  class="mt-1 border-t border-t-gray-200 py-4 text-base font-medium leading-normal text-gray-100"
+                  class="mt-1 border-t border-t-green-200/60 py-4 text-base font-medium leading-normal text-gray-700"
                 >
                   {{ photo.description }}
                 </p>
-                <div class="mt-2 space-y-2 text-sm text-gray-300">
+                <div class="mt-2 space-y-2 text-sm text-gray-600">
                   <p>
-                    <span class="font-medium">位置:</span>
+                    <span class="font-medium text-green-700">位置:</span>
                     {{ photo.location }}
                   </p>
                   <p>
-                    <span class="font-medium">拍摄时间:</span>
+                    <span class="font-medium text-green-700">拍摄时间:</span>
                     {{ photo.date }}
                   </p>
                   <p>
-                    <span class="font-medium">分类:</span>
+                    <span class="font-medium text-green-700">分类:</span>
                     {{ photo.category }}
                   </p>
                 </div>
                 <div class="flex gap-2 mt-auto pt-4">
                   <button
-                    class="flex-1 px-3 py-2 bg-white/20 text-white rounded-lg text-sm font-medium hover:bg-white/30 transition-colors backdrop-blur-sm"
+                    class="flex-1 px-3 py-2 bg-green-200/60 text-gray-800 rounded-lg text-sm font-medium hover:bg-green-300/70 transition-all duration-200 backdrop-blur-sm shadow-sm hover:shadow-md"
                     @click="viewFullPhoto(photo)"
                   >
                     查看原图

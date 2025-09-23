@@ -14,13 +14,15 @@
         <!-- Email Card -->
         <CardSpotlight
           :gradient-size="250"
-          gradient-color="#3b82f6"
-          :gradient-opacity="0.5"
-          class="p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm h-64 flex items-center justify-center"
+          gradient-color="rgba(34, 197, 94, 0.4)"
+          :gradient-opacity="0.6"
+          class="p-8 rounded-2xl border border-green-200/40 bg-gradient-to-br from-green-50/80 via-yellow-50/70 to-orange-50/80 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300 h-64 flex items-center justify-center"
         >
           <div class="text-center space-y-4">
-            <div class="p-4 rounded-full bg-blue-500/10 w-fit mx-auto">
-              <Mail class="h-8 w-8 text-blue-500" />
+            <div
+              class="p-4 rounded-full bg-gradient-to-br from-green-100/80 to-yellow-100/80 shadow-md w-fit mx-auto"
+            >
+              <Mail class="h-8 w-8 text-green-600" />
             </div>
             <h3 class="text-xl font-semibold">邮箱联系</h3>
             <p class="text-muted-foreground">
@@ -28,7 +30,7 @@
             </p>
             <a
               :href="`mailto:${contactInfo.email}`"
-              class="inline-block px-6 py-2 bg-blue-500/10 text-blue-500 rounded-full hover:bg-blue-500/20 transition-colors"
+              class="inline-block px-6 py-2 bg-gradient-to-r from-green-100/70 to-yellow-100/70 text-green-700 rounded-full hover:from-green-200/80 hover:to-yellow-200/80 transition-all duration-300 border border-green-200/50 shadow-sm"
             >
               {{ contactInfo.email }}
             </a>
@@ -38,13 +40,15 @@
         <!-- GitHub Card -->
         <CardSpotlight
           :gradient-size="250"
-          gradient-color="#6b7280"
-          :gradient-opacity="0.5"
-          class="p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm h-64 flex items-center justify-center"
+          gradient-color="rgba(251, 191, 36, 0.4)"
+          :gradient-opacity="0.6"
+          class="p-8 rounded-2xl border border-yellow-200/40 bg-gradient-to-br from-yellow-50/80 via-orange-50/70 to-green-50/80 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300 h-64 flex items-center justify-center"
         >
           <div class="text-center space-y-4">
-            <div class="p-4 rounded-full bg-gray-500/10 w-fit mx-auto">
-              <Github class="h-8 w-8 text-gray-500" />
+            <div
+              class="p-4 rounded-full bg-gradient-to-br from-yellow-100/80 to-orange-100/80 shadow-md w-fit mx-auto"
+            >
+              <Github class="h-8 w-8 text-yellow-600" />
             </div>
             <h3 class="text-xl font-semibold">GitHub</h3>
             <p class="text-muted-foreground">查看我的代码仓库和开源项目</p>
@@ -52,7 +56,7 @@
               :href="contactInfo.github"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-block px-6 py-2 bg-gray-500/10 text-gray-500 rounded-full hover:bg-gray-500/20 transition-colors"
+              class="inline-block px-6 py-2 bg-gradient-to-r from-yellow-100/70 to-orange-100/70 text-yellow-700 rounded-full hover:from-yellow-200/80 hover:to-orange-200/80 transition-all duration-300 border border-yellow-200/50 shadow-sm"
             >
               访问 GitHub
             </a>

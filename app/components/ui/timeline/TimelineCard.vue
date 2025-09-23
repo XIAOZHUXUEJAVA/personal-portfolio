@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group relative bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-8 hover:shadow-xl transition-all duration-300 cursor-pointer"
+    class="group relative bg-gradient-to-br from-green-50/80 via-yellow-50/70 to-orange-50/80 backdrop-blur-md rounded-2xl border border-green-200/40 p-8 hover:shadow-xl transition-all duration-300 cursor-pointer shadow-lg dark:from-green-950/60 dark:via-yellow-950/50 dark:to-orange-950/60 dark:border-green-700/30"
     @click="handleClick"
   >
     <!-- Timeline connector line for visual continuity -->
@@ -32,17 +32,17 @@
         <!-- Date badge -->
         <div class="flex items-center space-x-3">
           <span
-            class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
+            class="px-3 py-1 bg-gradient-to-r from-green-100/70 to-yellow-100/70 text-green-700 rounded-full text-sm font-medium border border-green-200/50 shadow-sm"
           >
             {{ item.date }}
           </span>
           <!-- Optional status indicator -->
-          <div class="w-2 h-2 bg-primary rounded-full animate-pulse" />
+          <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
         </div>
 
         <!-- Title -->
         <h4
-          class="text-2xl font-bold group-hover:text-primary transition-colors duration-300"
+          class="text-2xl font-bold text-green-700 group-hover:text-green-800 transition-colors duration-300 dark:text-green-300 dark:group-hover:text-green-200"
         >
           {{ item.title }}
         </h4>
@@ -61,7 +61,7 @@
 
           <!-- Action button -->
           <button
-            class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-primary hover:text-primary/80 text-sm font-medium"
+            class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-green-600 hover:text-green-700 text-sm font-medium"
             @click.stop="handleViewMore"
           >
             查看详情 →
@@ -72,7 +72,7 @@
 
     <!-- Decorative elements -->
     <div
-      class="absolute -inset-px bg-gradient-to-r from-primary/20 via-transparent to-primary/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
+      class="absolute -inset-px bg-gradient-to-r from-green-200/30 via-yellow-200/20 to-orange-200/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
     />
   </div>
 </template>

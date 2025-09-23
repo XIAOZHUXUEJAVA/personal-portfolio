@@ -4,7 +4,7 @@
       :class="
         cn(
           'relative h-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d]',
-          rotation[0],
+          rotation[0]
         )
       "
     >
@@ -19,8 +19,8 @@
       <div
         :class="
           cn(
-            'absolute h-full w-full overflow-hidden rounded-2xl border bg-black/80 p-4 text-slate-200 [backface-visibility:hidden]',
-            rotation[1],
+            'absolute h-full w-full overflow-hidden rounded-2xl border bg-gradient-to-br from-green-100/95 via-yellow-50/90 to-orange-100/95 backdrop-blur-sm shadow-lg p-2 text-gray-800 [backface-visibility:hidden]',
+            rotation[1]
           )
         "
       >

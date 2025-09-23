@@ -16,12 +16,12 @@
             class="inter-var"
           >
             <CardBody
-              class="group/card relative w-full h-full rounded-xl border border-black/[0.1] bg-gray-50 p-6 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]"
+              class="group/card relative w-full h-full rounded-xl border border-green-200/40 bg-gradient-to-br from-green-50/80 via-yellow-50/70 to-orange-50/80 p-6 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300 dark:border-green-700/30 dark:bg-gradient-to-br dark:from-green-950/60 dark:via-yellow-950/50 dark:to-orange-950/60 dark:hover:shadow-2xl dark:hover:shadow-green-500/20"
             >
               <!-- Title -->
               <CardItem
                 :translate-z="50"
-                class="text-xl font-bold text-neutral-600 dark:text-white"
+                class="text-xl font-bold text-green-700 dark:text-green-300"
               >
                 {{ work.title }}
               </CardItem>
@@ -30,7 +30,7 @@
               <CardItem
                 as="p"
                 :translate-z="60"
-                class="mt-2 max-w-sm text-sm text-neutral-500 dark:text-neutral-300"
+                class="mt-2 max-w-sm text-sm text-green-600/80 dark:text-green-400/80"
               >
                 {{ work.description }}
               </CardItem>
@@ -51,7 +51,7 @@
                 <span
                   v-for="tag in work.tags"
                   :key="tag"
-                  class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
+                  class="px-3 py-1 bg-gradient-to-r from-green-100/70 to-yellow-100/70 text-green-700 rounded-full text-xs font-medium border border-green-200/50 shadow-sm"
                 >
                   {{ tag }}
                 </span>
@@ -62,7 +62,7 @@
                 <CardItem
                   :translate-z="20"
                   as="button"
-                  class="rounded-xl px-4 py-2 text-xs font-normal text-neutral-600 hover:text-primary transition-colors dark:text-white"
+                  class="rounded-xl px-4 py-2 text-xs font-normal text-green-600 hover:text-green-700 transition-colors dark:text-green-400 dark:hover:text-green-300"
                   @click="viewLargeImage(work.image, work.title)"
                 >
                   查看大图 →
@@ -75,7 +75,7 @@
                   :href="work.sourceUrl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="rounded-xl bg-black px-4 py-2 text-xs font-bold text-white hover:bg-gray-800 transition-colors dark:bg-white dark:text-black dark:hover:bg-gray-200"
+                  class="rounded-xl bg-gradient-to-r from-green-600 to-yellow-600 px-4 py-2 text-xs font-bold text-white hover:from-green-700 hover:to-yellow-700 transition-all duration-300 shadow-md hover:shadow-lg dark:from-green-500 dark:to-yellow-500 dark:hover:from-green-400 dark:hover:to-yellow-400"
                 >
                   了解更多
                 </CardItem>

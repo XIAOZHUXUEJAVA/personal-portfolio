@@ -6,13 +6,13 @@
     <div class="mx-auto max-w-7xl px-4 py-5 lg:px-10 md:px-8">
       <div class="text-center mb-1">
         <h2
-          class="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white"
+          class="text-4xl md:text-5xl font-bold mb-4 text-green-700 dark:text-green-300"
         >
           {{ title }}
         </h2>
         <p
           v-if="description"
-          class="text-xl text-neutral-700 max-w-2xl mx-auto dark:text-neutral-300"
+          class="text-xl text-green-600/80 max-w-2xl mx-auto dark:text-green-400/80"
         >
           {{ description }}
         </p>
@@ -29,14 +29,14 @@
           class="sticky top-40 z-40 flex max-w-xs flex-col items-center self-start lg:max-w-sm md:w-full md:flex-row"
         >
           <div
-            class="absolute left-3 flex size-10 items-center justify-center rounded-full bg-white md:left-3 dark:bg-black"
+            class="absolute left-3 flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-green-100 to-yellow-100 shadow-md md:left-3 dark:bg-gradient-to-br dark:from-green-800 dark:to-yellow-800"
           >
             <div
-              class="size-4 rounded-full border border-neutral-300 bg-neutral-200 p-2 dark:border-neutral-700 dark:bg-neutral-800"
+              class="size-4 rounded-full border border-green-300 bg-green-200 p-2 dark:border-green-600 dark:bg-green-700"
             />
           </div>
           <h3
-            class="hidden text-xl font-bold text-neutral-500 md:block md:pl-20 md:text-5xl dark:text-neutral-500"
+            class="hidden text-xl font-bold text-green-500/70 md:block md:pl-20 md:text-5xl dark:text-green-400/70"
           >
             {{ item.label }}
           </h3>
@@ -47,7 +47,7 @@
         :style="{
           height: height + 'px',
         }"
-        class="absolute left-8 top-0 w-[2px] overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-0% via-neutral-200 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8 dark:via-neutral-700"
+        class="absolute left-8 top-0 w-[2px] overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-0% via-green-200 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8 dark:via-green-700"
       >
         <Motion
           as="div"
@@ -55,7 +55,7 @@
             height: heightTransform,
             opacity: opacityTransform,
           }"
-          class="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t from-purple-500 from-0% via-blue-500 via-10% to-transparent"
+          class="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t from-green-500 from-0% via-yellow-500 via-10% to-orange-400 to-20% to-transparent"
         />
       </div>
     </div>
