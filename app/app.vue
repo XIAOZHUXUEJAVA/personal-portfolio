@@ -11,7 +11,7 @@
     />
 
     <!-- Navigation Dock -->
-    <NavigationDock class="relative z-20" />
+    <NavigationDock class="z-20" />
 
     <!-- Main Content -->
     <main class="relative z-10">

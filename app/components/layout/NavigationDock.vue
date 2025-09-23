@@ -2,7 +2,7 @@
   <div class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
     <Dock
       direction="middle"
-      class="bg-background/80 backdrop-blur-md border border-border/50 rounded-full px-2"
+      class="bg-gradient-to-r from-green-50/90 via-yellow-50/90 to-orange-50/90 backdrop-blur-md border border-green-200/60 rounded-full px-2 shadow-lg shadow-green-100/50 dark:from-green-950/80 dark:via-yellow-950/80 dark:to-orange-950/80 dark:border-green-700/40 dark:shadow-green-900/30"
     >
       <DockIcon
         v-for="item in navigationItems"
@@ -12,7 +12,7 @@
       >
         <component
           :is="item.icon"
-          class="h-5 w-5 text-foreground/70 hover:text-foreground transition-colors"
+          class="h-5 w-5 text-green-600/80 hover:text-green-700 transition-colors dark:text-green-400/80 dark:hover:text-green-300"
         />
         <span class="sr-only">{{ item.label }}</span>
       </DockIcon>
@@ -22,11 +22,11 @@
       <DockIcon class="cursor-pointer" @click="toggleColorMode">
         <Sun
           v-if="isDark"
-          class="h-5 w-5 text-foreground/70 hover:text-foreground transition-colors"
+          class="h-5 w-5 text-yellow-600/80 hover:text-yellow-700 transition-colors dark:text-yellow-400/80 dark:hover:text-yellow-300"
         />
         <Moon
           v-else
-          class="h-5 w-5 text-foreground/70 hover:text-foreground transition-colors"
+          class="h-5 w-5 text-orange-600/80 hover:text-orange-700 transition-colors dark:text-orange-400/80 dark:hover:text-orange-300"
         />
       </DockIcon>
     </Dock>
