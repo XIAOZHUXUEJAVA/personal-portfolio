@@ -16,7 +16,7 @@
             class="inter-var"
           >
             <CardBody
-              class="group/card relative w-full h-full rounded-xl border border-green-200/40 bg-gradient-to-br from-green-50/80 via-yellow-50/70 to-orange-50/80 p-6 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300 dark:border-green-700/30 dark:bg-gradient-to-br dark:from-green-950/60 dark:via-yellow-950/50 dark:to-orange-950/60 dark:hover:shadow-2xl dark:hover:shadow-green-500/20"
+              class="group/card relative w-full h-full rounded-xl border border-green-200/40 bg-gradient-to-br from-green-50/80 via-yellow-50/70 to-orange-50/80 p-6 dark:border-green-700/30 dark:bg-gradient-to-br dark:from-green-950/60 dark:via-yellow-950/50 dark:to-orange-950/60 dark:hover:shadow-2xl dark:hover:shadow-green-500/[0.1]"
             >
               <!-- Title -->
               <CardItem
