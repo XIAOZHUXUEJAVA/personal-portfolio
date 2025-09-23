@@ -3,16 +3,6 @@
     id="hero"
     class="relative min-h-screen flex items-center justify-center overflow-hidden"
   >
-    <!-- Particles Background -->
-    <ParticlesBg
-      class="absolute inset-0"
-      :quantity="80"
-      :ease="50"
-      :color="isDark ? '#ffffff' : '#000000'"
-      :staticity="30"
-      refresh
-    />
-
     <!-- Hero Content -->
     <div class="relative z-10 text-center max-w-4xl mx-auto px-6">
       <div class="space-y-8">
@@ -69,17 +59,12 @@
 </template>
 
 <script setup lang="ts">
-import { useColorMode } from "@vueuse/core";
 import { ChevronDown } from "lucide-vue-next";
-import { ParticlesBg } from "~/components/ui/particles-bg";
 import { CardContainer, CardBody, CardItem } from "~/components/ui/card-3d";
 import { TextReveal } from "~/components/ui/text-reveal";
 import { RainbowButton } from "~/components/ui/rainbow-button";
 import { ShimmerButton } from "~/components/ui/shimmer-button";
 import { heroData } from "~/data/staticData";
-
-const colorMode = useColorMode();
-const isDark = computed(() => colorMode.value === "dark");
 
 const scrollToSection = (href: string) => {
   const element = document.querySelector(href);

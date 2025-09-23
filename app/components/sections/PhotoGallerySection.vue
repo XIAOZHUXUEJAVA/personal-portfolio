@@ -1,5 +1,5 @@
 <template>
-  <section id="gallery" class="py-20 px-6 bg-muted/30">
+  <section id="gallery" class="py-20 px-6">
     <div class="max-w-7xl mx-auto">
       <!-- Section Title -->
       <div class="text-center mb-16">

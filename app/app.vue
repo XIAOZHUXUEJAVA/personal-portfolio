@@ -1,10 +1,20 @@
 <template>
-  <div class="min-h-screen bg-background text-foreground">
+  <div class="relative min-h-screen bg-background text-foreground">
+    <!-- Global Particles Background -->
+    <ParticlesBg
+      class="fixed inset-0 z-0"
+      :quantity="60"
+      :ease="50"
+      :color="isDark ? '#ffffff' : '#000000'"
+      :staticity="30"
+      refresh
+    />
+
     <!-- Navigation Dock -->
-    <NavigationDock />
+    <NavigationDock class="relative z-20" />
 
     <!-- Main Content -->
-    <main class="relative">
+    <main class="relative z-10">
       <!-- Hero Section -->
       <HeroSection />
 
@@ -30,7 +40,7 @@
     </main>
 
     <!-- Meteors Background Effect -->
-    <Meteors :number="20" />
+    <Meteors :number="20" class="relative z-5" />
   </div>
 </template>
 
@@ -47,7 +57,12 @@ import ReadingSection from "~/components/sections/ReadingSection.vue";
 import TimelineSection from "~/components/sections/TimelineSection.vue";
 import ContactSection from "~/components/sections/ContactSection.vue";
 import { Meteors } from "~/components/ui/meteors";
+import { ParticlesBg } from "~/components/ui/particles-bg";
 import GamingSection from "./components/sections/GamingSection.vue";
+
+// Color mode setup
+const colorMode = useColorMode();
+const isDark = computed(() => colorMode.value === "dark");
 
 // SEO Meta
 useHead({
@@ -66,9 +81,6 @@ useHead({
     { property: "og:type", content: "website" },
   ],
 });
-
-// Color mode setup
-const colorMode = useColorMode();
 </script>
 
 <style>

@@ -1,5 +1,5 @@
 <template>
-  <section id="contact" class="py-20 px-6 bg-muted/30">
+  <section id="contact" class="py-20 px-6">
     <div class="max-w-4xl mx-auto">
       <!-- Section Title -->
       <div class="text-center mb-16">
