@@ -65,3 +65,7 @@ npm run build
 - 照片数据
 - 时间线内容
 - 联系方式
+
+## 许可证
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
