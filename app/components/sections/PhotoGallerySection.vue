@@ -126,7 +126,7 @@
                     查看原图
                   </button>
                   <button
-                    class="flex-1 px-3 py-2 bg-white/20 text-white rounded-lg text-sm font-medium hover:bg-white/30 transition-colors backdrop-blur-sm"
+                    class="flex-1 px-3 py-2 bg-white/20 text-gray-800 rounded-lg text-sm font-medium hover:bg-white/30 transition-colors backdrop-blur-sm"
                     @click="sharePhoto(photo)"
                   >
                     分享图片

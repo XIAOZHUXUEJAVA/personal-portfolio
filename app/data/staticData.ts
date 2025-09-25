@@ -49,7 +49,7 @@ export const aboutData: AboutItem[] = [
   {
     title: "程序开发人员",
     description:
-      "会点后端(潦潦草草)，懂点前端(全靠AI)，摸点运维(全靠运气)， 喜欢折腾(闲不下来)",
+      "会点后端(潦潦草草)，懂点前端(全靠AI)，搞点运维(全靠运气)，喜欢折腾(闲不下来)",
     icon: "Camera",
     gradientColor: "rgba(34, 197, 94, 0.3)",
     tags: ["职业", "技术"],
@@ -57,7 +57,7 @@ export const aboutData: AboutItem[] = [
   {
     title: "摩托杀手",
     description:
-      "练习时长10年+（小时候偷偷骑），但仅限于正常骑行，最近正在骑巡航",
+      "练习时长10年+（小时候偷偷骑），但仅限于正常骑行，不飙车，最近正在骑巡航",
     icon: "Palette",
     gradientColor: "rgba(251, 191, 36, 0.3)",
     tags: ["爱好", "骑行"],
@@ -65,7 +65,7 @@ export const aboutData: AboutItem[] = [
   {
     title: "喜欢单曲循环",
     description:
-      "喜欢听音乐，喜欢邓紫棋，喜欢单曲循环某一首歌，最近在听 ‘像中枪一样’",
+      "喜欢听音乐，经常单曲循环，爱听邓紫棋，但最近在听 <像中枪一样>",
     icon: "BookOpen",
     gradientColor: "rgba(249, 115, 22, 0.3)",
     tags: ["音乐", "邓紫棋"],

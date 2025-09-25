@@ -5,7 +5,10 @@
       <div class="text-center mb-16">
         <h2
           class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-500 via-green-600 to-yellow-500 bg-clip-text text-transparent"
-          style="background-size: 200% 100%; animation: gradient-shift 3s ease-in-out infinite alternate;"
+          style="
+            background-size: 200% 100%;
+            animation: gradient-shift 3s ease-in-out infinite alternate;
+          "
         >
           最近在读
         </h2>
@@ -107,6 +110,28 @@
         </cite>
       </div> -->
     </div>
+
+    <!-- Toast 提示 -->
+    <Transition
+      enter-active-class="transition-all duration-300 ease-out"
+      enter-from-class="opacity-0 translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition-all duration-200 ease-in"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 translate-y-2"
+    >
+      <div
+        v-if="showToast"
+        class="fixed top-4 right-4 z-50 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg p-4 max-w-sm"
+      >
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+          </div>
+          <p class="text-sm text-foreground">{{ toastMessage }}</p>
+        </div>
+      </div>
+    </Transition>
   </section>
 </template>
 
@@ -131,6 +156,7 @@ const booksData = ref([
     size: "md" as const,
     radius: "md" as const,
     shadowSize: "lg" as const,
+    reflectionUrl: "",
   },
   {
     id: 2,
@@ -143,6 +169,7 @@ const booksData = ref([
     size: "md" as const,
     radius: "md" as const,
     shadowSize: "lg" as const,
+    reflectionUrl: null,
   },
   {
     id: 3,
@@ -155,6 +182,7 @@ const booksData = ref([
     size: "md" as const,
     radius: "md" as const,
     shadowSize: "lg" as const,
+    reflectionUrl: null,
   },
   {
     id: 4,
@@ -167,6 +195,7 @@ const booksData = ref([
     size: "md" as const,
     radius: "md" as const,
     shadowSize: "lg" as const,
+    reflectionUrl: null,
   },
   {
     id: 5,
@@ -179,6 +208,7 @@ const booksData = ref([
     size: "md" as const,
     radius: "md" as const,
     shadowSize: "lg" as const,
+    reflectionUrl: null, // 暂无阅读感悟
   },
   {
     id: 6,
@@ -191,6 +221,7 @@ const booksData = ref([
     size: "md" as const,
     radius: "md" as const,
     shadowSize: "lg" as const,
+    reflectionUrl: null, // 暂无阅读感悟
   },
   {
     id: 7,
@@ -203,6 +234,7 @@ const booksData = ref([
     size: "md" as const,
     radius: "md" as const,
     shadowSize: "lg" as const,
+    reflectionUrl: "",
   },
   {
     id: 8,
@@ -215,26 +247,32 @@ const booksData = ref([
     size: "md" as const,
     radius: "md" as const,
     shadowSize: "lg" as const,
+    reflectionUrl: "",
   },
 ]);
 
-// 阅读统计数据
-const readingStats = ref({
-  totalBooks: 24,
-  currentlyReading: 4,
-  favoriteGenre: "技术",
-});
+// Toast 提示状态
+const showToast = ref(false);
+const toastMessage = ref("");
 
-// 阅读名言
-const readingQuote = ref({
-  text: "读书不是为了雄辩和驳斥，也不是为了轻信和盲从，而是为了思考和权衡。",
-  author: "弗朗西斯·培根",
-});
+// 显示 Toast 提示
+const showToastMessage = (message: string) => {
+  toastMessage.value = message;
+  showToast.value = true;
+  setTimeout(() => {
+    showToast.value = false;
+  }, 3000);
+};
 
 // 处理书籍点击事件
 const handleBookClick = (book: any) => {
-  console.log("Book clicked:", book);
-  // 这里可以添加书籍详情展示逻辑
-  // 比如打开模态框显示书籍详细信息、阅读笔记等
+  if (book.reflectionUrl && book.reflectionUrl !== "") {
+    // 在新窗口打开阅读感悟链接
+    window.open(book.reflectionUrl, "_blank");
+    showToastMessage(`正在打开《${book.title}》的阅读感悟...`);
+  } else {
+    // 如果没有阅读感悟链接，显示优雅的提示
+    showToastMessage(`《${book.title}》的阅读感悟正在整理中，敬请期待 📚`);
+  }
 };
 </script>
