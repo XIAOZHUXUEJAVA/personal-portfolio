@@ -8,7 +8,15 @@
 <script setup lang="ts">
 /* eslint-disable @typescript-eslint/no-explicit-any  */
 
-import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from "ogl";
+import {
+  Camera,
+  Mesh,
+  Plane,
+  Program,
+  Renderer,
+  Texture,
+  Transform,
+} from "ogl";
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 
 type GL = Renderer["gl"];
@@ -166,7 +174,8 @@ class Title {
     const textHeightScaled = this.plane.scale.y * 0.15;
     const textWidthScaled = textHeightScaled * aspect;
     this.mesh.scale.set(textWidthScaled, textHeightScaled, 1);
-    this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - 0.05;
+    this.mesh.position.y =
+      -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - 0.05;
     this.mesh.setParent(this.plane);
   }
 }
@@ -331,7 +340,10 @@ class Media {
     img.src = this.image;
     img.onload = () => {
       texture.image = img;
-      this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+      this.program.uniforms.uImageSizes.value = [
+        img.naturalWidth,
+        img.naturalHeight,
+      ];
     };
   }
 
@@ -354,7 +366,10 @@ class Media {
     });
   }
 
-  update(scroll: { current: number; last: number }, direction: "right" | "left") {
+  update(
+    scroll: { current: number; last: number },
+    direction: "right" | "left",
+  ) {
     this.plane.position.x = this.x - scroll.current - this.extra;
 
     const x = this.plane.position.x;
@@ -396,7 +411,10 @@ class Media {
     }
   }
 
-  onResize({ screen, viewport }: { screen?: ScreenSize; viewport?: Viewport } = {}) {
+  onResize({
+    screen,
+    viewport,
+  }: { screen?: ScreenSize; viewport?: Viewport } = {}) {
     if (screen) this.screen = screen;
     if (viewport) {
       this.viewport = viewport;
@@ -408,9 +426,14 @@ class Media {
       }
     }
     this.scale = this.screen.height / 1500;
-    this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
-    this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
-    this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
+    this.plane.scale.y =
+      (this.viewport.height * (900 * this.scale)) / this.screen.height;
+    this.plane.scale.x =
+      (this.viewport.width * (700 * this.scale)) / this.screen.width;
+    this.plane.program.uniforms.uPlaneSizes.value = [
+      this.plane.scale.x,
+      this.plane.scale.y,
+    ];
     this.padding = 2;
     this.width = this.plane.scale.x + this.padding;
     this.widthTotal = this.width * this.length;
@@ -480,7 +503,11 @@ class App {
   }
 
   createRenderer() {
-    this.renderer = new Renderer({ alpha: true, antialias: true, dpr: Math.min(window.devicePixelRatio, 2) });
+    this.renderer = new Renderer({
+      alpha: true,
+      antialias: true,
+      dpr: Math.min(window.devicePixelRatio, 2),
+    });
     this.gl = this.renderer.gl;
     this.gl.clearColor(0, 0, 0, 0);
     this.container.appendChild(this.renderer.gl.canvas as HTMLCanvasElement);
@@ -634,7 +661,11 @@ class App {
   }
 
   update() {
-    this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
+    this.scroll.current = lerp(
+      this.scroll.current,
+      this.scroll.target,
+      this.scroll.ease,
+    );
     const direction = this.scroll.current > this.scroll.last ? "right" : "left";
     if (this.medias) {
       this.medias.forEach((media) => media.update(this.scroll, direction));
@@ -672,8 +703,14 @@ class App {
     window.removeEventListener("touchstart", this.boundOnTouchDown);
     window.removeEventListener("touchmove", this.boundOnTouchMove);
     window.removeEventListener("touchend", this.boundOnTouchUp);
-    if (this.renderer && this.renderer.gl && this.renderer.gl.canvas.parentNode) {
-      this.renderer.gl.canvas.parentNode.removeChild(this.renderer.gl.canvas as HTMLCanvasElement);
+    if (
+      this.renderer &&
+      this.renderer.gl &&
+      this.renderer.gl.canvas.parentNode
+    ) {
+      this.renderer.gl.canvas.parentNode.removeChild(
+        this.renderer.gl.canvas as HTMLCanvasElement,
+      );
     }
   }
 }
@@ -692,23 +729,31 @@ onMounted(() => {
 });
 
 // Watch for props changes
-watch([() => props.bend, () => props.textColor, () => props.borderRadius, () => props.font], () => {
-  // Recreate the app with new props
-  if (app) {
-    app.destroy();
-    app = null;
-  }
+watch(
+  [
+    () => props.bend,
+    () => props.textColor,
+    () => props.borderRadius,
+    () => props.font,
+  ],
+  () => {
+    // Recreate the app with new props
+    if (app) {
+      app.destroy();
+      app = null;
+    }
 
-  if (containerRef.value) {
-    app = new App(containerRef.value, {
-      items: props.items,
-      bend: props.bend,
-      textColor: props.textColor,
-      borderRadius: props.borderRadius,
-      font: props.font,
-    });
-  }
-});
+    if (containerRef.value) {
+      app = new App(containerRef.value, {
+        items: props.items,
+        bend: props.bend,
+        textColor: props.textColor,
+        borderRadius: props.borderRadius,
+        font: props.font,
+      });
+    }
+  },
+);
 
 // Watch for items changes (need to handle this separately to deep watch)
 watch(

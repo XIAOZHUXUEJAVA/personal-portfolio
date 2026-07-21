@@ -13,18 +13,11 @@
           最近游玩
         </h2>
       </div>
-      <div class="relative group">
-        <!-- 渐变边框容器 -->
-        <div
-          class="absolute -inset-px bg-gradient-to-r from-emerald-200 via-teal-300 to-cyan-300 rounded-2xl blur-sm opacity-20 group-hover:opacity-35 transition duration-1000 group-hover:duration-200 animate-tilt"
-        />
-
-        <!-- 内容容器 -->
-        <div
-          class="relative h-96 w-full bg-white/80 backdrop-blur-sm rounded-2xl overflow-clip flex flex-col items-center justify-center gap-24 border border-gray-200/50"
-        >
-          <BendingGallery :items="items" :bend="2" :border-radius="0.1" />
-        </div>
+      <!-- 毛玻璃容器 -->
+      <div
+        class="h-96 w-full bg-white/40 backdrop-blur-2xl rounded-2xl overflow-clip flex flex-col items-center justify-center border border-white/50 shadow-lg shadow-black/5 hover:bg-white/55 hover:shadow-xl hover:shadow-black/[0.08] transition-all duration-300"
+      >
+        <BendingGallery :items="items" :bend="2" :border-radius="0.1" />
       </div>
     </div>
   </section>
@@ -84,26 +77,4 @@ const items = ref<Array<{ image: string; text: string }>>([
 ]);
 </script>
 
-<style scoped>
-@keyframes tilt {
-  0%,
-  50%,
-  100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(0.5deg);
-  }
-  75% {
-    transform: rotate(-0.5deg);
-  }
-}
 
-.animate-tilt {
-  animation: tilt 10s infinite linear;
-}
-
-.group:hover .animate-tilt {
-  animation: tilt 2s infinite linear;
-}
-</style>
