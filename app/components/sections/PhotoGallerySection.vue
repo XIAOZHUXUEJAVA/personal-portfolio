@@ -20,16 +20,29 @@
       <!-- Gallery Tabs -->
       <div class="flex justify-center mb-12">
         <div
-          class="flex space-x-2 bg-gradient-to-r from-green-50/80 via-yellow-50/80 to-orange-50/80 backdrop-blur-md rounded-full p-1 border border-green-200/50 shadow-lg dark:from-green-950/60 dark:via-yellow-950/60 dark:to-orange-950/60 dark:border-green-700/30"
+          ref="tabsContainer"
+          class="relative flex gap-2 bg-gradient-to-r from-green-50/80 via-yellow-50/80 to-orange-50/80 backdrop-blur-md rounded-full p-1 border border-green-200/50 shadow-lg dark:from-green-950/60 dark:via-yellow-950/60 dark:to-orange-950/60 dark:border-green-700/30"
         >
+          <!-- 滑动指示器：跟随选中项平滑移动 -->
+          <div
+            class="absolute top-1 bottom-1 rounded-full bg-gradient-to-r from-green-500 to-yellow-500 shadow-lg pointer-events-none"
+            :style="{
+              left: `${indicatorStyle.left}px`,
+              width: `${indicatorStyle.width}px`,
+              opacity: indicatorStyle.width ? 1 : 0,
+              transition:
+                'left 500ms cubic-bezier(0.32, 0.72, 0, 1), width 500ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease',
+            }"
+          />
           <button
             v-for="category in categories"
             :key="category"
+            :ref="(el) => setTabRef(el, category)"
             :class="[
-              'px-6 py-2 rounded-full transition-all duration-300',
+              'relative z-10 px-6 py-2 rounded-full transition-colors duration-300',
               activeCategory === category
-                ? 'bg-gradient-to-r from-green-500 to-yellow-500 text-white shadow-lg hover:from-green-600 hover:to-yellow-600'
-                : 'text-green-600/80 hover:text-green-700 hover:bg-green-100/50 dark:text-green-400/80 dark:hover:text-green-300 dark:hover:bg-green-800/30',
+                ? 'text-white'
+                : 'text-green-600/80 hover:text-green-700 dark:text-green-400/80 dark:hover:text-green-300',
             ]"
             @click="activeCategory = category"
           >
@@ -155,6 +168,42 @@ import {
 // Categories for filtering
 const categories = ["全部", "风景", "演唱会", "自然", "生活"];
 const activeCategory = ref("全部");
+
+// Tab 滑动指示器逻辑
+const tabsContainer = ref<HTMLElement | null>(null);
+const tabRefs = ref<Record<string, HTMLElement>>({});
+const indicatorStyle = ref({ left: 0, width: 0 });
+
+// 收集每个 tab 按钮的 DOM 引用
+const setTabRef = (
+  el: Element | ComponentPublicInstance | null,
+  category: string,
+) => {
+  if (el instanceof HTMLElement) tabRefs.value[category] = el;
+};
+
+// 根据当前选中项计算指示器位置和宽度
+const updateIndicator = () => {
+  const el = tabRefs.value[activeCategory.value];
+  if (el) {
+    indicatorStyle.value = {
+      left: el.offsetLeft,
+      width: el.offsetWidth,
+    };
+  }
+};
+
+// 监听选中项变化，更新指示器
+watch(activeCategory, () => nextTick(updateIndicator));
+
+onMounted(() => {
+  nextTick(updateIndicator);
+  window.addEventListener("resize", updateIndicator);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", updateIndicator);
+});
 
 // Filtered photos based on active category
 const filteredPhotos = computed(() => {
