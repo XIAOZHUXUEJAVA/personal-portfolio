@@ -308,13 +308,12 @@ class Media {
             );
             vec4 color = texture2D(tMap, uv);
             
-            // Apply rounded corners (assumes vUv in [0,1])
+            // 使用 smoothstep 实现圆角抗锯齿（平滑边缘）
             float d = roundedBoxSDF(vUv - 0.5, vec2(0.5 - uBorderRadius), uBorderRadius);
-            if(d > 0.0) {
-              discard;
-            }
+            float alpha = 1.0 - smoothstep(0.0, 0.005, d);
+            if(alpha < 0.01) discard;
             
-            gl_FragColor = vec4(color.rgb, 1.0);
+            gl_FragColor = vec4(color.rgb, alpha);
           }
         `,
       uniforms: {
@@ -481,7 +480,7 @@ class App {
   }
 
   createRenderer() {
-    this.renderer = new Renderer({ alpha: true });
+    this.renderer = new Renderer({ alpha: true, antialias: true, dpr: Math.min(window.devicePixelRatio, 2) });
     this.gl = this.renderer.gl;
     this.gl.clearColor(0, 0, 0, 0);
     this.container.appendChild(this.renderer.gl.canvas as HTMLCanvasElement);
