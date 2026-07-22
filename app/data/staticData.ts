@@ -64,8 +64,7 @@ export const aboutData: AboutItem[] = [
   },
   {
     title: "喜欢单曲循环",
-    description:
-      "喜欢听音乐，经常单曲循环，爱听邓紫棋，但最近在听 <像中枪一样>",
+    description: "喜欢听音乐，经常单曲循环，爱听邓紫棋，但最近在听 <蝴蝶>",
     icon: "BookOpen",
     gradientColor: "rgba(249, 115, 22, 0.3)",
     tags: ["音乐", "邓紫棋"],
