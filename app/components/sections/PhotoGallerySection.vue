@@ -18,10 +18,10 @@
       </div>
 
       <!-- Gallery Tabs -->
-      <div class="flex justify-center mb-12">
+      <div class="flex justify-center mb-12 overflow-x-auto px-2">
         <div
           ref="tabsContainer"
-          class="relative flex gap-2 bg-gradient-to-r from-green-50/80 via-yellow-50/80 to-orange-50/80 backdrop-blur-md rounded-full p-1 border border-green-200/50 shadow-lg dark:from-green-950/60 dark:via-yellow-950/60 dark:to-orange-950/60 dark:border-green-700/30"
+          class="relative inline-flex flex-nowrap gap-1 md:gap-2 bg-gradient-to-r from-green-50/80 via-yellow-50/80 to-orange-50/80 backdrop-blur-md rounded-full p-1 border border-green-200/50 dark:from-green-950/60 dark:via-yellow-950/60 dark:to-orange-950/60 dark:border-green-700/30"
         >
           <!-- 滑动指示器：跟随选中项平滑移动 -->
           <div
@@ -39,7 +39,7 @@
             :key="category"
             :ref="(el) => setTabRef(el, category)"
             :class="[
-              'relative z-10 px-6 py-2 rounded-full transition-colors duration-300',
+              'relative z-10 px-3 md:px-6 py-2 rounded-full transition-colors duration-300 whitespace-nowrap text-sm md:text-base',
               activeCategory === category
                 ? 'text-white'
                 : 'text-green-600/80 hover:text-green-700 dark:text-green-400/80 dark:hover:text-green-300',
