@@ -251,8 +251,8 @@
             mode="leaning"
             :thickness="46"
             :height="194"
-            :lean-angle="-9"
-            class="ml-2 hidden md:block"
+            :lean-angle="7"
+            class="mr-3 hidden md:block"
             @click="handleBookClick(book18)"
           />
         </template>
