@@ -16,10 +16,10 @@
       <!-- === 第一层书架 === -->
       <div class="shelf-row relative mb-2">
         <!-- 书本区域 -->
-        <div class="books-area flex items-end gap-3 px-10 pb-0 min-h-[240px] relative z-10">
-          <!-- 左侧书立装饰 -->
-          <div class="bookend-left self-end mr-1 flex-shrink-0">
-            <svg width="24" height="130" viewBox="0 0 20 100" fill="none" class="opacity-70 dark:opacity-50">
+        <div class="books-area flex items-end gap-1.5 px-2 md:gap-3 md:px-10 pb-0 min-h-[200px] md:min-h-[240px] relative z-10">
+          <!-- 左侧书立装饰（手机缩小） -->
+          <div class="bookend-left self-end mr-0.5 md:mr-1 flex-shrink-0">
+            <svg class="w-3.5 h-20 md:w-6 md:h-[130px] opacity-70 dark:opacity-50" viewBox="0 0 20 100" fill="none">
               <path d="M2 98 L2 5 Q3 2 6 2 L18 2 L18 8 L8 8 L8 98 Z" stroke="currentColor" stroke-width="1.5" fill="currentColor" class="text-amber-800 dark:text-amber-600" filter="url(#sketchy-line)" />
             </svg>
           </div>
@@ -33,9 +33,9 @@
           <!-- 第9本：竖立（新增） -->
           <slot name="book-9" />
 
-          <!-- 小盆栽装饰 -->
-          <div class="doodle-plant self-end mx-3 flex-shrink-0">
-            <svg width="44" height="68" viewBox="0 0 36 56" fill="none" class="opacity-80">
+          <!-- 小盆栽装饰（手机缩小） -->
+          <div class="doodle-plant self-end mx-1 md:mx-3 flex-shrink-0">
+            <svg class="w-7 h-11 md:w-11 md:h-[68px] opacity-80" viewBox="0 0 36 56" fill="none">
               <!-- 花盆 -->
               <path d="M10 36 L8 52 Q8 55 12 55 L24 55 Q28 55 28 52 L26 36 Z" stroke="#8B4513" stroke-width="1.5" fill="#D2691E" filter="url(#sketchy-line)" />
               <!-- 泥土 -->
@@ -63,9 +63,9 @@
           <!-- 第11本：竖立（新增） -->
           <slot name="book-11" />
 
-          <!-- 右侧小猫装饰 -->
+          <!-- 右侧小猫装饰（手机缩小） -->
           <div class="doodle-cat self-end ml-auto flex-shrink-0">
-            <svg width="50" height="44" viewBox="0 0 40 36" fill="none" class="opacity-70 dark:opacity-50">
+            <svg class="w-8 h-7 md:w-[50px] md:h-11 opacity-70 dark:opacity-50" viewBox="0 0 40 36" fill="none">
               <!-- 猫身体 -->
               <ellipse cx="20" cy="28" rx="12" ry="8" fill="currentColor" class="text-zinc-400 dark:text-zinc-500" />
               <!-- 猫头 -->
@@ -107,10 +107,10 @@
       <!-- === 第二层书架 === -->
       <div class="shelf-row relative">
         <!-- 书本区域 -->
-        <div class="books-area flex items-end gap-3 px-10 pb-0 min-h-[240px] relative z-10">
-          <!-- 左侧咖啡杯装饰 -->
-          <div class="doodle-coffee self-end mr-3 flex-shrink-0">
-            <svg width="40" height="42" viewBox="0 0 32 34" fill="none" class="opacity-75">
+        <div class="books-area flex items-end gap-1.5 px-2 md:gap-3 md:px-10 pb-0 min-h-[200px] md:min-h-[240px] relative z-10">
+          <!-- 左侧咖啡杯装饰（手机缩小） -->
+          <div class="doodle-coffee self-end mr-1 md:mr-3 flex-shrink-0">
+            <svg class="w-6 h-7 md:w-10 md:h-[42px] opacity-75" viewBox="0 0 32 34" fill="none">
               <!-- 杯身 -->
               <path d="M4 10 L6 30 Q6 33 10 33 L20 33 Q24 33 24 30 L26 10 Z" stroke="#6B4423" stroke-width="1.5" fill="#FFF8DC" filter="url(#sketchy-line)" />
               <!-- 杯把 -->
@@ -139,9 +139,9 @@
           <!-- 第8本：竖立 -->
           <slot name="book-8" />
 
-          <!-- 右侧小台灯装饰 -->
+          <!-- 右侧小台灯装饰（手机缩小） -->
           <div class="doodle-lamp self-end ml-auto flex-shrink-0">
-            <svg width="46" height="72" viewBox="0 0 38 60" fill="none" class="opacity-70 dark:opacity-50">
+            <svg class="w-7 h-12 md:w-[46px] md:h-[72px] opacity-70 dark:opacity-50" viewBox="0 0 38 60" fill="none">
               <!-- 灯罩 -->
               <path d="M8 8 L14 28 L24 28 L30 8 Z" stroke="#DAA520" stroke-width="1.5" fill="#FFD700" opacity="0.6" filter="url(#sketchy-line)" />
               <!-- 灯泡光晕 -->

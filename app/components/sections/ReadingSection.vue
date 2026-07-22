@@ -54,7 +54,7 @@
             :thickness="46"
             :height="195"
             :lean-angle="-8"
-            class="ml-3"
+            class="ml-3 hidden md:block"
             @click="handleBookClick(book3)"
           />
         </template>
@@ -68,6 +68,7 @@
             mode="upright"
             :thickness="44"
             :height="202"
+            class="hidden md:block"
             @click="handleBookClick(book9)"
           />
         </template>
@@ -94,6 +95,7 @@
             mode="upright"
             :thickness="44"
             :height="204"
+            class="hidden md:block"
             @click="handleBookClick(book14)"
           />
         </template>
@@ -107,6 +109,7 @@
             mode="upright"
             :thickness="42"
             :height="200"
+            class="hidden md:block"
             @click="handleBookClick(book15)"
           />
         </template>
@@ -120,6 +123,7 @@
             mode="upright"
             :thickness="46"
             :height="198"
+            class="hidden md:block"
             @click="handleBookClick(book11)"
           />
         </template>
@@ -135,6 +139,7 @@
             mode="upright"
             :thickness="44"
             :height="200"
+            class="hidden md:block"
             @click="handleBookClick(book5)"
           />
         </template>
@@ -162,7 +167,7 @@
             :thickness="38"
             :height="190"
             :flat-height="34"
-            class="mr-6"
+            class="mr-6 hidden md:block"
             @click="handleBookClick(book6)"
           />
         </template>
@@ -176,6 +181,7 @@
             mode="upright"
             :thickness="46"
             :height="204"
+            class="hidden md:block"
             @click="handleBookClick(book12)"
           />
         </template>
@@ -190,7 +196,7 @@
             :thickness="46"
             :height="192"
             :lean-angle="10"
-            class="mr-4"
+            class="mr-4 hidden md:block"
             @click="handleBookClick(book7)"
           />
         </template>
