@@ -17,10 +17,34 @@
       <div class="shelf-row relative mb-2">
         <!-- 书本区域 -->
         <div class="books-area flex items-end gap-1.5 px-2 md:gap-3 md:px-10 pb-0 min-h-[200px] md:min-h-[240px] relative z-10">
-          <!-- 左侧书立装饰（手机缩小） -->
-          <div class="bookend-left self-end mr-0.5 md:mr-1 flex-shrink-0">
-            <svg class="w-3.5 h-20 md:w-6 md:h-[130px] opacity-70 dark:opacity-50" viewBox="0 0 20 100" fill="none">
-              <path d="M2 98 L2 5 Q3 2 6 2 L18 2 L18 8 L8 8 L8 98 Z" stroke="currentColor" stroke-width="1.5" fill="currentColor" class="text-amber-800 dark:text-amber-600" filter="url(#sketchy-line)" />
+          <!-- 左侧复古闹钟装饰（手机缩小） -->
+          <div class="doodle-clock self-end mr-1 md:mr-2 flex-shrink-0">
+            <svg class="w-8 h-11 md:w-12 md:h-[68px] opacity-80 dark:opacity-60" viewBox="0 0 40 56" fill="none">
+              <!-- 左铃铛 -->
+              <ellipse cx="9" cy="10" rx="5" ry="4" stroke="#B45309" stroke-width="1.5" fill="#FCD34D" filter="url(#sketchy-line)" />
+              <!-- 右铃铛 -->
+              <ellipse cx="31" cy="10" rx="5" ry="4" stroke="#B45309" stroke-width="1.5" fill="#FCD34D" filter="url(#sketchy-line)" />
+              <!-- 顶部提手 -->
+              <path d="M15 8 Q20 2 25 8" stroke="#B45309" stroke-width="1.5" fill="none" stroke-linecap="round" />
+              <!-- 表盘主体 -->
+              <circle cx="20" cy="30" r="14" stroke="#B45309" stroke-width="1.5" fill="#FFF8DC" filter="url(#sketchy-line)" />
+              <!-- 内圈刻度环 -->
+              <circle cx="20" cy="30" r="11" stroke="#B45309" stroke-width="0.6" fill="none" opacity="0.5" />
+              <!-- 12/3/6/9 点刻度 -->
+              <line x1="20" y1="19" x2="20" y2="22" stroke="#333" stroke-width="1.2" stroke-linecap="round" />
+              <line x1="31" y1="30" x2="28" y2="30" stroke="#333" stroke-width="1.2" stroke-linecap="round" />
+              <line x1="20" y1="41" x2="20" y2="38" stroke="#333" stroke-width="1.2" stroke-linecap="round" />
+              <line x1="9" y1="30" x2="12" y2="30" stroke="#333" stroke-width="1.2" stroke-linecap="round" />
+              <!-- 时针 -->
+              <line x1="20" y1="30" x2="20" y2="23" stroke="#333" stroke-width="1.5" stroke-linecap="round" />
+              <!-- 分针 -->
+              <line x1="20" y1="30" x2="26" y2="30" stroke="#333" stroke-width="1.2" stroke-linecap="round" />
+              <!-- 中心圆点 -->
+              <circle cx="20" cy="30" r="1.3" fill="#333" />
+              <!-- 左脚 -->
+              <path d="M11 43 L7 52" stroke="#B45309" stroke-width="1.5" stroke-linecap="round" />
+              <!-- 右脚 -->
+              <path d="M29 43 L33 52" stroke="#B45309" stroke-width="1.5" stroke-linecap="round" />
             </svg>
           </div>
 
@@ -56,11 +80,35 @@
 
           <!-- 第4本：竖立 -->
           <slot name="book-4" />
-          <!-- 第14本：竖立（新增，金庸系列） -->
+          <!-- 第16本：连城诀（金庸系列，新增） -->
+          <slot name="book-16" />
+          <!-- 第14本：竖立（金庸系列） -->
           <slot name="book-14" />
-          <!-- 第15本：竖立（新增，金庸系列） -->
+
+          <!-- 中部眼镜装饰（仅桌面端显示，避免手机拥挤） -->
+          <div class="doodle-glasses self-end mx-1 md:mx-3 mb-1 flex-shrink-0 hidden md:block">
+            <svg class="w-9 h-6 md:w-14 md:h-9 opacity-70 dark:opacity-50" viewBox="0 0 44 28" fill="none">
+              <!-- 左镜片 -->
+              <circle cx="10" cy="16" r="8" stroke="#4B5563" stroke-width="1.5" fill="#DBEAFE" fill-opacity="0.5" filter="url(#sketchy-line)" />
+              <!-- 右镜片 -->
+              <circle cx="34" cy="16" r="8" stroke="#4B5563" stroke-width="1.5" fill="#DBEAFE" fill-opacity="0.5" filter="url(#sketchy-line)" />
+              <!-- 鼻梁 -->
+              <path d="M18 14 Q22 11 26 14" stroke="#4B5563" stroke-width="1.5" fill="none" stroke-linecap="round" />
+              <!-- 左镜腿 -->
+              <path d="M2.5 13 Q0 10 1 6" stroke="#4B5563" stroke-width="1.5" fill="none" stroke-linecap="round" />
+              <!-- 右镜腿 -->
+              <path d="M41.5 13 Q44 10 43 6" stroke="#4B5563" stroke-width="1.5" fill="none" stroke-linecap="round" />
+              <!-- 镜片高光 -->
+              <path d="M6 12 Q8 10 11 11" stroke="#FFF" stroke-width="0.8" fill="none" opacity="0.7" />
+              <path d="M30 12 Q32 10 35 11" stroke="#FFF" stroke-width="0.8" fill="none" opacity="0.7" />
+            </svg>
+          </div>
+
+          <!-- 第18本：恶意（斜靠，新增） -->
+          <slot name="book-18" />
+          <!-- 第15本：竖立（金庸系列） -->
           <slot name="book-15" />
-          <!-- 第11本：竖立（新增） -->
+          <!-- 第11本：竖立 -->
           <slot name="book-11" />
 
           <!-- 右侧小猫装饰（手机缩小） -->
@@ -126,15 +174,40 @@
 
           <!-- 第5本：竖立 -->
           <slot name="book-5" />
-          <!-- 第10本：竖立（新增，厚重本） -->
+          <!-- 第17本：我的阿勒泰（新增） -->
+          <slot name="book-17" />
+          <!-- 第10本：竖立（厚重本） -->
           <slot name="book-10" />
           <!-- 第6本：平放 -->
           <slot name="book-6" />
-          <!-- 第12本：竖立（新增） -->
+
+          <!-- 中部信件堆装饰（仅桌面端显示） -->
+          <div class="doodle-letters self-end mx-1 md:mx-3 flex-shrink-0 hidden md:block">
+            <svg class="w-8 h-8 md:w-12 md:h-11 opacity-75" viewBox="0 0 40 36" fill="none">
+              <!-- 底部信封 -->
+              <rect x="3" y="16" width="30" height="17" rx="1" stroke="#8B4513" stroke-width="1.3" fill="#FAF0E6" filter="url(#sketchy-line)" />
+              <path d="M3 16 L18 26 L33 16" stroke="#8B4513" stroke-width="0.9" fill="none" />
+              <!-- 中间信封 -->
+              <rect x="6" y="10" width="30" height="17" rx="1" stroke="#8B4513" stroke-width="1.3" fill="#FFF8DC" filter="url(#sketchy-line)" />
+              <path d="M6 10 L21 20 L36 10" stroke="#8B4513" stroke-width="0.9" fill="none" />
+              <!-- 顶部信封（带蜡封） -->
+              <rect x="4" y="3" width="26" height="15" rx="1" stroke="#8B4513" stroke-width="1.3" fill="#FFEFDB" filter="url(#sketchy-line)" />
+              <path d="M4 3 L17 12 L30 3" stroke="#8B4513" stroke-width="0.9" fill="none" />
+              <!-- 蜡封印 -->
+              <circle cx="17" cy="13" r="2.2" fill="#DC143C" opacity="0.85" />
+              <circle cx="17" cy="13" r="0.8" fill="#FFF" opacity="0.5" />
+            </svg>
+          </div>
+
+          <!-- 第12本：竖立 -->
           <slot name="book-12" />
+          <!-- 第19本：倾城之恋（新增） -->
+          <slot name="book-19" />
           <!-- 第7本：斜靠 -->
           <slot name="book-7" />
-          <!-- 第13本：竖立（新增） -->
+          <!-- 第20本：摆渡人（新增） -->
+          <slot name="book-20" />
+          <!-- 第13本：竖立 -->
           <slot name="book-13" />
           <!-- 第8本：竖立 -->
           <slot name="book-8" />

@@ -226,6 +226,77 @@
             @click="handleBookClick(book8)"
           />
         </template>
+
+        <!-- 新增 5 本（分散到第一、第二层）：连城诀、恶意入一层；阿勒泰、倾城、摆渡人入二层 -->
+        <template #book-16>
+          <ShelfBook
+            :title="book16.title"
+            :author="book16.author"
+            :color="book16.color"
+            :progress="book16.progress"
+            :status="book16.status"
+            mode="upright"
+            :thickness="44"
+            :height="200"
+            @click="handleBookClick(book16)"
+          />
+        </template>
+        <template #book-18>
+          <ShelfBook
+            :title="book18.title"
+            :author="book18.author"
+            :color="book18.color"
+            :progress="book18.progress"
+            :status="book18.status"
+            mode="leaning"
+            :thickness="46"
+            :height="194"
+            :lean-angle="-9"
+            class="ml-2 hidden md:block"
+            @click="handleBookClick(book18)"
+          />
+        </template>
+        <template #book-17>
+          <ShelfBook
+            :title="book17.title"
+            :author="book17.author"
+            :color="book17.color"
+            :progress="book17.progress"
+            :status="book17.status"
+            mode="upright"
+            :thickness="42"
+            :height="206"
+            @click="handleBookClick(book17)"
+          />
+        </template>
+        <template #book-19>
+          <ShelfBook
+            :title="book19.title"
+            :author="book19.author"
+            :color="book19.color"
+            :progress="book19.progress"
+            :status="book19.status"
+            mode="upright"
+            :thickness="46"
+            :height="202"
+            class="hidden md:block"
+            @click="handleBookClick(book19)"
+          />
+        </template>
+        <template #book-20>
+          <ShelfBook
+            :title="book20.title"
+            :author="book20.author"
+            :color="book20.color"
+            :progress="book20.progress"
+            :status="book20.status"
+            mode="upright"
+            :thickness="44"
+            :height="198"
+            class="hidden md:block"
+            @click="handleBookClick(book20)"
+          />
+        </template>
       </Bookshelf>
     </div>
 
@@ -408,6 +479,56 @@ const booksData = [
     color: "green",
     reflectionUrl: null,
   },
+  {
+    id: 16,
+    title: "连城诀",
+    author: "金庸",
+    category: "武侠",
+    status: "已读",
+    progress: 100,
+    color: "red",
+    reflectionUrl: null,
+  },
+  {
+    id: 17,
+    title: "我的阿勒泰",
+    author: "李娟",
+    category: "文学",
+    status: "在读",
+    progress: 60,
+    color: "green",
+    reflectionUrl: "",
+  },
+  {
+    id: 18,
+    title: "恶意",
+    author: "东野圭吾",
+    category: "推理",
+    status: "已读",
+    progress: 100,
+    color: "gray",
+    reflectionUrl: null,
+  },
+  {
+    id: 19,
+    title: "倾城之恋",
+    author: "张爱玲",
+    category: "文学",
+    status: "已读",
+    progress: 100,
+    color: "purple",
+    reflectionUrl: null,
+  },
+  {
+    id: 20,
+    title: "摆渡人",
+    author: "克莱儿·麦克福尔",
+    category: "文学",
+    status: "已读",
+    progress: 100,
+    color: "blue",
+    reflectionUrl: null,
+  },
 ];
 
 // 单独引用每本书，避免 TS 索引访问 undefined 警告
@@ -426,6 +547,11 @@ const book12 = booksData[11]!;
 const book13 = booksData[12]!;
 const book14 = booksData[13]!;
 const book15 = booksData[14]!;
+const book16 = booksData[15]!;
+const book17 = booksData[16]!;
+const book18 = booksData[17]!;
+const book19 = booksData[18]!;
+const book20 = booksData[19]!;
 
 // Toast 提示状态
 const showToast = ref(false);

@@ -71,7 +71,7 @@ const isDark = computed(() => colorMode.value === "dark");
 
 // SEO Meta
 useHead({
-  title: "个人主页 - xiaozhu",
+  title: "xiaozhudexiaozhu",
   meta: [
     {
       name: "description",
@@ -94,8 +94,14 @@ html {
 }
 
 body {
-  font-family: "LXGW WenKai", "Inter", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, sans-serif;
+  font-family:
+    "LXGW WenKai",
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 }
 
 @keyframes gradient-shift {
