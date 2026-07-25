@@ -45,12 +45,12 @@
 
               <!-- Main Image -->
               <CardItem :translate-z="100" class="mt-4 w-full">
+                <!-- 统一使用 3:2 宽高比，保证三张图在任意屏幕宽度下展示框形状一致 -->
                 <img
                   :src="work.image"
                   :alt="work.title"
-                  height="1000"
-                  width="1000"
-                  class="h-60 w-full rounded-xl object-cover group-hover/card:shadow-xl transition-shadow duration-300"
+                  loading="lazy"
+                  class="aspect-[3/2] w-full rounded-xl object-cover group-hover/card:shadow-xl transition-shadow duration-300"
                 />
               </CardItem>
 
