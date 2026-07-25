@@ -3,7 +3,7 @@
     ref="dockRef"
     :class="
       cn(
-        'supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-[58px] w-max rounded-2xl border p-2 backdrop-blur-md transition-all gap-4',
+        'supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-12 w-max max-w-[calc(100vw-2rem)] rounded-2xl border p-1.5 backdrop-blur-md transition-all gap-2 sm:h-[58px] sm:p-2 sm:gap-4',
         orientation === 'vertical' && 'flex-col w-[58px] h-max',
         props.class,
         dockClass,
@@ -49,6 +49,10 @@ const mouseY = ref(Infinity);
 const magnification = computed(() => props.magnification);
 const distance = computed(() => props.distance);
 
+// 触屏设备没有真正的 hover，跳过放大交互，避免点击后图标卡在放大状态撑宽导航
+const canHover =
+  typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
+
 const dockClass = computed(() => ({
   "items-start": props.direction === "top",
   "items-center": props.direction === "middle",
@@ -56,6 +60,7 @@ const dockClass = computed(() => ({
 }));
 
 function onMouseMove(e: MouseEvent) {
+  if (!canHover) return;
   requestAnimationFrame(() => {
     mouseX.value = e.pageX;
     mouseY.value = e.pageY;

@@ -1,11 +1,8 @@
 <template>
   <div
     ref="iconRef"
-    class="flex aspect-square cursor-pointer items-center justify-center rounded-full transition-all duration-200 ease-out"
-    :style="{
-      width: `${iconWidth}px`,
-      height: `${iconWidth}px`,
-    }"
+    class="flex aspect-square size-8 cursor-pointer items-center justify-center rounded-full transition-all duration-200 ease-out sm:size-10"
+    :style="magnifyStyle"
     :hovered="{
       marginLeft: margin,
       marginRight: margin,
@@ -59,4 +56,11 @@ const iconWidth = computed(() => {
 
   return 40;
 });
+
+// 仅在鼠标悬停放大时输出内联宽高，基础尺寸交给响应式 class 控制（移动端更小）
+const magnifyStyle = computed(() =>
+  iconWidth.value === 40
+    ? undefined
+    : { width: `${iconWidth.value}px`, height: `${iconWidth.value}px` },
+);
 </script>

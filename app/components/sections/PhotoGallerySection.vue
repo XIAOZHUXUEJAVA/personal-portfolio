@@ -106,8 +106,9 @@
               </div>
             </template>
             <template #back>
+              <!-- 不透明渐变背景，去掉 backdrop-blur，避免背面内容发雾 -->
               <div
-                class="flex min-h-full flex-col gap-2 p-6 bg-gradient-to-br from-green-100/95 via-yellow-50/90 to-orange-100/95 rounded-2xl backdrop-blur-sm shadow-lg"
+                class="flex min-h-full flex-col gap-2 p-6 bg-gradient-to-br from-green-100 via-yellow-50 to-orange-100 text-gray-800"
               >
                 <h1 class="text-xl font-bold text-gray-800">
                   {{ photo.title }}
@@ -133,14 +134,14 @@
                 </div>
                 <div class="flex gap-2 mt-auto pt-4">
                   <button
-                    class="flex-1 px-3 py-2 bg-green-200/60 text-gray-800 rounded-lg text-sm font-medium hover:bg-green-300/70 transition-all duration-200 backdrop-blur-sm shadow-sm hover:shadow-md"
-                    @click="viewFullPhoto(photo)"
+                    class="flex-1 px-3 py-2 bg-green-200 text-gray-800 rounded-lg text-sm font-medium hover:bg-green-300 transition-all duration-200 shadow-sm hover:shadow-md"
+                    @click.stop="viewFullPhoto(photo)"
                   >
                     查看原图
                   </button>
                   <button
-                    class="flex-1 px-3 py-2 bg-white/20 text-gray-800 rounded-lg text-sm font-medium hover:bg-white/30 transition-colors backdrop-blur-sm"
-                    @click="sharePhoto(photo)"
+                    class="flex-1 px-3 py-2 bg-white/60 text-gray-800 rounded-lg text-sm font-medium hover:bg-white/80 transition-colors"
+                    @click.stop="sharePhoto(photo)"
                   >
                     分享图片
                   </button>
