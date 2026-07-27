@@ -300,32 +300,13 @@
       </Bookshelf>
     </div>
 
-    <!-- Toast 提示 -->
-    <Transition
-      enter-active-class="transition-all duration-300 ease-out"
-      enter-from-class="opacity-0 translate-y-2"
-      enter-to-class="opacity-100 translate-y-0"
-      leave-active-class="transition-all duration-200 ease-in"
-      leave-from-class="opacity-100 translate-y-0"
-      leave-to-class="opacity-0 translate-y-2"
-    >
-      <div
-        v-if="showToast"
-        class="fixed top-4 right-4 z-50 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg p-4 max-w-sm"
-      >
-        <div class="flex items-center space-x-3">
-          <div class="flex-shrink-0">
-            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          </div>
-          <p class="text-sm text-foreground">{{ toastMessage }}</p>
-        </div>
-      </div>
-    </Transition>
+    <!-- 翻书模态：点击书本后居中对开展示详情 -->
+    <BookOpenModal :book="openedBook" @close="openedBook = null" />
   </section>
 </template>
 
 <script setup lang="ts">
-import { Bookshelf, ShelfBook } from "~/components/ui/bookshelf";
+import { Bookshelf, ShelfBook, BookOpenModal } from "~/components/ui/bookshelf";
 
 // 书籍数据
 const booksData = [
@@ -338,6 +319,8 @@ const booksData = [
     progress: 10,
     color: "blue",
     reflectionUrl: "",
+    review:
+      "一片泥泞里挣扎的众生相。文字沉得下去，也拎得起来，读的时候总想停下来喘口气。",
   },
   {
     id: 2,
@@ -348,6 +331,8 @@ const booksData = [
     progress: 100,
     color: "emerald",
     reflectionUrl: null,
+    review:
+      "跨越半个世纪的等待。原来爱情可以是一场慢性病，也可以是一生的执念。",
   },
   {
     id: 3,
@@ -358,6 +343,8 @@ const booksData = [
     progress: 100,
     color: "purple",
     reflectionUrl: null,
+    review:
+      "人生路上的失之交臂，总是慢一拍。看完只想给家里打个电话。",
   },
   {
     id: 4,
@@ -368,6 +355,8 @@ const booksData = [
     progress: 100,
     color: "red",
     reflectionUrl: null,
+    review:
+      "无人不冤，有情皆孽。乔峰的悲壮至今难忘，这是我心里的武侠天花板。",
   },
   {
     id: 5,
@@ -378,6 +367,8 @@ const booksData = [
     progress: 10,
     color: "yellow",
     reflectionUrl: null,
+    review:
+      "从可靠性视角重新理解分布式系统，边读边点头。技术书里少有的清醒之作。",
   },
   {
     id: 6,
@@ -388,6 +379,8 @@ const booksData = [
     progress: 3,
     color: "gray",
     reflectionUrl: null,
+    review:
+      "列在书单顶端很久了。据说读完会忍不住回头重构自己所有的旧代码。",
   },
   {
     id: 7,
@@ -398,6 +391,8 @@ const booksData = [
     progress: 80,
     color: "green",
     reflectionUrl: "",
+    review:
+      "关于生死与命运最温柔的答卷。每次重读，都能在字里行间被轻轻托住。",
   },
   {
     id: 8,
@@ -408,6 +403,8 @@ const booksData = [
     progress: 100,
     color: "orange",
     reflectionUrl: "",
+    review:
+      "孤臣心事有谁知。把一个勤勉又孤独的帝王写活了，权谋之下满是人的无奈。",
   },
   {
     id: 9,
@@ -418,6 +415,8 @@ const booksData = [
     progress: 100,
     color: "orange",
     reflectionUrl: null,
+    review:
+      "青春、迷惘与欲望。村上春树把孤独写得很轻，却压得人心底发疼。",
   },
   {
     id: 10,
@@ -428,6 +427,8 @@ const booksData = [
     progress: 45,
     color: "blue",
     reflectionUrl: null,
+    review:
+      "没有主角光环的残酷世界。每个人都活得真实，也死得突然，只好接着往下读。",
   },
   {
     id: 11,
@@ -438,6 +439,8 @@ const booksData = [
     progress: 100,
     color: "yellow",
     reflectionUrl: null,
+    review:
+      "通过孩子的眼睛看偏见与良知。阿蒂克斯是我心里永远的体面与正直。",
   },
   {
     id: 12,
@@ -448,6 +451,8 @@ const booksData = [
     progress: 100,
     color: "purple",
     reflectionUrl: null,
+    review:
+      "两代人、两段爱与遗憾。美与悲剧交织，读完心里空了好一块。",
   },
   {
     id: 13,
@@ -458,6 +463,8 @@ const booksData = [
     progress: 100,
     color: "red",
     reflectionUrl: null,
+    review:
+      "一个少年的叛逆与温柔。那份想接住所有孩子的愿望，意外地让人动容。",
   },
   {
     id: 14,
@@ -468,6 +475,8 @@ const booksData = [
     progress: 100,
     color: "gray",
     reflectionUrl: null,
+    review:
+      "人生在世，恩怨情仇终难两全。张无忌的优柔寡断，反而最像个真实的人。",
   },
   {
     id: 15,
@@ -478,6 +487,8 @@ const booksData = [
     progress: 100,
     color: "green",
     reflectionUrl: null,
+    review:
+      "江湖不在刃光里，而在人心里。一曲《笑傲江湖》，道尽自由与无奈。",
   },
   {
     id: 16,
@@ -488,6 +499,8 @@ const booksData = [
     progress: 100,
     color: "red",
     reflectionUrl: null,
+    review:
+      "金庸笔下最悲凉的一部。狄云的遭遇看得人心疼，人性之恶比武功更可怕。",
   },
   {
     id: 17,
@@ -498,6 +511,8 @@ const booksData = [
     progress: 60,
     color: "green",
     reflectionUrl: "",
+    review:
+      "辽阔天地里的烟火气。李娟的文字干净又敏锐，读着像吹过一阵清风。",
   },
   {
     id: 18,
@@ -508,6 +523,8 @@ const booksData = [
     progress: 100,
     color: "gray",
     reflectionUrl: null,
+    review:
+      "真正让人发毛的不是手法，而是那句‘我就是看他不顺眼’。无由的恶意最寒。",
   },
   {
     id: 19,
@@ -518,6 +535,8 @@ const booksData = [
     progress: 100,
     color: "purple",
     reflectionUrl: null,
+    review:
+      "一座城的倾覆，成全了一段乱世姻缘。张爱玲的苍凉，藏在每一个细节里。",
   },
   {
     id: 20,
@@ -528,6 +547,8 @@ const booksData = [
     progress: 100,
     color: "blue",
     reflectionUrl: null,
+    review:
+      "如果命运是一条河，谁是你的摆渡人？一路冒险，其实是一场自我救赎。",
   },
 ];
 
@@ -553,28 +574,11 @@ const book18 = booksData[17]!;
 const book19 = booksData[18]!;
 const book20 = booksData[19]!;
 
-// Toast 提示状态
-const showToast = ref(false);
-const toastMessage = ref("");
+// 当前翻开的书（为 null 时关闭模态）
+const openedBook = ref<(typeof booksData)[number] | null>(null);
 
-// 显示 Toast 提示
-const showToastMessage = (message: string) => {
-  toastMessage.value = message;
-  showToast.value = true;
-  setTimeout(() => {
-    showToast.value = false;
-  }, 3000);
-};
-
-// 处理书籍点击事件
+// 处理书籍点击事件：打开翻书模态
 const handleBookClick = (book: (typeof booksData)[number]) => {
-  if (book.reflectionUrl && book.reflectionUrl !== "") {
-    // 在新窗口打开阅读感悟链接
-    window.open(book.reflectionUrl, "_blank");
-    showToastMessage(`正在打开《${book.title}》的阅读感悟...`);
-  } else {
-    // 如果没有阅读感悟链接，显示优雅的提示
-    showToastMessage(`《${book.title}》的阅读感悟正在整理中，敬请期待 📚`);
-  }
+  openedBook.value = book;
 };
 </script>
