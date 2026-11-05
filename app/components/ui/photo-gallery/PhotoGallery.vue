@@ -71,12 +71,12 @@ const props = defineProps<Props>();
       transition: clip-path 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         filter 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      filter: saturate(150%) brightness(1.1);
+      filter: brightness(1.02);
       transform: translateZ(0) scale(1.02);
     }
 
     &:focus {
-      outline: 3px solid rgba(59, 130, 246, 0.5);
+      outline: 2px solid var(--ring);
       outline-offset: 2px;
     }
 

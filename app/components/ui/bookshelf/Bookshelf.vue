@@ -1,5 +1,10 @@
 <template>
-  <div class="bookshelf-wrapper relative">
+  <div
+    class="bookshelf-wrapper bookshelf-scroll relative"
+    role="region"
+    aria-label="阅读书架，可左右滚动浏览"
+    tabindex="0"
+  >
     <!-- SVG 手绘滤镜 & 装饰物定义 -->
     <svg class="absolute w-0 h-0 overflow-hidden" aria-hidden="true">
       <defs>
@@ -8,14 +13,14 @@
           <feTurbulence
             type="turbulence"
             baseFrequency="0.04"
-            numOctaves="4"
+            numOctaves="2"
             result="noise"
             seed="2"
           />
           <feDisplacementMap
             in="SourceGraphic"
             in2="noise"
-            scale="2"
+            scale="0.75"
             xChannelSelector="R"
             yChannelSelector="G"
           />
@@ -23,13 +28,13 @@
       </defs>
     </svg>
 
-    <!-- 书架整体容器 -->
+    <!-- 窄屏保留书本尺寸，通过局部滚动浏览，避免压缩书名。 -->
     <div class="bookshelf relative mx-auto max-w-6xl">
       <!-- === 第一层书架 === -->
-      <div class="shelf-row relative mb-2">
+      <div class="shelf-row relative mb-3">
         <!-- 书本区域 -->
         <div
-          class="books-area flex items-end gap-1.5 px-2 md:gap-3 md:px-10 pb-0 min-h-[200px] md:min-h-[240px] relative z-10"
+          class="books-area flex items-end relative z-10"
         >
           <!-- 左侧复古闹钟装饰（手机缩小） -->
           <div class="doodle-clock self-end mr-1 md:mr-2 flex-shrink-0">
@@ -389,7 +394,7 @@
         </div>
 
         <!-- 书架板 -->
-        <div class="shelf-board relative h-5">
+        <div class="shelf-board relative h-3.5">
           <svg
             class="w-full h-full"
             preserveAspectRatio="none"
@@ -397,19 +402,19 @@
           >
             <path
               d="M0 2 Q200 0 400 2 Q600 4 800 2 L800 14 Q600 16 400 14 Q200 12 0 14 Z"
-              class="fill-amber-700 dark:fill-amber-900"
+              class="shelf-wood"
               filter="url(#sketchy-line)"
             />
             <path
               d="M0 2 Q200 0 400 2 Q600 4 800 2"
-              class="stroke-amber-900 dark:stroke-amber-700"
-              stroke-width="1"
+              class="shelf-edge"
+              stroke-width="0.65"
               fill="none"
             />
           </svg>
           <!-- 架板厚度阴影 -->
           <div
-            class="absolute left-0 right-0 -bottom-2 h-2 bg-gradient-to-b from-amber-900/30 to-transparent rounded-b"
+            class="shelf-shadow absolute left-0 right-0 -bottom-1 h-1 rounded-b"
           />
         </div>
       </div>
@@ -418,7 +423,7 @@
       <div class="shelf-row relative">
         <!-- 书本区域 -->
         <div
-          class="books-area flex items-end gap-1.5 px-2 md:gap-3 md:px-10 pb-0 min-h-[200px] md:min-h-[240px] relative z-10"
+          class="books-area flex items-end relative z-10"
         >
           <!-- 左侧咖啡杯装饰（手机缩小） -->
           <div class="doodle-coffee self-end mr-1 md:mr-3 flex-shrink-0">
@@ -600,7 +605,7 @@
         </div>
 
         <!-- 书架板 -->
-        <div class="shelf-board relative h-5">
+        <div class="shelf-board relative h-3.5">
           <svg
             class="w-full h-full"
             preserveAspectRatio="none"
@@ -608,18 +613,18 @@
           >
             <path
               d="M0 2 Q200 4 400 2 Q600 0 800 2 L800 14 Q600 12 400 14 Q200 16 0 14 Z"
-              class="fill-amber-700 dark:fill-amber-900"
+              class="shelf-wood"
               filter="url(#sketchy-line)"
             />
             <path
               d="M0 2 Q200 4 400 2 Q600 0 800 2"
-              class="stroke-amber-900 dark:stroke-amber-700"
-              stroke-width="1"
+              class="shelf-edge"
+              stroke-width="0.65"
               fill="none"
             />
           </svg>
           <div
-            class="absolute left-0 right-0 -bottom-2 h-2 bg-gradient-to-b from-amber-900/30 to-transparent rounded-b"
+            class="shelf-shadow absolute left-0 right-0 -bottom-1 h-1 rounded-b"
           />
         </div>
       </div>
@@ -634,8 +639,8 @@
         >
           <path
             d="M6 0 Q4 100 6 200 Q8 300 6 400"
-            class="stroke-amber-800 dark:stroke-amber-700"
-            stroke-width="4"
+            class="shelf-edge"
+            stroke-width="2.5"
             fill="none"
             filter="url(#sketchy-line)"
           />
@@ -648,8 +653,8 @@
         >
           <path
             d="M6 0 Q8 100 6 200 Q4 300 6 400"
-            class="stroke-amber-800 dark:stroke-amber-700"
-            stroke-width="4"
+            class="shelf-edge"
+            stroke-width="2.5"
             fill="none"
             filter="url(#sketchy-line)"
           />
@@ -666,12 +671,12 @@
             d="M8 1 L9.5 6 L15 6.5 L10.5 10 L12 15 L8 12 L4 15 L5.5 10 L1 6.5 L6.5 6 Z"
             stroke="currentColor"
             stroke-width="1"
-            class="text-amber-600 dark:text-amber-400"
+            class="text-primary"
             fill="none"
           />
         </svg>
         <span
-          class="text-xs text-zinc-400 dark:text-zinc-500 italic font-handwriting"
+          class="text-xs text-muted-foreground italic font-handwriting"
           >~ reading is dreaming ~</span
         >
         <!-- 小书本图标 -->
@@ -680,7 +685,7 @@
             d="M1 2 Q4 1 9 2 Q14 1 17 2 L17 12 Q14 11 9 12 Q4 11 1 12 Z"
             stroke="currentColor"
             stroke-width="1"
-            class="text-amber-600 dark:text-amber-400"
+            class="text-primary"
             fill="none"
           />
           <line
@@ -690,7 +695,7 @@
             y2="12"
             stroke="currentColor"
             stroke-width="0.8"
-            class="text-amber-600 dark:text-amber-400"
+            class="text-primary"
           />
         </svg>
       </div>
@@ -705,6 +710,38 @@
 
 <style scoped>
 .bookshelf-wrapper {
-  font-family: "Comic Sans MS", "Segoe UI", cursive, sans-serif;
+  font-family: "LXGW WenKai", "Microsoft YaHei", "PingFang SC", sans-serif;
+}
+
+.bookshelf-scroll {
+  /* 留出悬停气泡和抽书动作的空间，滚动区不裁切它们。 */
+  overflow-x: auto;
+  padding: 120px 4px 18px;
+  margin: -120px -4px -18px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.bookshelf-scroll:focus-visible {
+  outline: 1px dashed var(--ring);
+  outline-offset: -2px;
+}
+
+.bookshelf { min-width: 400px; }
+.books-area { min-height: 236px; gap: 8px; padding: 0 18px; }
+.shelf-row:hover, .shelf-row:focus-within { z-index: 20; }
+.shelf-wood { fill: var(--wood-fill); }
+.shelf-edge { stroke: var(--wood-edge); }
+.shelf-shadow { background: linear-gradient(var(--wood-shadow), transparent); }
+
+@media (min-width: 768px) {
+  .bookshelf { min-width: 1120px; }
+  .books-area { min-height: 246px; gap: 8px; padding-inline: 32px; }
+}
+
+@media (max-width: 767px) {
+  .books-area { gap: 6px; }
+  .doodle-clock, .doodle-coffee { margin-right: 4px; }
+  .doodle-plant { margin-inline: 4px; }
 }
 </style>

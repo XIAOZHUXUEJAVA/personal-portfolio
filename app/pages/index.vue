@@ -15,9 +15,6 @@
     <!-- Reading Section -->
     <ReadingSection />
 
-    <!-- Timeline Section -->
-    <TimelineSection />
-
     <!-- Contact Section -->
     <ContactSection />
   </div>
@@ -30,7 +27,6 @@ import AboutSection from "~/components/sections/AboutSection.vue";
 import FeaturedWorksSection from "~/components/sections/FeaturedWorksSection.vue";
 import PhotoGallerySection from "~/components/sections/PhotoGallerySection.vue";
 import ReadingSection from "~/components/sections/ReadingSection.vue";
-import TimelineSection from "~/components/sections/TimelineSection.vue";
 import ContactSection from "~/components/sections/ContactSection.vue";
 
 // SEO Meta

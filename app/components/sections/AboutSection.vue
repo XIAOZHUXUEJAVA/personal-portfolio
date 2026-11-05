@@ -4,11 +4,7 @@
       <!-- Section Title -->
       <div class="text-center mb-16">
         <h2
-          class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-500 via-green-600 to-yellow-500 bg-clip-text text-transparent"
-          style="
-            background-size: 200% 100%;
-            animation: gradient-shift 3s ease-in-out infinite alternate;
-          "
+          class="text-4xl md:text-5xl font-bold mb-4 section-title"
         >
           关于我
         </h2>
@@ -19,22 +15,21 @@
 
       <!-- About Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <CardSpotlight
-          v-for="(item, index) in aboutData"
-          :key="index"
-          :gradient-size="300"
-          :gradient-color="item.gradientColor"
-          :gradient-opacity="0.6"
-          class="p-8 rounded-2xl border border-green-200/40 bg-gradient-to-br from-green-50/80 via-yellow-50/70 to-orange-50/80 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300"
+        <FloatingCard
+          v-for="item in aboutData"
+          :key="item.title"
+          :rotate-depth="10"
+          :translate-depth="8"
+          class="h-full"
         >
-          <div class="space-y-4">
+          <div class="flex h-full flex-col gap-5 p-7 sm:p-8">
             <div class="flex items-center space-x-3">
               <div
-                class="p-3 rounded-full bg-gradient-to-br from-green-100/80 to-yellow-100/80 shadow-md"
+                class="theme-icon shrink-0 p-3 rounded-full"
               >
                 <component
                   :is="getIcon(item.icon)"
-                  class="h-6 w-6 text-green-600"
+                  class="h-6 w-6"
                 />
               </div>
               <h3 class="text-xl font-semibold">{{ item.title }}</h3>
@@ -45,17 +40,17 @@
             </p>
 
             <!-- Skills/Tags -->
-            <div v-if="item.tags" class="flex flex-wrap gap-2">
+            <div v-if="item.tags" class="mt-auto flex flex-wrap gap-2 pt-2">
               <span
                 v-for="tag in item.tags"
                 :key="tag"
-                class="px-3 py-1 text-sm bg-gradient-to-r from-green-100/70 to-yellow-100/70 rounded-full text-green-700 border border-green-200/50 shadow-sm"
+                class="theme-tag px-3 py-1 text-sm rounded-full"
               >
                 {{ tag }}
               </span>
             </div>
           </div>
-        </CardSpotlight>
+        </FloatingCard>
       </div>
 
       <!-- Personal Quote -->
@@ -72,7 +67,7 @@
 
 <script setup lang="ts">
 import { Camera, Palette, BookOpen } from "lucide-vue-next";
-import { CardSpotlight } from "~/components/ui/card-spotlight";
+import { FloatingCard } from "~/components/ui/floating-card";
 import { aboutData, inspirationalQuotes } from "~/data/staticData";
 
 // Icon mapping

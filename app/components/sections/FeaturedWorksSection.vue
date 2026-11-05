@@ -4,11 +4,7 @@
       <!-- Section Title -->
       <div class="text-center mb-16">
         <h2
-          class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-500 via-green-600 to-yellow-500 bg-clip-text text-transparent"
-          style="
-            background-size: 200% 100%;
-            animation: gradient-shift 3s ease-in-out infinite alternate;
-          "
+          class="text-4xl md:text-5xl font-bold mb-4 section-title"
         >
           我的小天地
         </h2>
@@ -24,12 +20,12 @@
             class="inter-var"
           >
             <CardBody
-              class="group/card relative w-full h-full rounded-xl border border-green-200/40 bg-gradient-to-br from-green-50/80 via-yellow-50/70 to-orange-50/80 p-6 dark:border-green-700/30 dark:bg-gradient-to-br dark:from-green-950/60 dark:via-yellow-950/50 dark:to-orange-950/60 dark:hover:shadow-2xl dark:hover:shadow-green-500/[0.1]"
+              class="surface-card group/card relative w-full h-full rounded-xl p-6"
             >
               <!-- Title -->
               <CardItem
                 :translate-z="50"
-                class="text-xl font-bold text-green-700 dark:text-green-300"
+                class="text-xl font-bold text-foreground"
               >
                 {{ work.title }}
               </CardItem>
@@ -38,7 +34,7 @@
               <CardItem
                 as="p"
                 :translate-z="60"
-                class="mt-2 max-w-sm text-sm text-green-600/80 dark:text-green-400/80"
+                class="mt-2 max-w-sm text-sm text-muted-foreground"
               >
                 {{ work.description }}
               </CardItem>
@@ -50,7 +46,7 @@
                   :src="work.image"
                   :alt="work.title"
                   loading="lazy"
-                  class="aspect-[3/2] w-full rounded-xl object-cover group-hover/card:shadow-xl transition-shadow duration-300"
+                  class="aspect-[3/2] w-full rounded-xl object-cover group-hover/card:shadow-sm transition-shadow duration-300"
                 />
               </CardItem>
 
@@ -59,7 +55,7 @@
                 <span
                   v-for="tag in work.tags"
                   :key="tag"
-                  class="px-3 py-1 bg-gradient-to-r from-green-100/70 to-yellow-100/70 text-green-700 rounded-full text-xs font-medium border border-green-200/50 shadow-sm"
+                  class="theme-tag px-3 py-1 rounded-full text-xs font-medium"
                 >
                   {{ tag }}
                 </span>
@@ -70,7 +66,7 @@
                 <CardItem
                   :translate-z="20"
                   as="button"
-                  class="rounded-xl px-4 py-2 text-xs font-normal text-green-600 hover:text-green-700 transition-colors dark:text-green-400 dark:hover:text-green-300"
+                  class="theme-button theme-button--ghost rounded-xl px-4 py-2 text-xs font-normal"
                   @click="viewLargeImage(work.image, work.title)"
                 >
                   查看大图 →
@@ -83,7 +79,7 @@
                   :href="work.sourceUrl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="rounded-xl bg-gradient-to-r from-green-600 to-yellow-600 px-4 py-2 text-xs font-bold text-white hover:from-green-700 hover:to-yellow-700 transition-all duration-300 shadow-md hover:shadow-lg dark:from-green-500 dark:to-yellow-500 dark:hover:from-green-400 dark:hover:to-yellow-400"
+                  class="theme-button theme-button--primary rounded-xl px-4 py-2 text-xs font-medium"
                 >
                   了解更多
                 </CardItem>
@@ -126,7 +122,7 @@ const featuredWorks = [
     description: "喜欢打会儿单机游戏",
     image: "/images/game.jpg",
     tags: ["游戏", "PlayStation"],
-    demoUrl: "#timeline",
+    demoUrl: "#gaming",
     sourceUrl: null,
   },
   {

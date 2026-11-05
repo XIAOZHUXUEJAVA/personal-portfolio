@@ -35,7 +35,7 @@
       <p class="text-gray-300 mb-6">{{ error }}</p>
       <NuxtLink
         to="/"
-        class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium"
+        class="theme-button theme-button--primary px-6 py-3 rounded-lg"
       >
         返回首页
       </NuxtLink>
@@ -233,8 +233,10 @@ const showToast = (message: string) => {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
+    background: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
+    box-shadow: var(--surface-shadow-hover);
     padding: 12px 20px;
     border-radius: 8px;
     font-size: 14px;

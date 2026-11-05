@@ -1,7 +1,7 @@
 <template>
-  <h1 :class="cn('font-bold select-none mt-3 mb-1 text-balance', $props.class)">
+  <h3 :class="cn('font-bold select-none mt-3 mb-1 text-balance', $props.class)">
     <slot />
-  </h1>
+  </h3>
 </template>
 
 <script lang="ts" setup>

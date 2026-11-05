@@ -8,7 +8,6 @@ export interface AboutItem {
   title: string;
   description: string;
   icon: string;
-  gradientColor: string;
   tags?: string[];
 }
 
@@ -19,15 +18,6 @@ export interface PhotoItem {
   description?: string;
   location?: string;
   date?: string;
-}
-
-export interface TimelineItem {
-  id: string;
-  label: string;
-  date: string;
-  title: string;
-  description: string;
-  image?: string;
 }
 
 export interface ContactInfo {
@@ -51,7 +41,6 @@ export const aboutData: AboutItem[] = [
     description:
       "会点后端(潦潦草草)，懂点前端(全靠AI)，搞点运维(全靠运气)，喜欢折腾(闲不下来)",
     icon: "Camera",
-    gradientColor: "rgba(34, 197, 94, 0.3)",
     tags: ["职业", "技术"],
   },
   {
@@ -59,14 +48,12 @@ export const aboutData: AboutItem[] = [
     description:
       "练习时长10年+（小时候偷偷骑），但仅限于正常骑行，不飙车，最近正在骑巡航",
     icon: "Palette",
-    gradientColor: "rgba(251, 191, 36, 0.3)",
     tags: ["爱好", "骑行"],
   },
   {
     title: "喜欢单曲循环",
     description: "喜欢听音乐，经常单曲循环，爱听邓紫棋，但最近在听 <蝴蝶>",
     icon: "BookOpen",
-    gradientColor: "rgba(249, 115, 22, 0.3)",
     tags: ["音乐", "邓紫棋"],
   },
 ];
@@ -179,48 +166,6 @@ export const highlightPhotosData: PhotoItem[] = [
     location: "青岛",
     date: "2025-08-21",
   },
-];
-
-// Timeline Data
-export const timelineData: TimelineItem[] = [
-  {
-    id: "2022-01",
-    label: "学习编程",
-    date: "2022年1月",
-    title: "开启代码学习之路",
-    description:
-      "22年的新年，开始认真的学习编程，选择的语言是Java。还算认真的去学习，似乎还没找到真正的编程之道",
-    image:
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop",
-  },
-  {
-    id: "2023-06",
-    label: "实习工作",
-    date: "2023年6月",
-    title: "第一份实习工作",
-    description: "几个月左右的实习工作，似乎也让我明白了什么是职场",
-    image:
-      "https://images.unsplash.com/photo-1522383225653-ed111181a951?w=400&h=300&fit=crop",
-  },
-  {
-    id: "2024-07",
-    label: "木牛流马",
-    date: "2024年7月",
-    title: "正式参加工作",
-    description: "工作至今，尽量让自己保持学习的状态，不断探索最新的技术",
-    image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop",
-  },
-  // {
-  //   id: "2024-09",
-  //   label: "秋日感悟",
-  //   date: "2024年9月",
-  //   title: "金秋时节的思考",
-  //   description:
-  //     "秋天是收获的季节，也是思考的季节。在这个时候，我开始反思过去的一年，思考未来的方向。",
-  //   image:
-  //     "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop",
-  // },
 ];
 
 // Contact Information

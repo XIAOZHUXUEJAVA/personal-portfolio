@@ -1,314 +1,96 @@
 <template>
-  <section id="reading" class="py-5 px-6">
-    <div class="max-w-7xl mx-auto">
-      <!-- Section Title -->
+  <section id="reading" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12">
-        <h2
-          class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-500 via-green-600 to-yellow-500 bg-clip-text text-transparent"
-          style="
-            background-size: 200% 100%;
-            animation: gradient-shift 3s ease-in-out infinite alternate;
-          "
-        >
+        <h2 ref="headingRef" class="reading-heading text-4xl md:text-5xl font-bold mb-4 section-title">
           最近在读
         </h2>
       </div>
 
-      <!-- 书架展示 -->
-      <Bookshelf>
-        <!-- 第一层：书1竖立 + 书2竖立 + 书3斜靠 + 书4竖立 -->
-        <template #book-1>
-          <ShelfBook
-            :title="book1.title"
-            :author="book1.author"
-            :color="book1.color"
-            :progress="book1.progress"
-            :status="book1.status"
-            mode="upright"
-            :thickness="42"
-            :height="200"
-            @click="handleBookClick(book1)"
-          />
-        </template>
-        <template #book-2>
-          <ShelfBook
-            :title="book2.title"
-            :author="book2.author"
-            :color="book2.color"
-            :progress="book2.progress"
-            :status="book2.status"
-            mode="upright"
-            :thickness="48"
-            :height="210"
-            @click="handleBookClick(book2)"
-          />
-        </template>
-        <template #book-3>
-          <ShelfBook
-            :title="book3.title"
-            :author="book3.author"
-            :color="book3.color"
-            :progress="book3.progress"
-            :status="book3.status"
-            mode="leaning"
-            :thickness="46"
-            :height="195"
-            :lean-angle="-8"
-            class="ml-3 hidden md:block"
-            @click="handleBookClick(book3)"
-          />
-        </template>
-        <template #book-9>
-          <ShelfBook
-            :title="book9.title"
-            :author="book9.author"
-            :color="book9.color"
-            :progress="book9.progress"
-            :status="book9.status"
-            mode="upright"
-            :thickness="44"
-            :height="202"
-            class="hidden md:block"
-            @click="handleBookClick(book9)"
-          />
-        </template>
-        <template #book-4>
-          <ShelfBook
-            :title="book4.title"
-            :author="book4.author"
-            :color="book4.color"
-            :progress="book4.progress"
-            :status="book4.status"
-            mode="upright"
-            :thickness="46"
-            :height="210"
-            @click="handleBookClick(book4)"
-          />
-        </template>
-        <template #book-14>
-          <ShelfBook
-            :title="book14.title"
-            :author="book14.author"
-            :color="book14.color"
-            :progress="book14.progress"
-            :status="book14.status"
-            mode="upright"
-            :thickness="44"
-            :height="204"
-            class="hidden md:block"
-            @click="handleBookClick(book14)"
-          />
-        </template>
-        <template #book-15>
-          <ShelfBook
-            :title="book15.title"
-            :author="book15.author"
-            :color="book15.color"
-            :progress="book15.progress"
-            :status="book15.status"
-            mode="upright"
-            :thickness="42"
-            :height="200"
-            class="hidden md:block"
-            @click="handleBookClick(book15)"
-          />
-        </template>
-        <template #book-11>
-          <ShelfBook
-            :title="book11.title"
-            :author="book11.author"
-            :color="book11.color"
-            :progress="book11.progress"
-            :status="book11.status"
-            mode="upright"
-            :thickness="46"
-            :height="198"
-            class="hidden md:block"
-            @click="handleBookClick(book11)"
-          />
-        </template>
+      <div id="reading-books" class="reading-grid">
+        <article v-for="(book, index) in visibleBooks" :key="book.id" class="reading-item">
+          <Book
+            class="reading-book cursor-pointer"
+            size="md"
+            radius="md"
+            shadow-size="sm"
+            :duration="450"
+            :cover-color="getCoverColor(book.color)"
+            content-class="h-full"
+            role="button"
+            tabindex="0"
+            aria-haspopup="dialog"
+            :aria-label="`查看《${book.title}》详情，${book.author}，${book.status}`"
+            @click="openedBook = book"
+            @keydown.enter.prevent="openedBook = book"
+            @keydown.space.prevent="openedBook = book"
+          >
+            <div class="reading-cover-content">
+              <BookHeader class="reading-cover-header">
+                <span>{{ book.category }}</span>
+                <span class="reading-cover-number">{{ String(index + 1).padStart(2, '0') }}</span>
+              </BookHeader>
+              <div class="reading-cover-rule" aria-hidden="true" />
+              <div class="reading-cover-copy">
+                <BookTitle class="reading-cover-title">{{ book.title }}</BookTitle>
+                <BookDescription class="reading-cover-author">{{ book.author }}</BookDescription>
+              </div>
+              <div class="reading-cover-footer" aria-hidden="true">
+                <span>阅读 · 随记</span>
+                <BookOpen :size="15" :stroke-width="1.3" />
+              </div>
+            </div>
+          </Book>
 
-        <!-- 第二层：书5竖立 + 书6平放 + 书7斜靠 + 书8竖立 -->
-        <template #book-5>
-          <ShelfBook
-            :title="book5.title"
-            :author="book5.author"
-            :color="book5.color"
-            :progress="book5.progress"
-            :status="book5.status"
-            mode="upright"
-            :thickness="44"
-            :height="200"
-            class="hidden md:block"
-            @click="handleBookClick(book5)"
-          />
-        </template>
-        <template #book-10>
-          <ShelfBook
-            :title="book10.title"
-            :author="book10.author"
-            :color="book10.color"
-            :progress="book10.progress"
-            :status="book10.status"
-            mode="upright"
-            :thickness="60"
-            :height="220"
-            @click="handleBookClick(book10)"
-          />
-        </template>
-        <template #book-6>
-          <ShelfBook
-            :title="book6.title"
-            :author="book6.author"
-            :color="book6.color"
-            :progress="book6.progress"
-            :status="book6.status"
-            mode="flat"
-            :thickness="38"
-            :height="190"
-            :flat-height="34"
-            class="mr-6 hidden md:block"
-            @click="handleBookClick(book6)"
-          />
-        </template>
-        <template #book-12>
-          <ShelfBook
-            :title="book12.title"
-            :author="book12.author"
-            :color="book12.color"
-            :progress="book12.progress"
-            :status="book12.status"
-            mode="upright"
-            :thickness="46"
-            :height="204"
-            class="hidden md:block"
-            @click="handleBookClick(book12)"
-          />
-        </template>
-        <template #book-7>
-          <ShelfBook
-            :title="book7.title"
-            :author="book7.author"
-            :color="book7.color"
-            :progress="book7.progress"
-            :status="book7.status"
-            mode="leaning"
-            :thickness="46"
-            :height="192"
-            :lean-angle="10"
-            class="mr-4 hidden md:block"
-            @click="handleBookClick(book7)"
-          />
-        </template>
-        <template #book-13>
-          <ShelfBook
-            :title="book13.title"
-            :author="book13.author"
-            :color="book13.color"
-            :progress="book13.progress"
-            :status="book13.status"
-            mode="upright"
-            :thickness="44"
-            :height="196"
-            @click="handleBookClick(book13)"
-          />
-        </template>
-        <template #book-8>
-          <ShelfBook
-            :title="book8.title"
-            :author="book8.author"
-            :color="book8.color"
-            :progress="book8.progress"
-            :status="book8.status"
-            mode="upright"
-            :thickness="50"
-            :height="208"
-            @click="handleBookClick(book8)"
-          />
-        </template>
+          <div class="reading-meta">
+            <div class="reading-status-row">
+              <span class="reading-status" :class="{ 'is-reading': book.status === '在读' || book.status === '重温' }">
+                <span v-if="book.status === '在读' || book.status === '重温'" class="reading-status-dot" aria-hidden="true" />
+                {{ book.status }}
+              </span>
+              <span class="reading-percentage">{{ book.progress }}%</span>
+            </div>
+            <div
+              class="reading-progress"
+              role="progressbar"
+              :aria-label="`《${book.title}》阅读进度`"
+              :aria-valuenow="book.progress"
+              :aria-valuetext="`${book.status}，${book.progress}%`"
+              :aria-valuemin="0"
+              :aria-valuemax="100"
+            >
+              <span :style="{ width: book.progress + '%' }" />
+            </div>
+          </div>
+        </article>
+      </div>
 
-        <!-- 新增 5 本（分散到第一、第二层）：连城诀、恶意入一层；阿勒泰、倾城、摆渡人入二层 -->
-        <template #book-16>
-          <ShelfBook
-            :title="book16.title"
-            :author="book16.author"
-            :color="book16.color"
-            :progress="book16.progress"
-            :status="book16.status"
-            mode="upright"
-            :thickness="44"
-            :height="200"
-            @click="handleBookClick(book16)"
-          />
-        </template>
-        <template #book-18>
-          <ShelfBook
-            :title="book18.title"
-            :author="book18.author"
-            :color="book18.color"
-            :progress="book18.progress"
-            :status="book18.status"
-            mode="leaning"
-            :thickness="46"
-            :height="194"
-            :lean-angle="7"
-            class="mr-3 hidden md:block"
-            @click="handleBookClick(book18)"
-          />
-        </template>
-        <template #book-17>
-          <ShelfBook
-            :title="book17.title"
-            :author="book17.author"
-            :color="book17.color"
-            :progress="book17.progress"
-            :status="book17.status"
-            mode="upright"
-            :thickness="42"
-            :height="206"
-            @click="handleBookClick(book17)"
-          />
-        </template>
-        <template #book-19>
-          <ShelfBook
-            :title="book19.title"
-            :author="book19.author"
-            :color="book19.color"
-            :progress="book19.progress"
-            :status="book19.status"
-            mode="upright"
-            :thickness="46"
-            :height="202"
-            class="hidden md:block"
-            @click="handleBookClick(book19)"
-          />
-        </template>
-        <template #book-20>
-          <ShelfBook
-            :title="book20.title"
-            :author="book20.author"
-            :color="book20.color"
-            :progress="book20.progress"
-            :status="book20.status"
-            mode="upright"
-            :thickness="44"
-            :height="198"
-            class="hidden md:block"
-            @click="handleBookClick(book20)"
-          />
-        </template>
-      </Bookshelf>
+      <div v-if="booksData.length > INITIAL_BOOK_COUNT" class="flex justify-center mt-12">
+        <ThemeButton
+          variant="secondary"
+          :aria-expanded="expanded"
+          aria-controls="reading-books"
+          @click="toggleExpanded"
+        >
+          {{ expanded ? '收起书单' : `查看全部 ${booksData.length} 本` }}
+          <ChevronUp v-if="expanded" :size="16" aria-hidden="true" />
+          <ChevronDown v-else :size="16" aria-hidden="true" />
+        </ThemeButton>
+      </div>
     </div>
 
-    <!-- 翻书模态：点击书本后居中对开展示详情 -->
     <BookOpenModal :book="openedBook" @close="openedBook = null" />
   </section>
 </template>
 
 <script setup lang="ts">
-import { Bookshelf, ShelfBook, BookOpenModal } from "~/components/ui/bookshelf";
+import { computed, nextTick, ref } from "vue";
+import { BookOpen, ChevronDown, ChevronUp } from "lucide-vue-next";
+import { Book, BookHeader, BookTitle, BookDescription } from "~/components/ui/book";
+import { BookOpenModal } from "~/components/ui/bookshelf";
+import { ThemeButton } from "~/components/ui/theme-button";
 
-// 书籍数据
+// 保留原有书目、阅读进度和读后随笔。
 const booksData = [
   {
     id: 1,
@@ -552,33 +334,109 @@ const booksData = [
   },
 ];
 
-// 单独引用每本书，避免 TS 索引访问 undefined 警告
-const book1 = booksData[0]!;
-const book2 = booksData[1]!;
-const book3 = booksData[2]!;
-const book4 = booksData[3]!;
-const book5 = booksData[4]!;
-const book6 = booksData[5]!;
-const book7 = booksData[6]!;
-const book8 = booksData[7]!;
-const book9 = booksData[8]!;
-const book10 = booksData[9]!;
-const book11 = booksData[10]!;
-const book12 = booksData[11]!;
-const book13 = booksData[12]!;
-const book14 = booksData[13]!;
-const book15 = booksData[14]!;
-const book16 = booksData[15]!;
-const book17 = booksData[16]!;
-const book18 = booksData[17]!;
-const book19 = booksData[18]!;
-const book20 = booksData[19]!;
-
-// 当前翻开的书（为 null 时关闭模态）
+const INITIAL_BOOK_COUNT = 8;
+const expanded = ref(false);
+const headingRef = ref<HTMLElement | null>(null);
 const openedBook = ref<(typeof booksData)[number] | null>(null);
+const visibleBooks = computed(() => expanded.value ? booksData : booksData.slice(0, INITIAL_BOOK_COUNT));
 
-// 处理书籍点击事件：打开翻书模态
-const handleBookClick = (book: (typeof booksData)[number]) => {
-  openedBook.value = book;
+// 封面采用低饱和的布面色，界面控件沿用全站苔绿主题。
+const coverColors: Record<string, string> = {
+  blue: "#465b65",
+  emerald: "#526450",
+  purple: "#686071",
+  red: "#795b54",
+  yellow: "#776d4b",
+  gray: "#535a56",
+  green: "#66714c",
+  orange: "#80694f",
+};
+const getCoverColor = (color: string) => coverColors[color] || coverColors.green;
+
+const toggleExpanded = async () => {
+  expanded.value = !expanded.value;
+  if (!expanded.value) {
+    await nextTick();
+    headingRef.value?.scrollIntoView({
+      block: "start",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+    });
+  }
 };
 </script>
+
+<style scoped>
+.reading-heading { scroll-margin-top: 110px; }
+.reading-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 44px;
+  padding-top: 12px;
+}
+
+.reading-item { min-width: 0; }
+.reading-book { width: 100%; max-width: 208px; margin-inline: auto; }
+.reading-book :deep(.book-front) { padding: 22px 20px 18px; }
+.reading-cover-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  color: #faf9f0;
+  text-align: left;
+}
+
+.reading-cover-header {
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+}
+
+.reading-cover-number { font-family: "Inter", sans-serif; font-size: 11px; letter-spacing: 0.08em; }
+.reading-cover-rule { height: 1px; margin-top: 14px; background: rgb(250 249 240 / 0.25); }
+.reading-cover-copy { margin-block: auto; padding-block: 18px; }
+.reading-cover-title {
+  margin: 0;
+  font-size: clamp(18px, 2.1vw, 24px);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  overflow-wrap: anywhere;
+}
+
+.reading-cover-author { margin-top: 10px; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.reading-cover-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11px; line-height: 1.5; letter-spacing: 0.1em; }
+.reading-meta { max-width: 208px; margin: 22px auto 0; }
+.reading-status-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; line-height: 1.5; }
+.reading-status { display: inline-flex; align-items: center; gap: 6px; color: var(--muted-foreground); }
+.reading-status.is-reading { color: var(--primary); }
+.reading-status-dot { width: 5px; height: 5px; flex-shrink: 0; border-radius: 50%; background: currentColor; }
+.reading-percentage { color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+.reading-progress { height: 3px; margin-top: 9px; border-radius: 2px; overflow: hidden; background: var(--border); }
+.reading-progress > span { display: block; height: 100%; border-radius: inherit; background: var(--primary); }
+
+@media (min-width: 640px) {
+  .reading-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 36px; row-gap: 48px; }
+}
+
+@media (min-width: 1024px) {
+  .reading-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 48px; }
+}
+
+@media (max-width: 639px) {
+  .reading-book :deep(.book-front) { padding: 16px 13px 14px; }
+  .reading-cover-copy { padding-block: 14px; }
+  .reading-cover-author { margin-top: 8px; font-size: 11px; }
+}
+
+@media (max-width: 380px) {
+  .reading-grid { column-gap: 20px; }
+  .reading-cover-title { font-size: 16px; }
+  .reading-cover-rule { margin-top: 10px; }
+  .reading-cover-copy { padding-block: 8px; }
+  .reading-cover-footer { display: none; }
+}
+</style>

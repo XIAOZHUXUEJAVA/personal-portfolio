@@ -1,23 +1,23 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center p-4"
+    class="min-h-screen bg-background text-foreground flex items-center justify-center p-4"
   >
     <div
       v-if="photoData"
-      class="max-w-4xl w-full bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl"
+      class="max-w-4xl w-full surface-card rounded-2xl overflow-hidden shadow-2xl"
     >
       <!-- Header -->
-      <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
+      <div class="bg-accent p-6 text-accent-foreground">
         <h1 class="text-2xl md:text-3xl font-bold mb-2">
           {{ photoData.title }}
         </h1>
-        <p class="text-blue-100 opacity-90">分享自我的摄影作品集</p>
+        <p class="text-muted-foreground">分享自我的摄影作品集</p>
       </div>
 
       <!-- Image Display -->
       <div class="p-6">
         <div
-          class="relative rounded-xl overflow-hidden mb-6 bg-gray-100 dark:bg-gray-800"
+          class="relative rounded-xl overflow-hidden mb-6 bg-muted"
         >
           <NuxtImg
             :src="photoData.src"
@@ -30,29 +30,29 @@
         </div>
 
         <!-- Photo Info -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-foreground">
           <div class="space-y-4">
             <div>
               <h3 class="text-lg font-semibold mb-2">作品信息</h3>
-              <div class="space-y-2 text-gray-300">
+              <div class="space-y-2 text-muted-foreground">
                 <p>
-                  <span class="font-medium text-white">标题:</span>
+                  <span class="font-medium text-foreground">标题:</span>
                   {{ photoData.title }}
                 </p>
                 <p v-if="photoData.description">
-                  <span class="font-medium text-white">描述:</span>
+                  <span class="font-medium text-foreground">描述:</span>
                   {{ photoData.description }}
                 </p>
                 <p v-if="photoData.location">
-                  <span class="font-medium text-white">位置:</span>
+                  <span class="font-medium text-foreground">位置:</span>
                   {{ photoData.location }}
                 </p>
                 <p v-if="photoData.date">
-                  <span class="font-medium text-white">拍摄时间:</span>
+                  <span class="font-medium text-foreground">拍摄时间:</span>
                   {{ photoData.date }}
                 </p>
                 <p v-if="photoData.category">
-                  <span class="font-medium text-white">分类:</span>
+                  <span class="font-medium text-foreground">分类:</span>
                   {{ photoData.category }}
                 </p>
               </div>
@@ -64,19 +64,19 @@
               <h3 class="text-lg font-semibold mb-2">分享操作</h3>
               <div class="space-y-3">
                 <button
-                  class="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium"
+                  class="theme-button theme-button--primary w-full px-4 py-3 rounded-lg"
                   @click="copyImageUrl"
                 >
                   复制图片链接
                 </button>
                 <button
-                  class="w-full px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-medium"
+                  class="theme-button theme-button--secondary w-full px-4 py-3 rounded-lg"
                   @click="copyShareUrl"
                 >
                   复制分享链接
                 </button>
                 <button
-                  class="w-full px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors font-medium"
+                  class="theme-button theme-button--secondary w-full px-4 py-3 rounded-lg"
                   @click="downloadImage"
                 >
                   下载图片
@@ -90,7 +90,7 @@
         <div class="mt-8 text-center">
           <NuxtLink
             to="/#gallery"
-            class="inline-flex items-center px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium"
+            class="theme-button theme-button--ghost px-6 py-3 rounded-lg"
           >
             ← 返回相册
           </NuxtLink>
@@ -99,10 +99,10 @@
     </div>
 
     <!-- Error State -->
-    <div v-else class="text-center text-white">
+    <div v-else class="text-center text-foreground">
       <div class="mb-4">
         <svg
-          class="w-16 h-16 mx-auto text-gray-400"
+          class="w-16 h-16 mx-auto text-muted-foreground"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -116,10 +116,10 @@
         </svg>
       </div>
       <h2 class="text-2xl font-bold mb-2">无法加载图片信息</h2>
-      <p class="text-gray-300 mb-6">分享链接可能已过期或格式不正确</p>
+      <p class="text-muted-foreground mb-6">分享链接可能已过期或格式不正确</p>
       <NuxtLink
         to="/"
-        class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium"
+        class="theme-button theme-button--primary px-6 py-3 rounded-lg"
       >
         返回首页
       </NuxtLink>
@@ -244,8 +244,10 @@ const showToast = (message: string) => {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
+    background: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
+    box-shadow: var(--surface-shadow-hover);
     padding: 12px 20px;
     border-radius: 8px;
     font-size: 14px;

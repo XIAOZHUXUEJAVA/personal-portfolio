@@ -1,16 +1,11 @@
 <template>
   <div class="relative min-h-screen bg-background text-foreground">
-    <!-- Very Light Gradient Background -->
-    <div
-      class="fixed inset-0 bg-gradient-to-br from-green-100/20 via-orange-100/15 to-yellow-100/20 pointer-events-none z-0"
-    />
-
     <!-- Global Particles Background -->
     <ParticlesBg
-      class="fixed inset-0 z-10"
+      class="fixed inset-0 z-10 opacity-20 pointer-events-none"
       :quantity="60"
       :ease="50"
-      :color="isDark ? '#ffffff' : '#000000'"
+      :color="isDark ? '#b1b9a8' : '#61655c'"
       :staticity="30"
       refresh
     />
@@ -37,15 +32,12 @@
       <!-- Reading Section -->
       <ReadingSection />
 
-      <!-- Timeline Section -->
-      <TimelineSection />
-
       <!-- Contact Section -->
       <ContactSection />
     </main>
 
     <!-- Meteors Background Effect -->
-    <Meteors :number="20" class="relative z-5" />
+    <Meteors :count="20" class="relative z-5 opacity-20 pointer-events-none" />
   </div>
 </template>
 
@@ -59,7 +51,6 @@ import AboutSection from "~/components/sections/AboutSection.vue";
 import FeaturedWorksSection from "~/components/sections/FeaturedWorksSection.vue";
 import PhotoGallerySection from "~/components/sections/PhotoGallerySection.vue";
 import ReadingSection from "~/components/sections/ReadingSection.vue";
-import TimelineSection from "~/components/sections/TimelineSection.vue";
 import ContactSection from "~/components/sections/ContactSection.vue";
 import { Meteors } from "~/components/ui/meteors";
 import { ParticlesBg } from "~/components/ui/particles-bg";
@@ -104,12 +95,4 @@ body {
     sans-serif;
 }
 
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
 </style>

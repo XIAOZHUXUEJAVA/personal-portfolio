@@ -9,13 +9,13 @@
         <!-- Avatar with 3D Card Effect -->
         <CardContainer class="mx-auto w-fit">
           <CardBody
-            class="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-transparent border-black/[0.1] w-auto sm:w-[20rem] h-auto rounded-xl p-6 border"
+            class="relative group/card bg-card/60 border-border shadow-sm w-auto sm:w-[20rem] h-auto rounded-xl p-6 border"
           >
             <CardItem translate-z="50" class="w-full">
               <img
                 :src="heroData.avatar"
                 :alt="heroData.name"
-                class="h-32 w-32 object-cover rounded-full mx-auto border-4 border-white/20"
+                class="h-32 w-32 object-cover rounded-full mx-auto border-4 border-card"
               />
             </CardItem>
           </CardBody>
@@ -24,9 +24,10 @@
         <!-- Name and Title with Text Reveal -->
         <div class="space-y-4">
           <TextReveal
-            :text="heroData.name"
-            class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
-          />
+            class="text-5xl md:text-7xl font-bold text-foreground"
+          >
+            {{ heroData.name }}
+          </TextReveal>
 
           <p
             class="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
@@ -39,12 +40,12 @@
         <div
           class="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <RainbowButton class="px-8 py-3" @click="scrollToSection('#about')">
+          <ThemeButton class="px-8 py-3" @click="scrollToSection('#about')">
             了解更多
-          </RainbowButton>
-          <RainbowButton class="px-8 py-3" @click="scrollToSection('#gallery')">
+          </ThemeButton>
+          <ThemeButton variant="secondary" class="px-8 py-3" @click="scrollToSection('#gallery')">
             点点滴滴
-          </RainbowButton>
+          </ThemeButton>
         </div>
       </div>
     </div>
@@ -62,8 +63,7 @@
 import { ChevronDown } from "lucide-vue-next";
 import { CardContainer, CardBody, CardItem } from "~/components/ui/card-3d";
 import { TextReveal } from "~/components/ui/text-reveal";
-import { RainbowButton } from "~/components/ui/rainbow-button";
-import { ShimmerButton } from "~/components/ui/shimmer-button";
+import { ThemeButton } from "~/components/ui/theme-button";
 import { heroData } from "~/data/staticData";
 
 const scrollToSection = (href: string) => {

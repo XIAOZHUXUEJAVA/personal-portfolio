@@ -25,11 +25,7 @@
 
       <!-- Section Title -->
       <h2
-        class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-orange-500 via-green-600 to-yellow-500 bg-clip-text text-transparent"
-        style="
-          background-size: 200% 100%;
-          animation: gradient-shift 3s ease-in-out infinite alternate;
-        "
+        class="text-4xl md:text-5xl font-bold text-center mb-12 section-title"
       >
         最近游玩
       </h2>
@@ -205,7 +201,7 @@
           </div>
 
           <!-- 顶部木板 -->
-          <div class="shelf-board relative h-5">
+          <div class="shelf-board relative h-3.5">
             <svg
               class="w-full h-full"
               preserveAspectRatio="none"
@@ -213,19 +209,19 @@
             >
               <path
                 d="M0 2 Q200 0 400 2 Q600 4 800 2 L800 14 Q600 16 400 14 Q200 12 0 14 Z"
-                class="fill-amber-700 dark:fill-amber-900"
+                class="wood-fill"
                 filter="url(#sketchy-line-gaming)"
               />
               <path
                 d="M0 2 Q200 0 400 2 Q600 4 800 2"
-                class="stroke-amber-900 dark:stroke-amber-700"
+                class="wood-edge"
                 stroke-width="1"
                 fill="none"
               />
             </svg>
             <!-- 木板厚度阴影 -->
             <div
-              class="absolute left-0 right-0 -bottom-2 h-2 bg-gradient-to-b from-amber-900/30 to-transparent rounded-b"
+              class="wood-shadow absolute left-0 right-0 -bottom-1 h-1 rounded-b"
             />
           </div>
         </div>
@@ -233,7 +229,7 @@
         <!-- === 屏幕区域（BendingGallery） === -->
         <div class="screen-wrapper relative py-3 px-2 md:px-8">
           <div
-            class="h-96 w-full bg-amber-50/55 dark:bg-amber-950/30 backdrop-blur-md rounded-2xl overflow-clip flex items-center justify-center border-2 border-amber-800/30 dark:border-amber-700/40 shadow-inner shadow-amber-900/20"
+            class="h-96 w-full overflow-clip flex items-center justify-center"
           >
             <BendingGallery :items="items" :bend="2" :border-radius="0.1" />
           </div>
@@ -280,7 +276,7 @@
         <!-- === 底部装饰栏 === -->
         <div class="cabinet-row relative">
           <!-- 底部木板 -->
-          <div class="shelf-board relative h-5">
+          <div class="shelf-board relative h-3.5">
             <svg
               class="w-full h-full"
               preserveAspectRatio="none"
@@ -288,18 +284,18 @@
             >
               <path
                 d="M0 2 Q200 4 400 2 Q600 0 800 2 L800 14 Q600 12 400 14 Q200 16 0 14 Z"
-                class="fill-amber-700 dark:fill-amber-900"
+                class="wood-fill"
                 filter="url(#sketchy-line-gaming)"
               />
               <path
                 d="M0 2 Q200 4 400 2 Q600 0 800 2"
-                class="stroke-amber-900 dark:stroke-amber-700"
+                class="wood-edge"
                 stroke-width="1"
                 fill="none"
               />
             </svg>
             <div
-              class="absolute left-0 right-0 -bottom-2 h-2 bg-gradient-to-b from-amber-900/30 to-transparent rounded-b"
+              class="wood-shadow absolute left-0 right-0 -bottom-1 h-1 rounded-b"
             />
           </div>
 
@@ -448,8 +444,8 @@
           >
             <path
               d="M6 0 Q4 100 6 200 Q8 300 6 400"
-              class="stroke-amber-800 dark:stroke-amber-700"
-              stroke-width="4"
+              class="wood-edge"
+              stroke-width="2.5"
               fill="none"
               filter="url(#sketchy-line-gaming)"
             />
@@ -461,8 +457,8 @@
           >
             <path
               d="M6 0 Q8 100 6 200 Q4 300 6 400"
-              class="stroke-amber-800 dark:stroke-amber-700"
-              stroke-width="4"
+              class="wood-edge"
+              stroke-width="2.5"
               fill="none"
               filter="url(#sketchy-line-gaming)"
             />
@@ -504,10 +500,10 @@ const screwPositions = [
 <style scoped>
 .arcade-cabinet {
   /* 与书架保持同款手写字体，营造"同一本手账"的一致感 */
-  font-family: "Comic Sans MS", "Segoe UI", cursive, sans-serif;
+  font-family: "LXGW WenKai", "Microsoft YaHei", "PingFang SC", sans-serif;
 }
 
 .font-handwriting {
-  font-family: "Comic Sans MS", "Segoe UI", cursive, sans-serif;
+  font-family: "LXGW WenKai", "Microsoft YaHei", "PingFang SC", sans-serif;
 }
 </style>

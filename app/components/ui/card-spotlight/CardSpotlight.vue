@@ -1,9 +1,6 @@
 <template>
   <div
-    :class="[
-      'group relative flex size-full overflow-hidden rounded-xl border bg-neutral-100 text-black dark:bg-neutral-900 dark:text-white',
-      $props.class,
-    ]"
+    :class="cn('surface-card group relative flex size-full overflow-hidden rounded-xl', props.class)"
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
   >
@@ -36,8 +33,8 @@ const props = withDefaults(
     class: "",
     slotClass: "",
     gradientSize: 200,
-    gradientColor: "#262626",
-    gradientOpacity: 0.8,
+    gradientColor: "var(--spotlight-color)",
+    gradientOpacity: 0.7,
   },
 );
 

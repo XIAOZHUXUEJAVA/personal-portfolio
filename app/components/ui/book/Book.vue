@@ -2,23 +2,24 @@
   <div
     :class="
       cn(
-        'z-10 group [perspective:800px] w-min [--shadowColor:#bbb] dark:[--shadowColor:#111]',
+        'book group relative [perspective:800px] w-fit max-w-full',
         $props.class,
       )
     "
   >
     <div
-      :style="{ width: sizeMap[size].width, transition: `transform ${props.duration}ms ease` }"
+      :style="{ width: sizeMap[size].width, maxWidth: '100%', transitionDuration: `${props.duration}ms` }"
       :class="[
-        'relative aspect-[3/4] [transform-style:preserve-3d]',
+        'book-volume relative aspect-[3/4] [transform-style:preserve-3d]',
         isStatic
           ? '[transform:rotateY(-30deg)]'
-          : '[transform:rotateY(0deg)] group-hover:[transform:rotateY(-30deg)]',
+          : '[transform:rotateY(0deg)]',
         radiusMap[radius],
       ]"
     >
       <div
         :class="`
+          book-front
           absolute inset-y-0 overflow-hidden size-full left-0
           text-white flex flex-col justify-end p-6
           bg-gradient-to-tr
@@ -28,7 +29,8 @@
         `"
         :style="{
           transform: 'translateZ(25px)',
-          boxShadow: '5px 5px 20px var(--shadowColor)',
+          boxShadow: '3px 5px 14px var(--shadowColor)',
+          background: coverColor,
         }"
       >
         <div
@@ -40,23 +42,26 @@
             opacity: '0.2',
           }"
         ></div>
-        <div class="pl-1">
+        <div :class="cn('relative pl-1', contentClass)">
           <slot />
         </div>
       </div>
 
       <div
         class="absolute left-0 bg-white"
+        aria-hidden="true"
         :style="{
           top: '3px',
           bottom: '3px',
           width: '48px',
-          transform: 'translateX(' + sizeMap[size].spineTranslation + ') rotateY(90deg)',
-          background: 'linear-gradient(90deg, rgba(255,255,255,1) 50%, rgba(249,249,249,1) 50%)',
+          left: 'calc(100% - 28px)',
+          transform: 'rotateY(90deg)',
+          background: 'repeating-linear-gradient(90deg, #f3f1e9 0px, #f3f1e9 2px, #e4e2d8 2px, #e4e2d8 3px)',
         }"
       ></div>
 
       <div
+        aria-hidden="true"
         :class="`
           absolute inset-y-0 overflow-hidden size-full left-0
           text-white flex flex-col justify-end p-6
@@ -68,6 +73,7 @@
         :style="{
           transform: 'translateZ(-25px)',
           boxShadow: shadowSizeMap[shadowSize],
+          background: coverColor,
         }"
       ></div>
     </div>
@@ -97,6 +103,8 @@ interface BookProps {
   size?: BookSize;
   radius?: BookRadius;
   shadowSize?: BookShadowSize;
+  coverColor?: string;
+  contentClass?: HTMLAttributes["class"];
 }
 
 const props = withDefaults(defineProps<BookProps>(), {
@@ -112,3 +120,45 @@ const computedGradient = computed(() => {
   return colorMap[props.color] || colorMap.zinc;
 });
 </script>
+
+<style scoped>
+.book {
+  --shadowColor: rgb(39 42 34 / 0.13);
+}
+
+.dark .book {
+  --shadowColor: rgb(0 0 0 / 0.28);
+}
+
+.book-volume {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.book-front {
+  backface-visibility: hidden;
+}
+
+.book:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 10px;
+  border-radius: 4px;
+}
+
+.book:focus-visible .book-volume {
+  transform: rotateY(-30deg);
+}
+
+@media (hover: hover) {
+  .book:hover .book-volume {
+    transform: rotateY(-30deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book .book-volume {
+    transition: none;
+    transform: none;
+  }
+}
+</style>

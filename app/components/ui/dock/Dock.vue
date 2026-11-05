@@ -3,7 +3,7 @@
     ref="dockRef"
     :class="
       cn(
-        'supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-12 w-max max-w-[calc(100vw-2rem)] rounded-2xl border p-1.5 backdrop-blur-md transition-all gap-2 sm:h-[58px] sm:p-2 sm:gap-4',
+        'bg-card/90 border-border mx-auto mt-8 flex h-12 w-max max-w-[calc(100vw-2rem)] rounded-2xl border p-1.5 backdrop-blur-md transition-all gap-2 sm:h-[58px] sm:p-2 sm:gap-4',
         orientation === 'vertical' && 'flex-col w-[58px] h-max',
         props.class,
         dockClass,

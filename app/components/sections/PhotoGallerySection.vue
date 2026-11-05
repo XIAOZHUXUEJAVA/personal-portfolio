@@ -4,11 +4,7 @@
       <!-- Section Title -->
       <div class="text-center mb-16">
         <h2
-          class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-500 via-green-600 to-yellow-500 bg-clip-text text-transparent"
-          style="
-            background-size: 200% 100%;
-            animation: gradient-shift 3s ease-in-out infinite alternate;
-          "
+          class="text-4xl md:text-5xl font-bold mb-4 section-title"
         >
           些许瞬间
         </h2>
@@ -21,11 +17,11 @@
       <div class="flex justify-center mb-12 overflow-x-auto px-2">
         <div
           ref="tabsContainer"
-          class="relative inline-flex flex-nowrap gap-1 md:gap-2 bg-gradient-to-r from-green-50/80 via-yellow-50/80 to-orange-50/80 backdrop-blur-md rounded-full p-1 border border-green-200/50 dark:from-green-950/60 dark:via-yellow-950/60 dark:to-orange-950/60 dark:border-green-700/30"
+          class="relative inline-flex flex-nowrap gap-1 md:gap-2 bg-card rounded-full p-1 border border-border"
         >
           <!-- 滑动指示器：跟随选中项平滑移动 -->
           <div
-            class="absolute top-1 bottom-1 rounded-full bg-gradient-to-r from-green-500 to-yellow-500 shadow-lg pointer-events-none"
+            class="absolute top-1 bottom-1 rounded-full bg-primary pointer-events-none"
             :style="{
               left: `${indicatorStyle.left}px`,
               width: `${indicatorStyle.width}px`,
@@ -39,10 +35,10 @@
             :key="category"
             :ref="(el) => setTabRef(el, category)"
             :class="[
-              'relative z-10 px-3 md:px-6 py-2 rounded-full transition-colors duration-300 whitespace-nowrap text-sm md:text-base',
+              'relative z-10 px-3 md:px-6 py-2 rounded-full transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2 whitespace-nowrap text-sm md:text-base',
               activeCategory === category
-                ? 'text-white'
-                : 'text-green-600/80 hover:text-green-700 dark:text-green-400/80 dark:hover:text-green-300',
+                ? 'text-primary-foreground'
+                : 'text-muted-foreground hover:text-primary',
             ]"
             @click="activeCategory = category"
           >
@@ -74,11 +70,7 @@
       <!-- Featured Photos with Flip Cards -->
       <div class="mt-20">
         <h3
-          class="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-orange-500 via-green-600 to-yellow-500 bg-clip-text text-transparent"
-          style="
-            background-size: 200% 100%;
-            animation: gradient-shift 3s ease-in-out infinite alternate;
-          "
+          class="text-2xl font-bold text-center mb-8 section-title"
         >
           精选照片
         </h3>
@@ -92,7 +84,7 @@
               <NuxtImg
                 :src="photo.src"
                 :alt="photo.title"
-                class="size-full rounded-2xl object-cover shadow-2xl shadow-black/40"
+                class="size-full rounded-2xl object-cover shadow-sm"
                 loading="lazy"
                 :placeholder="[40, 40, 75, 5]"
                 format="webp"
@@ -106,41 +98,41 @@
               </div>
             </template>
             <template #back>
-              <!-- 不透明渐变背景，去掉 backdrop-blur，避免背面内容发雾 -->
+              <!-- 使用不透明主题底色，确保翻转背面的文字清晰。 -->
               <div
-                class="flex min-h-full flex-col gap-2 p-6 bg-gradient-to-br from-green-100 via-yellow-50 to-orange-100 text-gray-800"
+                class="flex min-h-full flex-col gap-2 p-6 bg-card text-card-foreground"
               >
-                <h1 class="text-xl font-bold text-gray-800">
+                <h1 class="text-xl font-bold text-foreground">
                   {{ photo.title }}
                 </h1>
                 <p
-                  class="mt-1 border-t border-t-green-200/60 py-4 text-base font-medium leading-normal text-gray-700"
+                  class="mt-1 border-t border-t-border py-4 text-base font-medium leading-normal text-muted-foreground"
                 >
                   {{ photo.description }}
                 </p>
-                <div class="mt-2 space-y-2 text-sm text-gray-600">
+                <div class="mt-2 space-y-2 text-sm text-muted-foreground">
                   <p>
-                    <span class="font-medium text-green-700">位置:</span>
+                    <span class="font-medium text-foreground">位置:</span>
                     {{ photo.location }}
                   </p>
                   <p>
-                    <span class="font-medium text-green-700">拍摄时间:</span>
+                    <span class="font-medium text-foreground">拍摄时间:</span>
                     {{ photo.date }}
                   </p>
                   <p>
-                    <span class="font-medium text-green-700">分类:</span>
+                    <span class="font-medium text-foreground">分类:</span>
                     {{ photo.category }}
                   </p>
                 </div>
                 <div class="flex gap-2 mt-auto pt-4">
                   <button
-                    class="flex-1 px-3 py-2 bg-green-200 text-gray-800 rounded-lg text-sm font-medium hover:bg-green-300 transition-all duration-200 shadow-sm hover:shadow-md"
+                    class="theme-button theme-button--primary flex-1 px-3 py-2 rounded-lg text-sm font-medium"
                     @click.stop="viewFullPhoto(photo)"
                   >
                     查看原图
                   </button>
                   <button
-                    class="flex-1 px-3 py-2 bg-white/60 text-gray-800 rounded-lg text-sm font-medium hover:bg-white/80 transition-colors"
+                    class="theme-button theme-button--secondary flex-1 px-3 py-2 rounded-lg text-sm font-medium"
                     @click.stop="sharePhoto(photo)"
                   >
                     分享图片
@@ -260,8 +252,10 @@ const showCopyToast = (message: string = "操作成功") => {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
+    background: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
+    box-shadow: var(--surface-shadow-hover);
     padding: 12px 20px;
     border-radius: 8px;
     font-size: 14px;
