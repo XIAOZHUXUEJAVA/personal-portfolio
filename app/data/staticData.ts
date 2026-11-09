@@ -104,42 +104,6 @@ export const photoGalleryData: PhotoItem[] = [
   // },
 ];
 
-// 精选作品数据 - 用于 ExpandableGallery
-export const featuredWorksData: PhotoItem[] = [
-  {
-    src: "/images/liushui.jpg",
-    title: "星空银河",
-    category: "风景",
-    description: "璀璨的银河横跨夜空，星光点点如钻石般闪耀",
-    location: "内蒙古草原",
-    date: "2024-08-15",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop",
-    title: "古镇水乡",
-    category: "城市",
-    description: "江南水乡的古朴韵味，小桥流水人家",
-    location: "乌镇",
-    date: "2024-04-22",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop",
-    title: "云海奇观",
-    category: "自然",
-    description: "云海翻腾，山峰若隐若现，宛如仙境",
-    location: "泰山",
-    date: "2024-05-01",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop",
-    title: "田园风光",
-    category: "自然",
-    description: "金黄的麦田在夕阳下闪闪发光，丰收的喜悦",
-    location: "河南",
-    date: "2024-06-30",
-  },
-];
-
 // 精选照片数据 - 用于 FlipCard
 export const highlightPhotosData: PhotoItem[] = [
   {

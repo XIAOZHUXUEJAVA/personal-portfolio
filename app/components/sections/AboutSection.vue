@@ -4,7 +4,7 @@
       <!-- Section Title -->
       <div class="text-center mb-16">
         <h2
-          class="text-4xl md:text-5xl font-bold mb-4 section-title"
+          class="text-4xl md:text-5xl font-bold mb-4 section-title section-title--warm"
         >
           关于我
         </h2>
@@ -16,11 +16,12 @@
       <!-- About Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <FloatingCard
-          v-for="item in aboutData"
+          v-for="(item, index) in aboutData"
           :key="item.title"
           :rotate-depth="10"
           :translate-depth="8"
           class="h-full"
+          :class="{ 'palette-warm': index === 1 }"
         >
           <div class="flex h-full flex-col gap-5 p-7 sm:p-8">
             <div class="flex items-center space-x-3">

@@ -61,12 +61,6 @@
         </ClientOnly>
       </div>
 
-      <!-- Expandable Gallery -->
-      <!-- <div class="mt-16">
-        <h3 class="text-2xl font-bold text-center mb-8">精选作品</h3>
-        <ExpandableGallery :images="featuredImages" />
-      </div> -->
-
       <!-- Featured Photos with Flip Cards -->
       <div class="mt-20">
         <h3
@@ -149,12 +143,10 @@
 
 <script setup lang="ts">
 import { PhotoGallery } from "~/components/ui/photo-gallery";
-import { ExpandableGallery } from "~/components/ui/expandable-gallery";
 import { FlipCard } from "~/components/ui/flip-card";
 import { RotateCcw, Eye, Share2 } from "lucide-vue-next";
 import {
   photoGalleryData,
-  featuredWorksData,
   highlightPhotosData,
 } from "~/data/staticData";
 
@@ -206,11 +198,6 @@ const filteredPhotos = computed(() => {
   return photoGalleryData
     .filter((photo) => photo.category === activeCategory.value)
     .map((photo) => ({ src: photo.src }));
-});
-
-// Featured images for expandable gallery
-const featuredImages = computed(() => {
-  return featuredWorksData.map((photo) => photo.src);
 });
 
 // Photo interaction methods

@@ -9,7 +9,7 @@
         <!-- Avatar with 3D Card Effect -->
         <CardContainer class="mx-auto w-fit">
           <CardBody
-            class="relative group/card bg-card/60 border-border shadow-sm w-auto sm:w-[20rem] h-auto rounded-xl p-6 border"
+            class="surface-card palette-warm relative group/card w-auto sm:w-[20rem] h-auto rounded-xl p-6"
           >
             <CardItem translate-z="50" class="w-full">
               <img

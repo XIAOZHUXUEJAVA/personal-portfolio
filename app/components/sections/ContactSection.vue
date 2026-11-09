@@ -4,7 +4,7 @@
       <!-- Section Title -->
       <div class="text-center mb-16">
         <h2
-          class="text-4xl md:text-5xl font-bold mb-4 section-title"
+          class="text-4xl md:text-5xl font-bold mb-4 section-title section-title--warm"
         >
           联系我
         </h2>
@@ -18,7 +18,7 @@
         <!-- Email Card -->
         <CardSpotlight
           :gradient-size="250"
-          class="p-8 rounded-2xl min-h-64 flex items-center justify-center"
+          class="palette-warm p-8 rounded-2xl min-h-64 flex items-center justify-center"
         >
           <div class="text-center space-y-4">
             <div

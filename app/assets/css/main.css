@@ -29,6 +29,20 @@
   --spotlight-color: rgb(96 117 56 / 0.08);
   --surface-shadow: 0 3px 14px rgb(39 42 34 / 0.035);
   --surface-shadow-hover: 0 8px 24px rgb(39 42 34 / 0.07);
+  --clay: #b87958;
+  --warm-surface: #f6f2e9;
+  --warm-border: #dfd3c3;
+  --warm-accent: #f1e3d5;
+  --warm-accent-hover: #e9d7c5;
+  --warm-foreground: #845035;
+  --warm-spotlight: rgb(184 121 88 / 0.08);
+  --featured-surface: #30382b;
+  --featured-foreground: #f5f3e9;
+  --featured-muted: #c4ccba;
+  --featured-border: #4d5b42;
+  --featured-accent: #414e35;
+  --featured-primary: #cadba7;
+  --featured-primary-hover: #d8e7bd;
   --wood-fill: #b19b7d;
   --wood-edge: #87745c;
   --wood-shadow: rgb(77 66 50 / 0.12);
@@ -67,6 +81,15 @@
   --spotlight-color: rgb(165 189 124 / 0.07);
   --surface-shadow: 0 3px 14px rgb(0 0 0 / 0.1);
   --surface-shadow-hover: 0 8px 24px rgb(0 0 0 / 0.18);
+  --clay: #d39a77;
+  --warm-surface: #2c2721;
+  --warm-border: #514236;
+  --warm-accent: #45352a;
+  --warm-accent-hover: #574032;
+  --warm-foreground: #edbd99;
+  --warm-spotlight: rgb(211 154 119 / 0.08);
+  --featured-surface: #2b3426;
+  --featured-border: #58694a;
   --wood-fill: #726550;
   --wood-edge: #a4967b;
   --wood-shadow: rgb(0 0 0 / 0.2);
@@ -210,6 +233,22 @@ html.light {
     opacity: 0.7;
   }
 
+  .section-title--warm::after {
+    background: var(--clay);
+  }
+
+  /* Apply to a card or its wrapper so its surface, icons and tags share a palette. */
+  .palette-warm {
+    --card: var(--warm-surface);
+    --border: var(--warm-border);
+    --accent: var(--warm-accent);
+    --accent-hover: var(--warm-accent-hover);
+    --accent-foreground: var(--warm-foreground);
+    --icon-foreground: var(--warm-foreground);
+    --spotlight-color: var(--warm-spotlight);
+    --surface-hover-border: var(--clay);
+  }
+
   .surface-card {
     background: var(--card);
     color: var(--card-foreground);
@@ -271,7 +310,7 @@ html.light {
 
   .theme-icon {
     background: var(--accent);
-    color: var(--primary);
+    color: var(--icon-foreground, var(--primary));
   }
 
   .wood-fill { fill: var(--wood-fill); }
@@ -280,7 +319,7 @@ html.light {
 
   @media (hover: hover) {
     .surface-card:hover {
-      border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
+      border-color: var(--surface-hover-border, color-mix(in srgb, var(--primary) 30%, var(--border)));
       box-shadow: var(--surface-shadow-hover);
     }
 

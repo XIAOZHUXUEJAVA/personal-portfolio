@@ -21,6 +21,7 @@
           >
             <CardBody
               class="surface-card group/card relative w-full h-full rounded-xl p-6"
+              :class="{ 'work-card--featured': index === 0, 'palette-warm': index === 1 }"
             >
               <!-- Title -->
               <CardItem
@@ -211,5 +212,20 @@ const viewLargeImage = (imageUrl: string, title: string) => {
 <style scoped>
 .inter-var {
   font-family: "LXGW WenKai", "Inter", sans-serif;
+}
+
+.work-card--featured {
+  --card: var(--featured-surface);
+  --foreground: var(--featured-foreground);
+  --card-foreground: var(--featured-foreground);
+  --muted-foreground: var(--featured-muted);
+  --border: var(--featured-border);
+  --accent: var(--featured-accent);
+  --accent-hover: var(--featured-accent);
+  --accent-foreground: var(--featured-primary);
+  --primary: var(--featured-primary);
+  --primary-hover: var(--featured-primary-hover);
+  --primary-foreground: var(--featured-surface);
+  --ring: var(--featured-primary);
 }
 </style>
