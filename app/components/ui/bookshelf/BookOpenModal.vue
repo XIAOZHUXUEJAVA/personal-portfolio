@@ -419,7 +419,7 @@ onBeforeUnmount(() => {
   aspect-ratio: 1.55;
   perspective: 2400px;
   perspective-origin: 50% 46%;
-  font-family: "LXGW WenKai", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: var(--font-site);
   isolation: isolate;
 }
 
@@ -697,7 +697,7 @@ onBeforeUnmount(() => {
   position: absolute;
   bottom: 7%;
   color: rgb(255 250 240 / 46%);
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-site);
   font-size: 8px;
   letter-spacing: 0.24em;
 }
@@ -794,7 +794,7 @@ onBeforeUnmount(() => {
 
 .progress-label strong {
   color: var(--primary);
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-site);
   font-size: 12px;
 }
 
@@ -922,7 +922,7 @@ onBeforeUnmount(() => {
   gap: 10px;
   margin-top: 20px;
   color: var(--muted-ink);
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-site);
   font-size: 11px;
 }
 

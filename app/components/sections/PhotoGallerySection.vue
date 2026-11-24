@@ -1,27 +1,20 @@
 <template>
-  <section id="gallery" class="py-20 px-6">
-    <div class="max-w-7xl mx-auto">
-      <!-- Section Title -->
-      <div class="text-center mb-16">
-        <h2
-          class="text-4xl md:text-5xl font-bold mb-4 section-title"
-        >
-          些许瞬间
-        </h2>
-        <!-- <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-          用镜头记录生活的美好瞬间，每一张照片都有它独特的故事
-        </p> -->
-      </div>
+  <section id="gallery" class="journal-section site-container">
+    <div class="gallery-inner">
+      <SectionHeading number="03" label="moments, collected" title="些许瞬间" description="有些时刻，想再多看一眼。" />
 
       <!-- Gallery Tabs -->
-      <div class="flex justify-center mb-12 overflow-x-auto px-2">
+      <div class="gallery-tabs-wrap">
         <div
           ref="tabsContainer"
-          class="relative inline-flex flex-nowrap gap-1 md:gap-2 bg-card rounded-full p-1 border border-border"
+          class="gallery-tabs"
+          role="group"
+          aria-label="按照片分类筛选"
         >
           <!-- 滑动指示器：跟随选中项平滑移动 -->
           <div
-            class="absolute top-1 bottom-1 rounded-full bg-primary pointer-events-none"
+            class="gallery-tabs-indicator"
+            aria-hidden="true"
             :style="{
               left: `${indicatorStyle.left}px`,
               width: `${indicatorStyle.width}px`,
@@ -34,12 +27,9 @@
             v-for="category in categories"
             :key="category"
             :ref="(el) => setTabRef(el, category)"
-            :class="[
-              'relative z-10 px-3 md:px-6 py-2 rounded-full transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2 whitespace-nowrap text-sm md:text-base',
-              activeCategory === category
-                ? 'text-primary-foreground'
-                : 'text-muted-foreground hover:text-primary',
-            ]"
+            type="button"
+            class="gallery-tab"
+            :aria-pressed="activeCategory === category"
             @click="activeCategory = category"
           >
             {{ category }}
@@ -48,7 +38,9 @@
       </div>
 
       <!-- Photo Gallery Component -->
-      <div class="mb-12">
+      <div class="gallery-paper-sheet paper-sheet mb-12">
+        <span class="paper-tape" aria-hidden="true" />
+        <div class="album-paper-label handdrawn-rule"><span>PHOTO ALBUM / 留住这一刻</span><span>{{ String(filteredPhotos.length).padStart(2, '0') }} PHOTOS</span></div>
         <ClientOnly>
           <PhotoGallery :items="filteredPhotos" />
           <template #fallback>
@@ -62,43 +54,48 @@
       </div>
 
       <!-- Featured Photos with Flip Cards -->
-      <div class="mt-20">
+      <div class="selected-photos">
         <h3
-          class="text-2xl font-bold text-center mb-8 section-title"
+          class="selected-photos-title"
         >
           精选照片
         </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <p class="stamp-collection-note">把走过的地方，寄给未来的自己。<span>悬停或点击，翻到背面 ↻</span></p>
+        <div class="stamp-grid">
           <FlipCard
-            v-for="photo in highlightPhotosData"
+            v-for="(photo, index) in highlightPhotosData"
             :key="photo.src"
-            class="h-80 w-full"
+            class="stamp-flip h-[360px] w-full"
           >
             <template #default>
-              <NuxtImg
-                :src="photo.src"
-                :alt="photo.title"
-                class="size-full rounded-2xl object-cover shadow-sm"
-                loading="lazy"
-                :placeholder="[40, 40, 75, 5]"
-                format="webp"
-                quality="85"
-                sizes="sm:300px md:400px lg:500px"
-              />
-              <div
-                class="absolute bottom-4 left-4 text-xl font-bold text-white"
-              >
-                {{ photo.title }}
+              <div class="stamp-front">
+                <div class="stamp-topline"><span>XIAOZHU / LIFE POST</span><span>NO. {{ String(index + 1).padStart(2, '0') }}</span></div>
+                <div class="stamp-picture">
+                  <NuxtImg
+                    :src="photo.src"
+                    :alt="photo.title"
+                    class="size-full object-cover"
+                    loading="lazy"
+                    :placeholder="[40, 40, 75, 5]"
+                    format="webp"
+                    quality="85"
+                    sizes="sm:300px md:400px lg:500px"
+                  />
+                </div>
+                <div class="stamp-caption"><span>{{ photo.title }}</span><span>{{ photo.location }}<small>生活影像 / {{ photo.category }}</small></span></div>
+                <div class="stamp-postmark" aria-hidden="true">
+                  <svg class="postmark-waves" viewBox="0 0 110 46" fill="none"><path d="M2 7 Q16 0 30 7 T58 7 T86 7 T114 7 M2 20 Q16 13 30 20 T58 20 T86 20 T114 20 M2 33 Q16 26 30 33 T58 33 T86 33 T114 33" stroke="currentColor" stroke-width="1" /></svg>
+                  <span>{{ photo.location }}</span><span>{{ photo.date }}</span><span>记忆留存</span>
+                </div>
               </div>
             </template>
             <template #back>
-              <!-- 使用不透明主题底色，确保翻转背面的文字清晰。 -->
+              <!-- 邮票背面沿用原组件的悬停与点击翻转。 -->
               <div
-                class="flex min-h-full flex-col gap-2 p-6 bg-card text-card-foreground"
+                class="stamp-back flex min-h-full flex-col gap-2 p-6 text-card-foreground"
               >
-                <h1 class="text-xl font-bold text-foreground">
-                  {{ photo.title }}
-                </h1>
+                <div class="stamp-back-topline"><span>来自 / {{ photo.location }}</span><span>NO. {{ String(index + 1).padStart(2, '0') }}</span></div>
+                <h3 class="text-xl font-medium text-foreground">{{ photo.title }}</h3>
                 <p
                   class="mt-1 border-t border-t-border py-4 text-base font-medium leading-normal text-muted-foreground"
                 >
@@ -142,6 +139,7 @@
 </template>
 
 <script setup lang="ts">
+import SectionHeading from "~/components/layout/SectionHeading.vue";
 import { PhotoGallery } from "~/components/ui/photo-gallery";
 import { FlipCard } from "~/components/ui/flip-card";
 import { RotateCcw, Eye, Share2 } from "lucide-vue-next";
@@ -277,3 +275,148 @@ const showCopyToast = (message: string = "操作成功") => {
   }, 3000);
 };
 </script>
+
+<style scoped>
+.gallery-tabs-wrap {
+  display: flex;
+  overflow-x: auto;
+  margin-bottom: 36px;
+  padding: 6px 2px;
+}
+.gallery-tabs {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  margin-inline: auto;
+  padding: 8px 10px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+/* Match the Dock's paper surface without its floating position or magnification. */
+.gallery-tabs::before,
+.gallery-tabs::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 24px;
+  -webkit-mask-image: var(--paper-mask);
+  mask-image: var(--paper-mask);
+  -webkit-mask-size: var(--paper-mask-size);
+  mask-size: var(--paper-mask-size);
+  -webkit-mask-position: var(--paper-mask-position);
+  mask-position: var(--paper-mask-position);
+  -webkit-mask-repeat: var(--paper-mask-repeat);
+  mask-repeat: var(--paper-mask-repeat);
+}
+.gallery-tabs::before {
+  z-index: -2;
+  background: color-mix(in srgb, var(--primary) 26%, var(--card));
+}
+.gallery-tabs::after {
+  inset: 1px;
+  z-index: -1;
+  border-radius: 23px;
+  background: var(--paper-back) url('/paper/article-paper-texture.svg');
+}
+.gallery-tabs-indicator {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  border-radius: 22px;
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, var(--card));
+  pointer-events: none;
+}
+.gallery-tab {
+  position: relative;
+  z-index: 1;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 20px;
+  border: 0;
+  border-radius: 22px;
+  background: transparent;
+  color: var(--muted-foreground);
+  font-size: 14px;
+  white-space: nowrap;
+  transition: color 180ms ease;
+}
+.gallery-tab:hover,
+.gallery-tab[aria-pressed="true"] { color: var(--primary); }
+.gallery-tab:focus-visible { outline-offset: 1px; }
+.gallery-paper-sheet {
+  --sheet-color: var(--paper-sheet);
+  padding: 35px 35px 24px;
+  margin-inline: 5px;
+}
+.album-paper-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 25px;
+  padding-bottom: 14px;
+  color: var(--muted-foreground);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+.selected-photos { margin-top: 48px; }
+.selected-photos-title { margin-bottom: 10px; color: var(--foreground); font-size: 20px; font-weight: 400; letter-spacing: 0.06em; }
+.stamp-collection-note { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; margin: 0 0 28px; color: var(--muted-foreground); font-size: 11px; }
+.stamp-collection-note > span { font-size: 10px; }
+.stamp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; padding: 4px 5px 8px; }
+.stamp-flip { --stamp-ink: var(--primary); transform: rotate(-1deg); }
+.stamp-flip:nth-child(2) { --stamp-ink: #9a7650; transform: rotate(1deg); }
+.stamp-flip:nth-child(3) { --stamp-ink: #637d89; transform: rotate(-0.6deg); }
+/* Perforate only the two flat faces. Keep the 3D volume and all flip handlers intact. */
+.stamp-flip :deep([class*="backface-visibility"]) {
+  border: 0;
+  border-radius: 0;
+  background: var(--card) url('/paper/article-paper-texture.svg');
+  box-shadow: none;
+  -webkit-mask-image: radial-gradient(circle 4px at 8px 0, transparent 98%, #000 100%),
+    radial-gradient(circle 4px at 8px 100%, transparent 98%, #000 100%),
+    radial-gradient(circle 4px at 0 8px, transparent 98%, #000 100%),
+    radial-gradient(circle 4px at 100% 8px, transparent 98%, #000 100%);
+  mask-image: radial-gradient(circle 4px at 8px 0, transparent 98%, #000 100%),
+    radial-gradient(circle 4px at 8px 100%, transparent 98%, #000 100%),
+    radial-gradient(circle 4px at 0 8px, transparent 98%, #000 100%),
+    radial-gradient(circle 4px at 100% 8px, transparent 98%, #000 100%);
+  -webkit-mask-size: 16px 100%, 16px 100%, 100% 16px, 100% 16px;
+  mask-size: 16px 100%, 16px 100%, 100% 16px, 100% 16px;
+  -webkit-mask-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  mask-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.stamp-front { position: relative; display: flex; flex-direction: column; height: 100%; padding: 20px 20px 18px; background: var(--card) url('/paper/article-paper-texture.svg'); }
+.stamp-front::before { content: ""; position: absolute; inset: 10px; border: 1px solid color-mix(in srgb, var(--stamp-ink) 24%, transparent); pointer-events: none; }
+.stamp-topline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding-bottom: 12px; color: var(--stamp-ink); font-size: 10px; letter-spacing: 0.03em; }
+.stamp-picture { flex: 1; min-height: 0; border: 1px solid color-mix(in srgb, var(--stamp-ink) 20%, transparent); padding: 3px; }
+.stamp-caption { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; color: var(--stamp-ink); }
+.stamp-caption > span:first-child { font-size: 25px; font-weight: 500; letter-spacing: 0.12em; }
+.stamp-caption > span:last-child { text-align: right; font-size: 12px; }
+.stamp-caption small { display: block; margin-top: 3px; color: var(--muted-foreground); font-size: 10px; letter-spacing: 0.02em; }
+.stamp-postmark { position: absolute; right: 26px; bottom: 65px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 78px; height: 78px; gap: 2px; border: 3px double currentColor; border-radius: 50%; background: color-mix(in srgb, var(--card) 70%, transparent); color: var(--stamp-ink); opacity: 0.66; transform: rotate(-16deg); pointer-events: none; }
+.stamp-postmark > span { font-size: 10px; line-height: 1.5; }
+.stamp-postmark > span:nth-of-type(2) { padding-block: 2px; border-block: 1px solid currentColor; font-size: 9px; }
+.postmark-waves { position: absolute; right: 61px; top: 15px; width: 85px; height: 42px; }
+.stamp-back { padding: 25px 23px; background: url('/paper/article-paper-texture.svg'), repeating-linear-gradient(transparent 0 31px, color-mix(in srgb, var(--stamp-ink) 8%, transparent) 31px 32px), var(--card); }
+.stamp-back-topline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin-bottom: 7px; color: var(--stamp-ink); font-size: 10px; }
+.stamp-back > p { padding-block: 10px; font-size: 13px; }
+.stamp-back > .text-sm { font-size: 12px; }
+.stamp-back .theme-button { padding-inline: 10px; font-size: 11px; }
+@media (max-width: 1023px) { .stamp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) {
+  .gallery-tabs { padding-inline: 8px; }
+  .gallery-tab { padding-inline: 10px; font-size: 12px; }
+  .gallery-paper-sheet { padding: 28px 12px 18px; margin-inline: 0; }
+  .album-paper-label { flex-wrap: wrap; font-size: 10px; letter-spacing: 0.02em; gap: 8px; }
+  .selected-photos { margin-top: 36px; }
+  .stamp-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; max-width: 360px; margin-inline: auto; }
+  .stamp-collection-note { font-size: 10px; }
+}
+</style>

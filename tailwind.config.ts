@@ -12,35 +12,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          "LXGW WenKai",
-          "Inter",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Roboto",
-          "Helvetica Neue",
-          "Arial",
-          "sans-serif",
-        ],
-        mono: [
-          "JetBrains Mono",
-          "SF Mono",
-          "Monaco",
-          "Cascadia Code",
-          "Roboto Mono",
-          "Consolas",
-          "Courier New",
-          "monospace",
-        ],
-        chinese: [
-          "LXGW WenKai",
-          "PingFang SC",
-          "Hiragino Sans GB",
-          "Microsoft YaHei",
-          "sans-serif",
-        ],
-        wenkai: ["LXGW WenKai", "serif"],
+        sans: ["var(--font-site)"],
+        mono: ["var(--font-site)"],
+        chinese: ["var(--font-site)"],
+        wenkai: ["var(--font-site)"],
       },
       fontSize: {
         xs: ["0.75rem", { lineHeight: "1rem" }],

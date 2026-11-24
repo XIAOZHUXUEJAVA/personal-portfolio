@@ -22,8 +22,5 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: "LXGW WenKai", "Inter", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, sans-serif;
-}
+body { font-family: var(--font-site); }
 </style>

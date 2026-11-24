@@ -1,93 +1,74 @@
 <template>
-  <section id="contact" class="py-20 px-6">
-    <div class="max-w-4xl mx-auto">
-      <!-- Section Title -->
-      <div class="text-center mb-16">
-        <h2
-          class="text-4xl md:text-5xl font-bold mb-4 section-title section-title--warm"
-        >
-          联系我
-        </h2>
-        <!-- <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-          很高兴认识你，让我们一起分享生活的美好
-        </p> -->
-      </div>
-
-      <!-- Contact Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        <!-- Email Card -->
-        <CardSpotlight
-          :gradient-size="250"
-          class="palette-warm p-8 rounded-2xl min-h-64 flex items-center justify-center"
-        >
-          <div class="text-center space-y-4">
-            <div
-              class="theme-icon p-4 rounded-full w-fit mx-auto"
-            >
-              <Mail class="h-8 w-8" />
+  <section id="contact" class="journal-section site-container">
+    <div class="contact-inner">
+      <SectionHeading number="06" label="a letter, perhaps" title="保持联系" description="这一页的最后，留一个可以找到我的地方。" />
+      <div class="contact-cards">
+        <CardSpotlight :gradient-size="180" class="contact-card" slot-class="w-full">
+          <div class="contact-row">
+            <span class="contact-icon theme-icon"><Mail :size="20" :stroke-width="1.5" /></span>
+            <div class="contact-copy">
+              <h3>邮箱联系</h3>
+              <a :href="`mailto:${contactInfo.email}`">{{ contactInfo.email }}</a>
             </div>
-            <h3 class="text-xl font-semibold">邮箱联系</h3>
-            <p class="text-muted-foreground">
-              有任何问题或想法，欢迎通过邮箱与我联系
-            </p>
-            <a
-              :href="`mailto:${contactInfo.email}`"
-              class="theme-button theme-button--secondary rounded-full px-6 py-2"
-            >
-              {{ contactInfo.email }}
-            </a>
+            <ArrowUpRight :size="16" class="contact-arrow" aria-hidden="true" />
           </div>
         </CardSpotlight>
-
-        <!-- GitHub Card -->
-        <CardSpotlight
-          :gradient-size="250"
-          class="p-8 rounded-2xl min-h-64 flex items-center justify-center"
-        >
-          <div class="text-center space-y-4">
-            <div
-              class="theme-icon p-4 rounded-full w-fit mx-auto"
-            >
-              <Github class="h-8 w-8" />
+        <CardSpotlight :gradient-size="180" class="contact-card" slot-class="w-full">
+          <div class="contact-row">
+            <span class="contact-icon theme-icon"><Github :size="20" :stroke-width="1.5" /></span>
+            <div class="contact-copy">
+              <h3>GitHub</h3>
+              <a :href="contactInfo.github" target="_blank" rel="noopener noreferrer">XIAOZHUXUEJAVA</a>
             </div>
-            <h3 class="text-xl font-semibold">GitHub</h3>
-            <p class="text-muted-foreground">查看我的代码仓库和开源项目</p>
-            <a
-              :href="contactInfo.github"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="theme-button theme-button--secondary rounded-full px-6 py-2"
-            >
-              访问 GitHub
-            </a>
+            <ArrowUpRight :size="16" class="contact-arrow" aria-hidden="true" />
           </div>
         </CardSpotlight>
       </div>
-
-      <!-- Call to Action -->
-      <div class="text-center">
-        <div class="space-y-6">
-          <!-- <h3 class="text-2xl font-bold">让我们保持联系</h3>
-          <p class="text-muted-foreground max-w-2xl mx-auto">
-            如果你喜欢我的作品或想要交流摄影心得，随时欢迎与我联系。
-            我很乐意与志同道合的朋友分享经验和想法。
-          </p> -->
-          <ThemeButton variant="secondary" class="px-8 py-3" @click="scrollToTop">
-            回到顶部
-          </ThemeButton>
-        </div>
+      <div class="contact-back-top">
+        <ThemeButton variant="ghost" @click="scrollToTop">回到顶部 <ArrowUp :size="14" /></ThemeButton>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { Mail, Github } from "lucide-vue-next";
+import SectionHeading from "~/components/layout/SectionHeading.vue";
+import { ArrowUp, ArrowUpRight, Mail, Github } from "lucide-vue-next";
 import { CardSpotlight } from "~/components/ui/card-spotlight";
 import { ThemeButton } from "~/components/ui/theme-button";
 import { contactInfo } from "~/data/staticData";
-
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 </script>
+
+<style scoped>
+.contact-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.contact-card { isolation: isolate; height: auto; min-height: 0; padding: 18px 22px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.contact-card::before,
+.contact-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  -webkit-mask-image: var(--paper-mask); -webkit-mask-size: var(--paper-mask-size);
+  -webkit-mask-position: var(--paper-mask-position); -webkit-mask-repeat: var(--paper-mask-repeat);
+  mask-image: var(--paper-mask); mask-size: var(--paper-mask-size);
+  mask-position: var(--paper-mask-position); mask-repeat: var(--paper-mask-repeat);
+}
+.contact-card::before { z-index: -2; background: color-mix(in srgb, var(--primary) 24%, var(--card)); }
+.contact-card::after { inset: 1px; z-index: -1; background: var(--paper-back) url('/paper/article-paper-texture.svg'); }
+.contact-card:first-child { rotate: -0.35deg; }
+.contact-card:last-child { rotate: 0.3deg; }
+.contact-row { display: flex; align-items: center; gap: 15px; }
+.contact-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; }
+.contact-copy { min-width: 0; flex: 1; }
+.contact-copy h3 { font-size: 14px; font-weight: 500; line-height: 1.6; }
+.contact-copy a { display: inline-flex; align-items: center; min-height: 32px; max-width: 100%; font-size: 12px; color: var(--primary); overflow-wrap: anywhere; }
+.contact-copy a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.contact-arrow { flex-shrink: 0; color: var(--muted-foreground); }
+.contact-back-top { display: flex; justify-content: center; margin-top: 22px; }
+@media (max-width: 640px) {
+  .contact-cards { grid-template-columns: 1fr; gap: 12px; }
+  .contact-card { padding: 15px 17px; }
+  .contact-row { gap: 12px; }
+  .contact-copy a { font-size: 11px; }
+}
+</style>

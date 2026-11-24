@@ -2,7 +2,7 @@
   <div class="fixed top-4 sm:top-6 left-1/2 transform -translate-x-1/2 z-50">
     <Dock
       direction="middle"
-      class="bg-card/90 backdrop-blur-md border border-border rounded-full px-2 shadow-sm"
+      class="paper-dock bg-transparent backdrop-blur-none border-0 rounded-full px-2 shadow-none"
     >
       <DockIcon
         v-for="item in navigationItems"
@@ -68,3 +68,16 @@ const toggleColorMode = () => {
   colorMode.value = colorMode.value === "dark" ? "light" : "dark";
 };
 </script>
+
+<style scoped>
+/* Shape only the paper backing so magnified Dock icons remain free to overflow. */
+.paper-dock { position: relative; z-index: 0; background: transparent; border: 0; box-shadow: none; backdrop-filter: none; }
+.paper-dock::before,
+.paper-dock::after {
+  content: ""; position: absolute; pointer-events: none; border-radius: 24px;
+  mask-image: var(--paper-mask); mask-size: var(--paper-mask-size);
+  mask-position: var(--paper-mask-position); mask-repeat: var(--paper-mask-repeat);
+}
+.paper-dock::before { inset: 0; z-index: -1; background: var(--card) url('/paper/article-paper-texture.svg'); }
+.paper-dock::after { inset: 3px 4px -2px 4px; z-index: -2; background: var(--paper-back) url('/paper/nav-paper-texture.svg'); }
+</style>

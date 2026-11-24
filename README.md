@@ -68,3 +68,16 @@ npm run build
 ## 许可证
 
 本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+
+
+## 纸张手账主题
+
+页面采用纸白底色、柔绿强调色与静态纤维纹理，视觉参考个人博客 https://piggy-blog.vercel.app/ 。
+
+- 全站颜色与排版变量：`app/assets/css/main.css`。
+- 共用章节标题：`app/components/layout/SectionHeading.vue`。
+- 背景纹理：`app/components/layout/PaperBackground.vue`，仅在视口或主题变化时重绘。
+- Maple Mono 与寒蝉半圆体中文分片均通过本地资源加载；来源说明与 OFL 许可位于 `public/fonts/`。
+- 页面保留深浅色切换、照片分类、照片翻面、阅读进度与翻书详情；动效遵循系统减少动态效果设置。
+
+界面风格调整保留已有 Inspira UI 组件：顶部 Dock 放大交互、3D Card 分层悬浮、Text Reveal 文字揭示、Photo Gallery 菱形展开、Flip Card 悬停与点击翻面、Floating Card、Card Spotlight、Particles 与 Meteors；组件原有交互逻辑保持不变。

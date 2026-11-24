@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 12" preserveAspectRatio="none">
+  <path d="M1 6 Q31 3.8 57 5.4 T112 5.9 Q147 8 177 5.7 T239 6 Q270 4.5 301 6.3 T365 5.8 Q397 4.2 426 6 T479 5.5" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M4 7.8 Q40 5.7 71 7.1 T133 7.5 M183 7.8 Q217 6.3 248 7.7 T307 7.9 M360 7.2 Q401 6.2 440 7.6 T476 7.1" fill="none" stroke="white" stroke-width="0.55" opacity="0.4" stroke-linecap="round"/>
+</svg>

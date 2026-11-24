@@ -1,14 +1,13 @@
 <template>
-  <section id="reading" class="py-20 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 ref="headingRef" class="reading-heading text-4xl md:text-5xl font-bold mb-4 section-title">
-          最近在读
-        </h2>
+  <section id="reading" class="journal-section site-container" aria-labelledby="reading-title">
+    <div class="reading-inner">
+      <div ref="headingRef" class="reading-heading">
+        <SectionHeading number="05" label="between the pages" title="最近在读" heading-id="reading-title" description="翻过几页，也记下一点自己的想法。" />
       </div>
+      <div class="reading-sidenote"><span>BOOKS &amp; MARGINALIA</span><span>{{ booksData.length }} 本藏书 / 点击封面翻阅</span></div>
 
       <div id="reading-books" class="reading-grid">
-        <article v-for="(book, index) in visibleBooks" :key="book.id" class="reading-item">
+        <article v-for="(book, index) in visibleBooks" :key="book.id" class="reading-item handdrawn-rule">
           <Book
             class="reading-book cursor-pointer"
             size="md"
@@ -84,6 +83,7 @@
 </template>
 
 <script setup lang="ts">
+import SectionHeading from "~/components/layout/SectionHeading.vue";
 import { computed, nextTick, ref } from "vue";
 import { BookOpen, ChevronDown, ChevronUp } from "lucide-vue-next";
 import { Book, BookHeader, BookTitle, BookDescription } from "~/components/ui/book";
@@ -340,7 +340,7 @@ const headingRef = ref<HTMLElement | null>(null);
 const openedBook = ref<(typeof booksData)[number] | null>(null);
 const visibleBooks = computed(() => expanded.value ? booksData : booksData.slice(0, INITIAL_BOOK_COUNT));
 
-// 封面采用低饱和的布面色，界面控件沿用全站苔绿主题。
+// 布面封皮与纸张背景搭配，保留每本书的独立色彩。
 const coverColors: Record<string, string> = {
   blue: "#465b65",
   emerald: "#526450",
@@ -366,7 +366,10 @@ const toggleExpanded = async () => {
 </script>
 
 <style scoped>
-.reading-heading { scroll-margin-top: 110px; }
+.reading-heading { scroll-margin-top: 120px; }
+.reading-sidenote { display: flex; justify-content: space-between; gap: 20px; margin-bottom: 28px; color: var(--muted-foreground); font-size: 10px; }
+.reading-sidenote > span:first-child { letter-spacing: 0.1em; }
+@media (max-width: 640px) { .reading-sidenote { flex-wrap: wrap; font-size: 10px; gap: 8px 12px; } }
 .reading-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -375,7 +378,7 @@ const toggleExpanded = async () => {
   padding-top: 12px;
 }
 
-.reading-item { min-width: 0; }
+.reading-item { min-width: 0; padding-bottom: 22px;  }
 .reading-book { width: 100%; max-width: 208px; margin-inline: auto; }
 .reading-book :deep(.book-front) { padding: 22px 20px 18px; }
 .reading-cover-content {
@@ -395,7 +398,7 @@ const toggleExpanded = async () => {
   letter-spacing: 0.06em;
 }
 
-.reading-cover-number { font-family: "Inter", sans-serif; font-size: 11px; letter-spacing: 0.08em; }
+.reading-cover-number { font-family: var(--font-site); font-size: 11px; letter-spacing: 0.08em; }
 .reading-cover-rule { height: 1px; margin-top: 14px; background: rgb(250 249 240 / 0.25); }
 .reading-cover-copy { margin-block: auto; padding-block: 18px; }
 .reading-cover-title {

@@ -1,32 +1,26 @@
 <template>
-  <section id="featured-works" class="py-20 px-6">
-    <div class="max-w-7xl mx-auto">
-      <!-- Section Title -->
-      <div class="text-center mb-16">
-        <h2
-          class="text-4xl md:text-5xl font-bold mb-4 section-title"
-        >
-          我的小天地
-        </h2>
-        <p class="text-xl text-muted-foreground max-w-2xl mx-auto" />
-      </div>
+  <section id="featured-works" class="journal-section site-container">
+    <div class="works-inner">
+      <SectionHeading number="02" label="little corners of my life" title="我的小天地" description="把喜欢的东西，放进同一页。" />
 
       <!-- 3D Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="works-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <ClientOnly>
           <CardContainer
             v-for="(work, index) in featuredWorks"
             :key="work.id"
-            class="inter-var"
+            class="inter-var works-card-container"
+            container-class="works-card-slot"
+            :style="{ rotate: ['-0.5deg', '0.4deg', '-0.25deg'][index] }"
           >
             <CardBody
-              class="surface-card group/card relative w-full h-full rounded-xl p-6"
-              :class="{ 'work-card--featured': index === 0, 'palette-warm': index === 1 }"
+              class="surface-card paper-card works-card-body group/card relative w-full h-full p-5"
             >
+              <span class="paper-tape" aria-hidden="true" />
               <!-- Title -->
               <CardItem
                 :translate-z="50"
-                class="text-xl font-bold text-foreground"
+                class="text-xl font-medium text-foreground"
               >
                 {{ work.title }}
               </CardItem>
@@ -47,7 +41,7 @@
                   :src="work.image"
                   :alt="work.title"
                   loading="lazy"
-                  class="aspect-[3/2] w-full rounded-xl object-cover group-hover/card:shadow-sm transition-shadow duration-300"
+                  class="aspect-[3/2] w-full rounded-sm object-cover group-hover/card:shadow-sm transition-shadow duration-300"
                 />
               </CardItem>
 
@@ -63,7 +57,7 @@
               </CardItem>
 
               <!-- Action Buttons -->
-              <div class="mt-6 flex items-center justify-between">
+              <div class="mt-3 flex items-center justify-between">
                 <CardItem
                   :translate-z="20"
                   as="button"
@@ -104,6 +98,7 @@
 </template>
 
 <script setup lang="ts">
+import SectionHeading from "~/components/layout/SectionHeading.vue";
 import { CardContainer, CardBody, CardItem } from "~/components/ui/card-3d";
 
 // Featured works data
@@ -210,22 +205,35 @@ const viewLargeImage = (imageUrl: string, title: string) => {
 </script>
 
 <style scoped>
-.inter-var {
-  font-family: "LXGW WenKai", "Inter", sans-serif;
+.inter-var { font-family: var(--font-site); }
+.works-grid {
+  width: 100%;
+  column-gap: 22px;
+  row-gap: 24px;
 }
-
-.work-card--featured {
-  --card: var(--featured-surface);
-  --foreground: var(--featured-foreground);
-  --card-foreground: var(--featured-foreground);
-  --muted-foreground: var(--featured-muted);
-  --border: var(--featured-border);
-  --accent: var(--featured-accent);
-  --accent-hover: var(--featured-accent);
-  --accent-foreground: var(--featured-primary);
-  --primary: var(--featured-primary);
-  --primary-hover: var(--featured-primary-hover);
-  --primary-foreground: var(--featured-surface);
-  --ring: var(--featured-primary);
+.works-grid :deep(.works-card-slot) {
+  min-width: 0;
+  padding: 0;
+}
+.works-grid :deep(.works-card-container) {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+}
+.works-card-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.works-card-body > :last-child {
+  margin-top: auto;
+  padding-top: 20px;
+  gap: 8px;
+}
+@media (min-width: 1024px) {
+  .works-card-body { aspect-ratio: 6 / 7; min-height: 400px; }
+}
+@media (max-width: 640px) {
+  .works-grid { gap: 24px; }
 }
 </style>

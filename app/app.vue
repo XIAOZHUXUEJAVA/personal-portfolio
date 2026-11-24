@@ -1,98 +1,67 @@
 <template>
-  <div class="relative min-h-screen bg-background text-foreground">
-    <!-- Global Particles Background -->
+  <div class="site-shell">
+    <a class="skip-link" href="#main-content">跳到正文</a>
+    <PaperBackground />
     <ParticlesBg
-      class="fixed inset-0 z-10 opacity-20 pointer-events-none"
+      class="fixed inset-0 z-0 opacity-20 pointer-events-none"
       :quantity="60"
       :ease="50"
-      :color="isDark ? '#b1b9a8' : '#61655c'"
+      :color="isDark ? '#a4afa3' : '#667066'"
       :staticity="30"
       refresh
     />
-
-    <!-- Navigation Dock -->
-    <NavigationDock class="z-20" />
-
-    <!-- Main Content -->
-    <main class="relative z-10">
-      <!-- Hero Section -->
+    <NavigationDock />
+    <main id="main-content" class="relative z-10">
       <HeroSection />
-
-      <!-- About Section -->
       <AboutSection />
-
-      <!-- Featured Works Section -->
       <FeaturedWorksSection />
-
-      <!-- Photo Gallery Section -->
       <PhotoGallerySection />
-
       <GamingSection />
-
-      <!-- Reading Section -->
       <ReadingSection />
-
-      <!-- Contact Section -->
       <ContactSection />
     </main>
-
-    <!-- Meteors Background Effect -->
-    <Meteors :count="20" class="relative z-5 opacity-20 pointer-events-none" />
+    <Meteors :count="20" class="relative z-0 opacity-20 pointer-events-none" />
+    <footer class="site-footer site-container handdrawn-rule handdrawn-rule--top">
+      <span>xiaozhu / 生活剪贴簿</span>
+      <span>慢慢生活，慢慢记录。</span>
+      <a href="https://piggy-blog.vercel.app/" target="_blank" rel="noopener noreferrer">去博客坐坐 ↗</a>
+    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useColorMode } from "@vueuse/core";
-
-// Components
+import { ParticlesBg } from "~/components/ui/particles-bg";
+import { Meteors } from "~/components/ui/meteors";
+const colorMode = useColorMode();
+const isDark = computed(() => colorMode.value === "dark");
+import PaperBackground from "~/components/layout/PaperBackground.vue";
 import NavigationDock from "~/components/layout/NavigationDock.vue";
 import HeroSection from "~/components/sections/HeroSection.vue";
 import AboutSection from "~/components/sections/AboutSection.vue";
 import FeaturedWorksSection from "~/components/sections/FeaturedWorksSection.vue";
 import PhotoGallerySection from "~/components/sections/PhotoGallerySection.vue";
+import GamingSection from "~/components/sections/GamingSection.vue";
 import ReadingSection from "~/components/sections/ReadingSection.vue";
 import ContactSection from "~/components/sections/ContactSection.vue";
-import { Meteors } from "~/components/ui/meteors";
-import { ParticlesBg } from "~/components/ui/particles-bg";
-import GamingSection from "./components/sections/GamingSection.vue";
 
-// Color mode setup
-const colorMode = useColorMode();
-const isDark = computed(() => colorMode.value === "dark");
-
-// SEO Meta
 useHead({
-  title: "xiaozhudexiaozhu",
+  title: "xiaozhu · 生活剪贴簿",
+  htmlAttrs: { lang: "zh-CN" },
   meta: [
-    {
-      name: "description",
-      content: "欢迎来到我的个人主页，在这里分享生活、照片、感悟和记录。",
-    },
-    { name: "keywords", content: "个人主页, 生活分享, 照片, 感悟, 记录" },
-    { property: "og:title", content: "个人主页 - 分享生活的美好时光" },
-    {
-      property: "og:description",
-      content: "欢迎来到我的个人主页，在这里分享生活、照片、感悟和记录。",
-    },
+    { name: "description", content: "简简单单地记录生活的滴滴点点。这里收集照片、阅读、游戏，以及屏幕之外的生活。" },
+    { name: "keywords", content: "个人主页, 生活分享, 照片, 阅读, 记录" },
+    { property: "og:title", content: "xiaozhu · 生活剪贴簿" },
+    { property: "og:description", content: "简简单单地记录生活的滴滴点点。" },
     { property: "og:type", content: "website" },
   ],
 });
 </script>
 
-<style>
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family:
-    "LXGW WenKai",
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
-}
-
+<style scoped>
+.skip-link { position: fixed; top: -80px; left: 20px; padding: 10px 20px; background: var(--card); z-index: 100; }
+.skip-link:focus { top: 12px; }
+.site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-block: 28px 36px; color: var(--muted-foreground); font-size: 10px; }
+.site-footer a { color: var(--primary); }
+@media (max-width: 640px) { .site-footer { flex-direction: column; align-items: center; gap: 8px; } }
 </style>

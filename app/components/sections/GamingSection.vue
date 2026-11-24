@@ -1,6 +1,6 @@
 <template>
-  <section id="gaming" class="py-5 px-6">
-    <div class="max-w-7xl mx-auto">
+  <section id="gaming" class="journal-section site-container" aria-labelledby="gaming-title">
+    <div class="gaming-inner">
       <!-- SVG 手绘抖动滤镜定义（gaming 专用，避免与 bookshelf 的 sketchy-line 冲突） -->
       <svg class="absolute w-0 h-0 overflow-hidden" aria-hidden="true">
         <defs>
@@ -24,14 +24,11 @@
       </svg>
 
       <!-- Section Title -->
-      <h2
-        class="text-4xl md:text-5xl font-bold text-center mb-12 section-title"
-      >
-        最近游玩
-      </h2>
+      <SectionHeading number="04" label="press pause, play a little" title="最近游玩" heading-id="gaming-title" description="下班之后，去另一个世界走走。" />
 
       <!-- 手绘街机柜 -->
-      <div class="arcade-cabinet relative mx-auto max-w-6xl">
+      <div class="arcade-cabinet relative mx-auto max-w-6xl paper-sheet">
+        <span class="paper-tape" aria-hidden="true" />
         <!-- === 顶部装饰栏 === -->
         <div class="cabinet-row relative">
           <!-- 顶部涂鸦区（摇杆 / 奖杯 / 三颗心） -->
@@ -50,9 +47,9 @@
                   cx="20"
                   cy="12"
                   r="7"
-                  stroke="#B45309"
+                  stroke="#a58b65"
                   stroke-width="1.5"
-                  fill="#DC143C"
+                  fill="#b57b73"
                   filter="url(#sketchy-line-gaming)"
                 />
                 <!-- 球体高光 -->
@@ -80,7 +77,7 @@
                   cy="44"
                   rx="14"
                   ry="5"
-                  stroke="#78350F"
+                  stroke="#85735c"
                   stroke-width="1.5"
                   fill="#71717A"
                   filter="url(#sketchy-line-gaming)"
@@ -116,15 +113,15 @@
                 <!-- 杯身 -->
                 <path
                   d="M10 8 L10 24 Q10 34 20 34 Q30 34 30 24 L30 8 Z"
-                  stroke="#B45309"
+                  stroke="#a58b65"
                   stroke-width="1.5"
-                  fill="#FCD34D"
+                  fill="#d6c28b"
                   filter="url(#sketchy-line-gaming)"
                 />
                 <!-- 左耳 -->
                 <path
                   d="M10 13 Q3 13 3 20 Q3 26 10 26"
-                  stroke="#B45309"
+                  stroke="#a58b65"
                   stroke-width="1.5"
                   fill="none"
                   stroke-linecap="round"
@@ -132,7 +129,7 @@
                 <!-- 右耳 -->
                 <path
                   d="M30 13 Q37 13 37 20 Q37 26 30 26"
-                  stroke="#B45309"
+                  stroke="#a58b65"
                   stroke-width="1.5"
                   fill="none"
                   stroke-linecap="round"
@@ -140,23 +137,23 @@
                 <!-- 顶口 -->
                 <path
                   d="M10 8 Q20 5 30 8"
-                  stroke="#B45309"
+                  stroke="#a58b65"
                   stroke-width="1.2"
                   fill="none"
                 />
                 <!-- 杯身星星 -->
                 <path
                   d="M20 15 L21 18 L24 18 L21.5 20 L22.5 23 L20 21 L17.5 23 L18.5 20 L16 18 L19 18 Z"
-                  fill="#B45309"
+                  fill="#a58b65"
                 />
                 <!-- 杯颈 -->
-                <rect x="17" y="34" width="6" height="5" fill="#DAA520" />
+                <rect x="17" y="34" width="6" height="5" fill="#bca46d" />
                 <!-- 底座 -->
                 <path
                   d="M12 39 L28 39 L30 47 L10 47 Z"
-                  stroke="#B45309"
+                  stroke="#a58b65"
                   stroke-width="1.5"
-                  fill="#FCD34D"
+                  fill="#d6c28b"
                   filter="url(#sketchy-line-gaming)"
                 />
                 <!-- 底盘 -->
@@ -166,7 +163,7 @@
                   width="24"
                   height="4"
                   rx="1"
-                  fill="#B45309"
+                  fill="#a58b65"
                 />
               </svg>
             </div>
@@ -182,9 +179,9 @@
               >
                 <path
                   d="M10 15 C10 15, 2 10, 2 6 C2 3, 4 1, 6 1 C8 1, 10 3, 10 5 C10 3, 12 1, 14 1 C16 1, 18 3, 18 6 C18 10, 10 15, 10 15 Z"
-                  stroke="#B91C1C"
+                  stroke="#946b64"
                   stroke-width="1.2"
-                  fill="#EF4444"
+                  fill="#c08b83"
                   filter="url(#sketchy-line-gaming)"
                 />
                 <!-- 高光 -->
@@ -201,7 +198,7 @@
           </div>
 
           <!-- 顶部木板 -->
-          <div class="shelf-board relative h-3.5">
+          <div class="shelf-board relative h-2">
             <svg
               class="w-full h-full"
               preserveAspectRatio="none"
@@ -245,9 +242,9 @@
                 cx="6"
                 cy="6"
                 r="5"
-                stroke="#78350F"
+                stroke="#85735c"
                 stroke-width="1"
-                fill="#B45309"
+                fill="#a58b65"
                 filter="url(#sketchy-line-gaming)"
               />
               <!-- 十字槽 -->
@@ -256,7 +253,7 @@
                 y1="6"
                 x2="9"
                 y2="6"
-                stroke="#3F1F04"
+                stroke="#6d6254"
                 stroke-width="1"
                 stroke-linecap="round"
               />
@@ -265,7 +262,7 @@
                 y1="3"
                 x2="6"
                 y2="9"
-                stroke="#3F1F04"
+                stroke="#6d6254"
                 stroke-width="1"
                 stroke-linecap="round"
               />
@@ -276,7 +273,7 @@
         <!-- === 底部装饰栏 === -->
         <div class="cabinet-row relative">
           <!-- 底部木板 -->
-          <div class="shelf-board relative h-3.5">
+          <div class="shelf-board relative h-2">
             <svg
               class="w-full h-full"
               preserveAspectRatio="none"
@@ -313,9 +310,9 @@
                 <!-- 手柄主体 -->
                 <path
                   d="M12 8 Q6 8 4 16 Q2 28 8 30 Q14 30 18 24 L42 24 Q46 30 52 30 Q58 28 56 16 Q54 8 48 8 Z"
-                  stroke="#78350F"
+                  stroke="#85735c"
                   stroke-width="1.5"
-                  fill="#8B4513"
+                  fill="#9b8a71"
                   filter="url(#sketchy-line-gaming)"
                 />
                 <!-- 左侧十字方向键 -->
@@ -345,16 +342,16 @@
                   cx="44"
                   cy="14"
                   r="2.6"
-                  fill="#DC143C"
-                  stroke="#7F1D1D"
+                  fill="#b57b73"
+                  stroke="#8c6862"
                   stroke-width="0.6"
                 />
                 <circle
                   cx="50"
                   cy="18"
                   r="2.6"
-                  fill="#FCD34D"
-                  stroke="#B45309"
+                  fill="#d6c28b"
+                  stroke="#a58b65"
                   stroke-width="0.6"
                 />
               </svg>
@@ -370,12 +367,12 @@
                   d="M8 1 L9.5 6 L15 6.5 L10.5 10 L12 15 L8 12 L4 15 L5.5 10 L1 6.5 L6.5 6 Z"
                   stroke="currentColor"
                   stroke-width="1"
-                  class="text-amber-600 dark:text-amber-400"
+                  class="text-primary"
                   fill="none"
                 />
               </svg>
               <span
-                class="text-xs md:text-sm text-zinc-500 dark:text-zinc-400 italic font-handwriting whitespace-nowrap"
+                class="text-xs md:text-sm text-muted-foreground italic font-handwriting whitespace-nowrap"
               >
                 ~ press start to play ~
               </span>
@@ -385,9 +382,9 @@
                   cx="8"
                   cy="8"
                   r="6"
-                  stroke="#B45309"
+                  stroke="#a58b65"
                   stroke-width="1"
-                  fill="#FCD34D"
+                  fill="#d6c28b"
                   filter="url(#sketchy-line-gaming)"
                 />
                 <text
@@ -396,7 +393,7 @@
                   text-anchor="middle"
                   font-size="8"
                   font-weight="bold"
-                  fill="#B45309"
+                  fill="#a58b65"
                   font-family="Comic Sans MS, cursive"
                 >
                   $
@@ -418,17 +415,17 @@
                     width="28"
                     height="28"
                     rx="4"
-                    stroke="#78350F"
+                    stroke="#85735c"
                     stroke-width="1.5"
                     fill="#FFF8DC"
                     filter="url(#sketchy-line-gaming)"
                   />
                   <!-- 5 点 -->
-                  <circle cx="13" cy="13" r="1.8" fill="#7F1D1D" />
+                  <circle cx="13" cy="13" r="1.8" fill="#8c6862" />
                   <circle cx="27" cy="13" r="1.8" fill="#333" />
-                  <circle cx="20" cy="20" r="1.8" fill="#7F1D1D" />
+                  <circle cx="20" cy="20" r="1.8" fill="#8c6862" />
                   <circle cx="13" cy="27" r="1.8" fill="#333" />
-                  <circle cx="27" cy="27" r="1.8" fill="#7F1D1D" />
+                  <circle cx="27" cy="27" r="1.8" fill="#8c6862" />
                 </g>
               </svg>
             </div>
@@ -445,7 +442,7 @@
             <path
               d="M6 0 Q4 100 6 200 Q8 300 6 400"
               class="wood-edge"
-              stroke-width="2.5"
+              stroke-width="1.3"
               fill="none"
               filter="url(#sketchy-line-gaming)"
             />
@@ -458,7 +455,7 @@
             <path
               d="M6 0 Q8 100 6 200 Q4 300 6 400"
               class="wood-edge"
-              stroke-width="2.5"
+              stroke-width="1.3"
               fill="none"
               filter="url(#sketchy-line-gaming)"
             />
@@ -470,6 +467,7 @@
 </template>
 
 <script setup lang="ts">
+import SectionHeading from "~/components/layout/SectionHeading.vue";
 import { BendingGallery } from "~/components/ui/bending-gallery";
 
 // 游戏卡片数据
@@ -498,12 +496,17 @@ const screwPositions = [
 </script>
 
 <style scoped>
+.arcade-cabinet { padding: 28px 22px 14px; --sheet-color: var(--paper-sheet); }
+.arcade-cabinet .wood-fill { opacity: 0.38; }
+.arcade-cabinet .wood-edge { opacity: 0.5; }
+.arcade-cabinet .wood-shadow { opacity: 0.45; }
+@media (max-width: 640px) { .arcade-cabinet { padding: 22px 6px 8px; } }
 .arcade-cabinet {
   /* 与书架保持同款手写字体，营造"同一本手账"的一致感 */
-  font-family: "LXGW WenKai", "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-family: var(--font-site);
 }
 
 .font-handwriting {
-  font-family: "LXGW WenKai", "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-family: var(--font-site);
 }
 </style>
