@@ -24,7 +24,7 @@ const icons = [Code2, Bike, Music2];
 </script>
 
 <style scoped>
-.about-notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; padding: 12px 5px 0; }
+.about-notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--grid-gap); padding: var(--space-3) var(--space-1) 0; }
 .about-note { --note-color: var(--paper-blue); transform: rotate(-1deg); transition: transform 360ms cubic-bezier(0.22, 0.61, 0.36, 1); }
 .about-note--1 { --note-color: var(--paper-yellow); --tape-color: var(--paper-rose); transform: rotate(0.8deg); margin-top: 18px; }
 .about-note--2 { --note-color: var(--paper-rose); transform: rotate(-0.5deg); }
@@ -39,23 +39,23 @@ const icons = [Code2, Bike, Music2];
   mask-position: var(--paper-mask-position); mask-repeat: var(--paper-mask-repeat);
 }
 .about-note :deep(.floating-card__surface)::before {
-  inset: 0; z-index: -1; background: var(--note-color) url('/paper/article-paper-texture.svg');
+  inset: 0; z-index: -1; background: var(--note-color) var(--paper-texture);
 }
 .about-note :deep(.floating-card__surface)::after {
-  inset: 4px -2px -4px 3px; z-index: -2; background: var(--paper-back) url('/paper/nav-paper-texture.svg'); transform: rotate(-0.35deg);
+  inset: 4px -2px -4px 3px; z-index: -2; background: var(--paper-back) var(--paper-back-texture); transform: rotate(-0.35deg); box-shadow: var(--surface-shadow);
 }
-.note-content { display: flex; flex-direction: column; height: 100%; padding: 30px 26px 25px; }
-.note-topline { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--primary); }
-.note-topline span { font-family: var(--font-hand); font-size: 14px; line-height: 1.4; letter-spacing: 0.02em; }
-.note-content h3 { margin-top: 26px; font-size: 19px; font-weight: 500; }
-.note-content > p { margin-top: 13px; padding-bottom: 27px; font-size: 13px; line-height: 2; color: var(--muted-foreground); }
-.note-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 18px; font-size: 10px; color: var(--primary); }
+.note-content { display: flex; flex-direction: column; height: 100%; padding: var(--card-padding); }
+.note-topline { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-3); color: var(--primary); }
+.note-topline span { font-family: var(--font-hand); font-size: 1rem; line-height: 1.4; letter-spacing: 0.02em; }
+.note-content h3 { margin-top: var(--space-5); font-size: var(--text-heading); font-weight: 500; }
+.note-content > p { margin-top: var(--space-3); padding-bottom: var(--space-5); font-size: var(--text-body); line-height: 1.85; color: var(--muted-foreground); }
+.note-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: auto; padding-top: var(--space-4); font-size: var(--text-small); color: var(--primary); }
 .note-tags span {
   padding: 3px 10px; border-radius: 999px; line-height: 1.6;
-  color: color-mix(in srgb, var(--primary) 78%, var(--foreground));
-  background: color-mix(in srgb, var(--note-color) 72%, var(--card));
-  border: 1px solid color-mix(in srgb, var(--note-color) 58%, var(--border));
+  color: color-mix(in oklab, var(--primary) 78%, var(--foreground));
+  background: color-mix(in oklab, var(--note-color) 72%, var(--card));
+  border: 1px solid color-mix(in oklab, var(--note-color) 58%, var(--border));
 }
-@media (max-width: 800px) { .about-notes { gap: 20px; } .note-content { padding: 28px 20px 22px; } .note-topline { flex-wrap: wrap; gap: 8px; } }
-@media (max-width: 640px) { .about-notes { grid-template-columns: 1fr; gap: 30px; padding-inline: 7px; } .about-note--1 { margin-top: 0; } .note-content h3 { margin-top: 18px; } }
+@media (max-width: 1023px) { .about-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .about-notes { grid-template-columns: 1fr; } .about-note--1 { margin-top: 0; } }
 </style>

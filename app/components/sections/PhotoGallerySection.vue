@@ -64,7 +64,7 @@
           <FlipCard
             v-for="(photo, index) in highlightPhotosData"
             :key="photo.src"
-            class="stamp-flip h-[360px] w-full"
+              class="stamp-flip min-h-[29rem] w-full"
           >
             <template #default>
               <div class="stamp-front">
@@ -310,7 +310,7 @@ const showCopyToast = (message: string = "操作成功") => {
 .gallery-tabs-wrap {
   display: flex;
   overflow-x: auto;
-  margin-bottom: 36px;
+  margin-bottom: var(--space-6);
   padding: 6px 2px;
   scrollbar-width: none;
 }
@@ -346,13 +346,13 @@ const showCopyToast = (message: string = "操作成功") => {
 }
 .gallery-tabs::before {
   z-index: -2;
-  background: color-mix(in srgb, var(--primary) 26%, var(--card));
+  background: color-mix(in oklab, var(--primary) 26%, var(--card));
 }
 .gallery-tabs::after {
   inset: 1px;
   z-index: -1;
   border-radius: 23px;
-  background: var(--paper-back) url('/paper/article-paper-texture.svg');
+  background: var(--paper-back) var(--paper-texture);
 }
 .gallery-tabs-indicator {
   position: absolute;
@@ -360,7 +360,7 @@ const showCopyToast = (message: string = "操作成功") => {
   bottom: 8px;
   border-radius: 22px;
   background: var(--card);
-  border: 1px solid color-mix(in srgb, var(--primary) 20%, var(--card));
+  border: 1px solid color-mix(in oklab, var(--primary) 20%, var(--card));
   pointer-events: none;
 }
 .gallery-tab {
@@ -373,7 +373,7 @@ const showCopyToast = (message: string = "操作成功") => {
   border-radius: 22px;
   background: transparent;
   color: var(--muted-foreground);
-  font-size: 14px;
+  font-size: var(--text-small);
   white-space: nowrap;
   transition: color 180ms ease;
 }
@@ -381,27 +381,30 @@ const showCopyToast = (message: string = "操作成功") => {
 .gallery-tab[aria-pressed="true"] { color: var(--primary); }
 .gallery-tab:focus-visible { outline-offset: 1px; }
 .gallery-paper-sheet {
+  container-type: inline-size;
   --sheet-color: var(--paper-sheet);
-  padding: 35px 35px 24px;
-  margin-inline: 5px;
+  padding: var(--card-padding);
+  margin-inline: var(--space-1);
 }
 .album-paper-label {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 25px;
-  padding-bottom: 14px;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-4);
   color: var(--muted-foreground);
-  font-size: 10px;
+  font-size: var(--text-small);
   letter-spacing: 0.08em;
 }
-.selected-photos { margin-top: 48px; }
-.selected-photos-title { margin-bottom: 24px; color: var(--foreground); font-size: 20px; font-weight: 400; letter-spacing: 0.06em; }
-.stamp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; padding: 4px 5px 8px; align-items: start; }
+.selected-photos { margin-top: var(--space-7); }
+.selected-photos-title { margin-bottom: var(--space-5); color: var(--foreground); font-size: var(--text-heading); font-weight: 500; letter-spacing: 0.06em; }
+.stamp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--grid-gap); padding: var(--space-1) var(--space-1) var(--space-2); align-items: start; }
 .stamp-flip { --stamp-ink: var(--primary); transform: rotate(-1deg); transition: transform 380ms cubic-bezier(0.22, 0.61, 0.36, 1), filter 380ms ease; }
-.stamp-flip:nth-child(2) { --stamp-ink: #9a7650; transform: rotate(1deg); }
-.stamp-flip:nth-child(3) { --stamp-ink: #637d89; transform: rotate(-0.6deg); }
+.stamp-flip:nth-child(2) { --stamp-ink: var(--stamp-brown); transform: rotate(1deg); }
+.stamp-flip:nth-child(3) { --stamp-ink: var(--stamp-blue); transform: rotate(-0.6deg); }
 .stamp-washi {
+  display: none;
   position: absolute; top: 0; left: 26px; width: 58px; height: 14px;
   background: var(--paper-tape); opacity: 0.55; transform: rotate(-3deg);
   clip-path: polygon(2% 0, 98% 0, 96% 22%, 100% 44%, 97% 68%, 100% 100%, 1% 100%, 3% 70%, 0 45%, 3% 22%);
@@ -412,14 +415,13 @@ const showCopyToast = (message: string = "操作成功") => {
 .stamp-grid.fade-ready .stamp-picture :deep(img) { opacity: 0; transform: scale(1.03); transition: opacity 620ms ease, transform 720ms ease; }
 .stamp-grid.fade-ready .stamp-picture :deep(img.is-loaded) { opacity: 1; transform: none; }
 @media (hover: hover) {
-  .stamp-flip:hover { transform: rotate(0deg) translateY(-6px); filter: drop-shadow(0 16px 18px rgb(31 35 40 / 16%)); }
-  .dark .stamp-flip:hover { filter: drop-shadow(0 16px 18px rgb(0 0 0 / 30%)); }
+  .stamp-flip:hover { transform: rotate(0deg) translateY(-4px); }
 }
 /* Perforate only the two flat faces. Keep the 3D volume and all flip handlers intact. */
 .stamp-flip :deep([class*="backface-visibility"]) {
   border: 0;
   border-radius: 0;
-  background: var(--card) url('/paper/article-paper-texture.svg');
+  background: var(--card) var(--paper-texture);
   box-shadow: none;
   -webkit-mask-image: radial-gradient(circle 4px at 8px 0, transparent 98%, #000 100%),
     radial-gradient(circle 4px at 8px 100%, transparent 98%, #000 100%),
@@ -436,28 +438,28 @@ const showCopyToast = (message: string = "操作成功") => {
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
-.stamp-front { position: relative; display: flex; flex-direction: column; height: 100%; padding: 20px 20px 18px; background: var(--card) url('/paper/article-paper-texture.svg'); }
-.stamp-front::before { content: ""; position: absolute; inset: 10px; border: 1px solid color-mix(in srgb, var(--stamp-ink) 24%, transparent); pointer-events: none; }
-.stamp-topline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding-bottom: 12px; color: var(--stamp-ink); font-size: 10px; letter-spacing: 0.03em; }
-.stamp-picture { flex: 1; min-height: 0; border: 1px solid color-mix(in srgb, var(--stamp-ink) 20%, transparent); padding: 3px; }
+.stamp-front { position: relative; display: flex; flex-direction: column; height: 100%; padding: var(--space-5); background: var(--card) var(--paper-texture); }
+.stamp-front::before { content: ""; position: absolute; inset: 10px; border: 1px solid color-mix(in oklab, var(--stamp-ink) 24%, transparent); pointer-events: none; }
+.stamp-topline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-1) var(--space-3); padding-bottom: var(--space-4); color: var(--stamp-ink); font-size: var(--text-small); letter-spacing: 0.02em; }
+.stamp-picture { flex: 1; min-height: 14rem; border: 1px solid color-mix(in oklab, var(--stamp-ink) 20%, transparent); padding: 3px; }
 .stamp-caption { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; color: var(--stamp-ink); }
-.stamp-caption > span:first-child { font-size: 25px; font-weight: 500; letter-spacing: 0.12em; }
-.stamp-caption > span:last-child { text-align: right; font-size: 12px; }
-.stamp-caption small { display: block; margin-top: 3px; color: var(--muted-foreground); font-size: 10px; letter-spacing: 0.02em; }
-.stamp-postmark { position: absolute; right: 26px; bottom: 65px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 78px; height: 78px; gap: 2px; border: 3px double currentColor; border-radius: 50%; background: color-mix(in srgb, var(--card) 70%, transparent); color: var(--stamp-ink); opacity: 0.66; transform: rotate(-16deg); pointer-events: none; }
-.stamp-postmark > span { font-size: 10px; line-height: 1.5; }
-.stamp-postmark > span:nth-of-type(2) { padding-block: 2px; border-block: 1px solid currentColor; font-size: 9px; }
+.stamp-caption > span:first-child { font-size: 1.5rem; font-weight: 500; letter-spacing: 0.08em; }
+.stamp-caption > span:last-child { text-align: right; font-size: var(--text-small); }
+.stamp-caption small { display: block; margin-top: var(--space-1); color: var(--muted-foreground); font-size: var(--text-small); letter-spacing: 0.02em; }
+.stamp-postmark { position: absolute; right: 26px; bottom: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 112px; min-height: 112px; padding: var(--space-2); gap: 2px; border: 3px double currentColor; border-radius: 50%; background: var(--card); background: color-mix(in oklab, var(--card) 92%, transparent); color: var(--stamp-ink); transform: rotate(-16deg); pointer-events: none; }
+.stamp-postmark > span { font-size: var(--text-small); line-height: 1.5; }
+.stamp-postmark > span:nth-of-type(2) { padding-block: 2px; border-block: 1px solid currentColor; font-size: 0.8125rem; }
 .postmark-waves { position: absolute; right: 61px; top: 15px; width: 85px; height: 42px; }
-.stamp-back { padding: 25px 23px; background: url('/paper/article-paper-texture.svg'), repeating-linear-gradient(transparent 0 31px, color-mix(in srgb, var(--stamp-ink) 8%, transparent) 31px 32px), var(--card); }
-.stamp-back-topline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin-bottom: 7px; color: var(--stamp-ink); font-size: 10px; }
-.stamp-back > p { padding-block: 10px; font-size: 13px; }
-.stamp-back > .text-sm { font-size: 12px; }
-.stamp-actions { display: flex; gap: 8px; margin-top: auto; padding-top: 14px; }
+.stamp-back { padding: var(--space-5); background: var(--card) var(--paper-texture); }
+.stamp-back-topline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-1) var(--space-3); margin-bottom: var(--space-2); color: var(--stamp-ink); font-size: var(--text-small); }
+.stamp-back > p { padding-block: var(--space-3); font-size: var(--text-body); line-height: 1.85; }
+.stamp-back > .text-sm { font-size: var(--text-small); }
+.stamp-actions { display: flex; gap: var(--space-2); margin-top: auto; padding-top: var(--space-4); }
 .stamp-action {
   display: grid; place-items: center; width: 40px; height: 40px;
-  border: 1px solid color-mix(in srgb, var(--stamp-ink) 30%, transparent);
+  border: 1px solid color-mix(in oklab, var(--stamp-ink) 30%, transparent);
   border-radius: 50%;
-  background: color-mix(in srgb, var(--card) 72%, transparent);
+  background: color-mix(in oklab, var(--card) 72%, transparent);
   color: var(--stamp-ink);
   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
@@ -465,10 +467,10 @@ const showCopyToast = (message: string = "操作成功") => {
 @media (max-width: 1023px) { .stamp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) {
   .gallery-tabs { padding-inline: 8px; }
-  .gallery-tab { padding-inline: 10px; font-size: 12px; }
-  .gallery-paper-sheet { padding: 28px 12px 18px; margin-inline: 0; }
-  .album-paper-label { flex-wrap: wrap; font-size: 10px; letter-spacing: 0.02em; gap: 8px; }
-  .selected-photos { margin-top: 36px; }
-  .stamp-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; max-width: 360px; margin-inline: auto; }
+  .gallery-tab { padding-inline: var(--space-3); }
+  .gallery-paper-sheet { padding: var(--space-5) var(--space-3); margin-inline: 0; }
+  .album-paper-label { letter-spacing: 0.02em; gap: var(--space-2); }
+  .selected-photos { margin-top: var(--space-6); }
+  .stamp-grid { grid-template-columns: minmax(0, 1fr); max-width: 24rem; margin-inline: auto; }
 }
 </style>

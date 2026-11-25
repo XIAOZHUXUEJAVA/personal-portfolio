@@ -523,6 +523,8 @@ const screwPositions = [
   50% { opacity: 0; }
 }
 @media (max-width: 640px) {
-  .font-handwriting { font-size: 15px; }
+  .font-handwriting { font-size: 0.9375rem; white-space: normal; text-align: center; overflow-wrap: anywhere; }
+  .doodles-area { gap: var(--space-2); }
+  .doodles-area > :nth-child(2) { min-width: 0; flex-wrap: wrap; justify-content: center; }
 }
 </style>

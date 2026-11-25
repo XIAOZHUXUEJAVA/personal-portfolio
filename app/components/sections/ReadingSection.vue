@@ -379,28 +379,28 @@ const toggleExpanded = async () => {
 
 <style scoped>
 .reading-heading { scroll-margin-top: 120px; }
-.reading-sidenote { display: flex; justify-content: space-between; gap: 20px; margin-bottom: 28px; color: var(--muted-foreground); font-size: 10px; }
-.reading-sidenote > span:first-child { font-family: var(--font-hand); font-size: 14px; letter-spacing: 0.04em; }
-@media (max-width: 640px) { .reading-sidenote { flex-wrap: wrap; font-size: 10px; gap: 8px 12px; } }
+.reading-sidenote { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-3) var(--space-5); margin-bottom: var(--space-6); color: var(--muted-foreground); font-size: var(--text-small); }
+.reading-sidenote > span:first-child { font-family: var(--font-hand); font-size: 1.125rem; letter-spacing: 0.04em; }
 .reading-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 24px;
-  row-gap: 44px;
-  padding-top: 12px;
+  column-gap: var(--grid-gap);
+  row-gap: var(--space-7);
+  padding-top: var(--space-3);
 }
 
-.reading-item { min-width: 0; padding-bottom: 22px; }
+.reading-item { min-width: 0; padding-bottom: var(--space-5); }
 .reading-book-wrap { position: relative; max-width: 208px; margin-inline: auto; }
 .reading-book-wrap::after {
   content: ""; position: absolute; left: -10px; right: -10px; bottom: -8px; height: 7px;
   border-radius: 2px; pointer-events: none; opacity: 0.55;
-  background: linear-gradient(color-mix(in srgb, var(--wood-fill) 90%, transparent), color-mix(in srgb, var(--wood-fill) 45%, transparent));
+  background: linear-gradient(color-mix(in oklab, var(--wood-fill) 90%, transparent), color-mix(in oklab, var(--wood-fill) 45%, transparent));
   box-shadow: 0 3px 5px rgb(31 35 40 / 8%);
 }
 .dark .reading-book-wrap::after { box-shadow: 0 3px 6px rgb(0 0 0 / 25%); }
 .reading-book { width: 100%; }
-.reading-book :deep(.book-front) { padding: 22px 20px 18px; }
+.reading-book :deep(.book-volume) { display: grid; min-height: 19rem; aspect-ratio: auto; }
+.reading-book :deep(.book-front) { position: relative; padding: var(--space-5) var(--space-4); }
 .reading-cover-content {
   display: flex;
   height: 100%;
@@ -413,34 +413,34 @@ const toggleExpanded = async () => {
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
-  font-size: 12px;
+  font-size: var(--text-small);
   line-height: 1.5;
   letter-spacing: 0.06em;
 }
 
-.reading-cover-number { font-family: var(--font-site); font-size: 11px; letter-spacing: 0.08em; }
+.reading-cover-number { font-family: var(--font-site); font-size: var(--text-small); letter-spacing: 0.08em; }
 .reading-cover-rule { height: 1px; margin-top: 14px; background: rgb(250 249 240 / 0.25); }
 .reading-cover-copy { margin-block: auto; padding-block: 18px; }
 .reading-cover-title {
   margin: 0;
-  font-size: clamp(18px, 2.1vw, 24px);
+  font-size: clamp(1.125rem, 0.875rem + 1vw, 1.5rem);
   font-weight: 600;
   line-height: 1.5;
   letter-spacing: 0.04em;
   overflow-wrap: anywhere;
 }
 
-.reading-cover-author { margin-top: 10px; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
-.reading-cover-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11px; line-height: 1.5; letter-spacing: 0.1em; }
-.reading-meta { max-width: 208px; margin: 28px auto 0; }
-.reading-status-row { display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 1.5; }
+.reading-cover-author { margin-top: var(--space-3); font-size: var(--text-small); line-height: 1.6; overflow-wrap: anywhere; }
+.reading-cover-footer { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); font-size: var(--text-small); line-height: 1.5; letter-spacing: 0.04em; }
+.reading-meta { max-width: 208px; margin: var(--space-6) auto 0; }
+.reading-status-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font-size: var(--text-small); line-height: 1.5; }
 .reading-status { display: inline-flex; align-items: center; gap: 6px; color: var(--muted-foreground); }
 .reading-status.is-reading { color: var(--primary); }
 .reading-status.is-done { color: #5f7a5a; }
 .reading-status.is-planned { color: var(--muted-foreground); }
 .dark .reading-status.is-done { color: #9db797; }
 .reading-status-dot { width: 5px; height: 5px; flex-shrink: 0; border-radius: 50%; background: currentColor; }
-.reading-category { display: inline-flex; align-items: center; gap: 5px; color: var(--muted-foreground); font-size: 11px; }
+.reading-category { display: inline-flex; align-items: center; gap: 5px; color: var(--muted-foreground); font-size: var(--text-small); }
 .reading-category-dot { width: 6px; height: 6px; flex-shrink: 0; border-radius: 50%; background: var(--cat-color, var(--muted-foreground)); }
 .reading-category[data-category="文学"] { --cat-color: #b28c87; }
 .reading-category[data-category="技术"] { --cat-color: #667d6d; }
@@ -455,24 +455,20 @@ const toggleExpanded = async () => {
 .dark .reading-item[data-status="已读"] .reading-progress > span { background: #92ad8c; }
 
 @media (min-width: 640px) {
-  .reading-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 36px; row-gap: 48px; }
+  .reading-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (min-width: 1024px) {
-  .reading-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 48px; }
+  .reading-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 @media (max-width: 639px) {
-  .reading-book :deep(.book-front) { padding: 16px 13px 14px; }
-  .reading-cover-copy { padding-block: 14px; }
-  .reading-cover-author { margin-top: 8px; font-size: 11px; }
+  .reading-book :deep(.book-front) { padding: var(--space-4) var(--space-3); }
+  .reading-cover-copy { padding-block: var(--space-4); }
 }
 
-@media (max-width: 380px) {
-  .reading-grid { column-gap: 20px; }
-  .reading-cover-title { font-size: 16px; }
-  .reading-cover-rule { margin-top: 10px; }
-  .reading-cover-copy { padding-block: 8px; }
-  .reading-cover-footer { display: none; }
+@media (max-width: 479px) {
+  .reading-grid { grid-template-columns: minmax(0, 1fr); }
+  .reading-book-wrap, .reading-meta { max-width: 15rem; width: 100%; }
 }
 </style>

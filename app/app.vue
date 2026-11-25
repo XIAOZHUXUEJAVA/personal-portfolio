@@ -20,7 +20,9 @@
       <ReadingSection data-reveal />
       <ContactSection data-reveal />
     </main>
-    <Meteors :count="20" class="relative z-0 opacity-20 pointer-events-none" />
+    <div class="meteor-layer" aria-hidden="true">
+      <Meteors :count="20" class="opacity-20" />
+    </div>
   </div>
 </template>
 
@@ -58,6 +60,7 @@ useHead({
 </script>
 
 <style scoped>
+.meteor-layer { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 .skip-link { position: fixed; top: -80px; left: 20px; padding: 10px 20px; background: var(--card); z-index: 100; }
 .skip-link:focus { top: 12px; }
 </style>

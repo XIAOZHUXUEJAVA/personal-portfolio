@@ -28,7 +28,7 @@ function drawPaper() {
   const ink = dark ? "#b3c3b5" : "#667d6d";
   context.fillStyle = ink;
   for (let i = 0; i < width * height / 900; i++) {
-    context.globalAlpha = 0.03 + random() * 0.07;
+    context.globalAlpha = dark ? 0.015 + random() * 0.025 : 0.03 + random() * 0.07;
     context.fillRect(random() * width, random() * height, 0.6, 0.6);
   }
   context.globalAlpha = 1;

@@ -44,7 +44,9 @@ const props = defineProps<Props>();
 
 <style scoped>
 .gallery {
-  --size: 100px;
+  --size: clamp(2rem, calc((100vw - 8rem) / 6), 6.25rem);
+  width: min(100%, 38rem);
+  margin-inline: auto;
   grid-auto-rows: var(--size);
   transform: translateZ(0); /* 启用硬件加速 */
 
@@ -91,18 +93,10 @@ const props = defineProps<Props>();
   }
 }
 
-/* 响应式优化 */
-@media (max-width: 768px) {
+/* Fit each diamond to the paper's content box, including when text is enlarged. */
+@supports (width: 1cqw) {
   .gallery {
-    --size: 80px;
-    grid-cols: 4;
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery {
-    --size: 60px;
-    grid-cols: 3;
+    --size: min(6.25rem, calc((100cqw - 0.5rem) / 6));
   }
 }
 </style>

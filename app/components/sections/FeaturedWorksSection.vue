@@ -29,7 +29,7 @@
               <CardItem
                 as="p"
                 :translate-z="60"
-                class="mt-2 max-w-sm text-sm text-muted-foreground"
+                class="works-description mt-2 max-w-sm text-base text-muted-foreground"
               >
                 {{ work.description }}
               </CardItem>
@@ -50,7 +50,7 @@
                 <span
                   v-for="tag in work.tags"
                   :key="tag"
-                  class="theme-tag px-3 py-1 rounded-full text-xs font-medium"
+                  class="theme-tag px-3 py-1 rounded-full text-sm font-medium"
                 >
                   {{ tag }}
                 </span>
@@ -61,7 +61,7 @@
                 <CardItem
                   :translate-z="20"
                   as="button"
-                  class="theme-button theme-button--ghost rounded-xl px-4 py-2 text-xs font-normal"
+                  class="theme-button theme-button--ghost rounded-xl px-4 py-2 text-sm font-normal"
                   @click="viewLargeImage(work.image, work.title)"
                 >
                   查看大图 →
@@ -74,7 +74,7 @@
                   :href="work.sourceUrl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="theme-button theme-button--primary rounded-xl px-4 py-2 text-xs font-medium"
+                  class="theme-button theme-button--primary rounded-xl px-4 py-2 text-sm font-medium"
                 >
                   了解更多
                 </CardItem>
@@ -203,8 +203,7 @@ const viewLargeImage = (imageUrl: string, title: string) => {
 .inter-var { font-family: var(--font-site); }
 .works-grid {
   width: 100%;
-  column-gap: 22px;
-  row-gap: 24px;
+  gap: var(--grid-gap);
 }
 .works-grid :deep(.works-card-slot) {
   min-width: 0;
@@ -215,20 +214,20 @@ const viewLargeImage = (imageUrl: string, title: string) => {
   height: 100%;
   min-width: 0;
 }
+.works-description { line-height: 1.85; }
 .works-card-body {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  padding: var(--card-padding);
 }
 .works-card-body > :last-child {
   margin-top: auto;
-  padding-top: 20px;
-  gap: 8px;
+  padding-top: var(--space-5);
+  gap: var(--space-2);
+  flex-wrap: wrap;
 }
 @media (min-width: 1024px) {
-  .works-card-body { aspect-ratio: 6 / 7; min-height: 400px; }
-}
-@media (max-width: 640px) {
-  .works-grid { gap: 24px; }
+  .works-card-body { min-height: 27rem; }
 }
 </style>

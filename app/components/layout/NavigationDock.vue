@@ -124,11 +124,11 @@ const toggleColorMode = () => {
   mask-image: var(--paper-mask); mask-size: var(--paper-mask-size);
   mask-position: var(--paper-mask-position); mask-repeat: var(--paper-mask-repeat);
 }
-.paper-dock::before { inset: 0; z-index: -1; background: var(--card) url('/paper/article-paper-texture.svg'); }
-.paper-dock::after { inset: 3px 4px -2px 4px; z-index: -2; background: var(--paper-back) url('/paper/nav-paper-texture.svg'); }
+.paper-dock::before { inset: 0; z-index: -1; background: var(--card) var(--paper-texture); }
+.paper-dock::after { inset: 3px 4px -2px 4px; z-index: -2; background: var(--paper-back) var(--paper-back-texture); }
 .dock-icon.is-active {
   color: var(--primary);
   background: var(--accent);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 22%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primary) 22%, transparent);
 }
 </style>

@@ -409,8 +409,8 @@ onBeforeUnmount(() => {
 }
 
 .book-stage {
-  --paper: color-mix(in srgb, var(--card) 94%, var(--wood-fill));
-  --paper-deep: color-mix(in srgb, var(--card) 82%, var(--wood-fill));
+  --paper: color-mix(in oklab, var(--card) 94%, var(--wood-fill));
+  --paper-deep: color-mix(in oklab, var(--card) 82%, var(--wood-fill));
   --ink: var(--foreground);
   --muted-ink: var(--muted-foreground);
   --line: var(--border);
@@ -646,7 +646,7 @@ onBeforeUnmount(() => {
 .cover-category {
   margin-bottom: 8%;
   color: var(--cover-accent);
-  font-size: clamp(10px, 1.3vw, 12px);
+  font-size: var(--text-small);
   font-weight: 600;
   letter-spacing: 0.32em;
 }
@@ -678,7 +678,7 @@ onBeforeUnmount(() => {
 .cover-title {
   max-width: 100%;
   color: #fffaf0;
-  font-size: clamp(22px, 3.4vw, 36px);
+  font-size: clamp(1.375rem, 1rem + 2vw, 2.25rem);
   font-weight: 700;
   line-height: 1.28;
   letter-spacing: 0.02em;
@@ -689,7 +689,7 @@ onBeforeUnmount(() => {
 .cover-author {
   margin-top: 7%;
   color: rgb(255 250 240 / 78%);
-  font-size: clamp(12px, 1.7vw, 15px);
+  font-size: var(--text-body);
   letter-spacing: 0.08em;
 }
 
@@ -698,7 +698,7 @@ onBeforeUnmount(() => {
   bottom: 7%;
   color: rgb(255 250 240 / 46%);
   font-family: var(--font-site);
-  font-size: 8px;
+  font-size: 0.875rem;
   letter-spacing: 0.24em;
 }
 
@@ -748,7 +748,7 @@ onBeforeUnmount(() => {
   min-height: 24px;
   padding: 2px 9px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 1;
 }
@@ -767,7 +767,7 @@ onBeforeUnmount(() => {
 
 .inside-title {
   color: var(--ink);
-  font-size: clamp(22px, 3.2vw, 34px);
+  font-size: clamp(1.375rem, 1rem + 2vw, 2.125rem);
   font-weight: 700;
   line-height: 1.25;
   text-wrap: balance;
@@ -776,7 +776,7 @@ onBeforeUnmount(() => {
 .author {
   margin-top: 7px;
   color: var(--muted-ink);
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .progress-block {
@@ -789,13 +789,13 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   margin-bottom: 8px;
   color: var(--muted-ink);
-  font-size: 12px;
+  font-size: 0.875rem;
 }
 
 .progress-label strong {
   color: var(--primary);
   font-family: var(--font-site);
-  font-size: 12px;
+  font-size: 0.875rem;
 }
 
 .progress-track {
@@ -826,7 +826,7 @@ onBeforeUnmount(() => {
 .margin-note {
   max-width: 92%;
   color: var(--muted-ink);
-  font-size: clamp(12px, 1.7vw, 14px);
+  font-size: var(--text-small);
   line-height: 1.9;
 }
 
@@ -835,8 +835,8 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 12px;
   margin-bottom: clamp(22px, 3.5vw, 34px);
-  color: var(--cover-color);
-  font-size: 12px;
+  color: var(--primary);
+  font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.24em;
 }
@@ -855,7 +855,7 @@ onBeforeUnmount(() => {
   margin: 0;
   padding-left: clamp(18px, 2.5vw, 25px);
   color: var(--ink);
-  font-size: clamp(15px, 2vw, 17px);
+  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
   line-height: 2;
   white-space: pre-line;
 }
@@ -867,7 +867,7 @@ onBeforeUnmount(() => {
   content: "“";
   color: var(--cover-color);
   font-family: Georgia, serif;
-  font-size: 56px;
+  font-size: 3.5rem;
   line-height: 1;
   opacity: 0.22;
 }
@@ -880,7 +880,7 @@ onBeforeUnmount(() => {
   margin-top: auto;
   padding-top: 24px;
   color: var(--primary);
-  font-size: 13px;
+  font-size: 0.875rem;
   font-weight: 700;
   text-decoration: none;
 }
@@ -923,7 +923,7 @@ onBeforeUnmount(() => {
   margin-top: 20px;
   color: var(--muted-ink);
   font-family: var(--font-site);
-  font-size: 11px;
+  font-size: 0.875rem;
 }
 
 .progress-row .progress-track {
@@ -1043,7 +1043,7 @@ onBeforeUnmount(() => {
 
   .review-copy {
     padding-left: 17px;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.9;
   }
 

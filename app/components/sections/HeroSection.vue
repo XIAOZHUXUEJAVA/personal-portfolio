@@ -14,7 +14,7 @@
       <h1 id="intro-title"><TextReveal>Hi，我是 <span class="hero-name">{{ heroData.name }}</span><span class="wave" aria-hidden="true">👋</span></TextReveal></h1>
       <p class="hero-description">{{ heroData.description }}</p>
       <div class="hero-links">
-        <button type="button" class="hero-link" @click="scrollToSection('#gallery')">翻翻我的相册</button>
+        <button type="button" class="theme-button theme-button--primary hero-album-link" @click="scrollToSection('#gallery')">翻翻我的相册 <ArrowUpRight :size="17" aria-hidden="true" /></button>
         <a href="https://piggy-blog.vercel.app/" class="hero-link" target="_blank" rel="noopener noreferrer">去博客坐坐</a>
       </div>
       <nav class="hero-socials" aria-label="认识我与保持联系">
@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { BookOpen, Github, Mail } from "lucide-vue-next";
+import { ArrowUpRight, BookOpen, Github, Mail } from "lucide-vue-next";
 import { CardContainer, CardBody, CardItem } from "~/components/ui/card-3d";
 import { TextReveal } from "~/components/ui/text-reveal";
 import { heroData, contactInfo } from "~/data/staticData";
@@ -58,20 +58,20 @@ const scrollToSection = (href: string) => {
 
 <style scoped>
 .journal-hero { position: relative; padding-top: 122px; padding-bottom: 30px; }
-.hero-edition { display: flex; justify-content: space-between; color: var(--muted-foreground); font-family: var(--font-hand); font-size: 14px; letter-spacing: 0.04em; }
-.hero-edition span { opacity: 0.75; }
-.hero-intro { max-width: 760px; margin: 46px auto 65px; text-align: center; }
+.hero-edition { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: space-between; color: var(--muted-foreground); font-family: var(--font-hand); font-size: 1rem; letter-spacing: 0.04em; }
+.hero-intro { max-width: 760px; margin: var(--space-7) auto var(--space-8); text-align: center; }
 .hero-avatar-card { padding: 0; border: 0; border-radius: 50%; background: transparent; }
 .avatar-link { display: flex; padding: 5px; border: 1px solid var(--border); border-radius: 50%; background: var(--accent); }
 .avatar-link img { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; }
-.hero-intro h1 { margin-top: 28px; font-size: clamp(30px, 4vw, 46px); font-weight: 400; line-height: 1.5; letter-spacing: -0.045em; }
+.hero-intro h1 { margin-top: var(--space-6); font-size: clamp(1.875rem, 1.25rem + 2.5vw, 3rem); font-weight: 400; line-height: 1.5; letter-spacing: -0.045em; }
 .hero-intro h1 :deep(.hero-name) { color: var(--primary); font-weight: 500; }
 .wave { margin-left: 10px; font-size: 0.65em; vertical-align: 4px; }
-.hero-description { margin-top: 16px; color: var(--foreground); font-size: clamp(19px, 2.4vw, 28px); line-height: 1.8; text-wrap: balance; }
-.hero-links { display: flex; align-items: center; justify-content: center; gap: 28px; margin-top: 34px; }
+.hero-description { max-width: 30em; margin: var(--space-4) auto 0; color: var(--foreground); font-size: clamp(1.125rem, 0.875rem + 1vw, 1.625rem); line-height: 1.8; text-wrap: balance; }
+.hero-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-5) var(--space-6); margin-top: var(--space-6); }
+.hero-album-link { min-height: 3rem; padding: var(--space-3) var(--space-5); border-radius: 0.375rem 0.625rem 0.375rem 0.5rem; box-shadow: var(--surface-shadow); }
 .hero-link {
   position: relative; padding: 2px 0; border: 0; background: none;
-  color: var(--muted-foreground); font: inherit; font-size: 13px; letter-spacing: 0.04em;
+  color: var(--muted-foreground); font: inherit; font-size: var(--text-small); letter-spacing: 0.04em;
   cursor: pointer; transition: color 200ms ease;
 }
 .hero-link::after {
@@ -81,14 +81,14 @@ const scrollToSection = (href: string) => {
 .hero-link:hover { color: var(--primary); }
 .hero-link:hover::after { opacity: 0.65; }
 .hero-link:focus-visible { outline: 1px solid var(--primary); outline-offset: 4px; border-radius: 2px; }
-.hero-socials { display: flex; justify-content: center; gap: 12px; margin-top: 25px; }
-.hero-socials a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: var(--muted-foreground); }
+.hero-socials { display: flex; justify-content: center; gap: var(--space-3); margin-top: var(--space-5); }
+.hero-socials a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; color: var(--muted-foreground); }
 .hero-socials a:hover { color: var(--primary); background: var(--accent); }
 .hero-margin-note {
   position: absolute; left: 1.5%; top: 44%; width: 132px; padding: 22px 16px 14px;
-  color: var(--primary); font-size: 11px; line-height: 2;
-  background: var(--paper-yellow) url("/paper/article-paper-texture.svg");
-  box-shadow: 0 6px 14px rgb(31 35 40 / 8%);
+  color: var(--primary); font-size: var(--text-small); line-height: 1.8;
+  background: var(--paper-yellow) var(--paper-texture);
+  box-shadow: var(--surface-shadow);
   transform: rotate(-6deg);
 }
 .hero-margin-note > span { display: block; }
@@ -100,9 +100,9 @@ const scrollToSection = (href: string) => {
 @media (max-width: 900px) { .hero-flower { width: 48px; right: 0; bottom: 112px; } }
 @media (max-width: 640px) {
   .journal-hero { padding-top: 125px; padding-bottom: 12px; }
-  .hero-intro { margin: 38px auto 44px; }
-  .hero-intro h1 { margin-top: 23px; }
-  .hero-links { gap: 17px; margin-top: 26px; }
+  .hero-intro { margin: var(--space-6) auto var(--space-7); }
+  .hero-intro h1 { margin-top: var(--space-5); }
+  .hero-links { gap: var(--space-4) var(--space-5); }
   .hero-flower { display: none; }
 }
 </style>

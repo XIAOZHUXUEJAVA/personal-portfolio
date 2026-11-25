@@ -1,13 +1,13 @@
 <template>
   <!-- 点击切换翻转状态：兼容移动端（触摸设备上 Tailwind v4 的 hover 变体不生效） -->
   <div
-    :class="cn('group h-72 w-56 cursor-pointer [perspective:1000px]', props.class)"
+    :class="cn('group min-h-72 w-56 cursor-pointer [perspective:1000px]', props.class)"
     @click="isFlipped = !isFlipped"
   >
     <div
       :class="
         cn(
-          'relative h-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d]',
+          'relative grid min-h-[inherit] rounded-2xl transition-all duration-500 [transform-style:preserve-3d]',
           rotation[0],
           isFlipped && rotation[1]
         )
@@ -15,7 +15,7 @@
     >
       <!-- Front -->
       <div
-        class="absolute size-full overflow-hidden rounded-2xl border [backface-visibility:hidden]"
+        class="col-start-1 row-start-1 min-w-0 overflow-hidden rounded-2xl border [backface-visibility:hidden]"
       >
         <slot />
       </div>
@@ -24,7 +24,7 @@
       <div
         :class="
           cn(
-            'absolute h-full w-full overflow-hidden rounded-2xl border [backface-visibility:hidden]',
+            'col-start-1 row-start-1 min-w-0 overflow-hidden rounded-2xl border [backface-visibility:hidden]',
             rotation[1]
           )
         "
@@ -46,6 +46,7 @@ interface FlipCardProps {
 
 const props = withDefaults(defineProps<FlipCardProps>(), {
   rotate: "y",
+  class: "",
 });
 
 // 点击翻转状态（移动端唯一的翻转途径，桌面端与 hover 共存）

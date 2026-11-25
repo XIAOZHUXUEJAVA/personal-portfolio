@@ -43,8 +43,8 @@ const scrollToTop = () => {
 </script>
 
 <style scoped>
-.contact-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.contact-card { isolation: isolate; height: auto; min-height: 0; padding: 18px 22px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.contact-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); }
+.contact-card { isolation: isolate; height: auto; min-height: 0; padding: var(--card-padding); border: 0; border-radius: 0; background: transparent; box-shadow: var(--surface-shadow); }
 .contact-card::before,
 .contact-card::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -53,22 +53,20 @@ const scrollToTop = () => {
   mask-image: var(--paper-mask); mask-size: var(--paper-mask-size);
   mask-position: var(--paper-mask-position); mask-repeat: var(--paper-mask-repeat);
 }
-.contact-card::before { z-index: -2; background: color-mix(in srgb, var(--primary) 24%, var(--card)); }
-.contact-card::after { inset: 1px; z-index: -1; background: var(--paper-back) url('/paper/article-paper-texture.svg'); }
+.contact-card::before { z-index: -2; background: color-mix(in oklab, var(--primary) 24%, var(--card)); }
+.contact-card::after { inset: 1px; z-index: -1; background: var(--paper-back) var(--paper-texture); }
 .contact-card:first-child { rotate: -0.35deg; }
 .contact-card:last-child { rotate: 0.3deg; }
-.contact-row { display: flex; align-items: center; gap: 15px; }
+.contact-row { display: flex; align-items: center; gap: var(--space-4); }
 .contact-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; }
 .contact-copy { min-width: 0; flex: 1; }
-.contact-copy h3 { font-size: 14px; font-weight: 500; line-height: 1.6; }
-.contact-copy a { display: inline-flex; align-items: center; min-height: 32px; max-width: 100%; font-size: 12px; color: var(--primary); overflow-wrap: anywhere; }
+.contact-copy h3 { font-size: var(--text-body); font-weight: 500; line-height: 1.6; }
+.contact-copy a { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; font-size: var(--text-small); color: var(--primary); overflow-wrap: anywhere; }
 .contact-copy a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .contact-arrow { flex-shrink: 0; color: var(--muted-foreground); }
-.contact-back-top { display: flex; justify-content: center; margin-top: 22px; }
+.contact-back-top { display: flex; justify-content: center; margin-top: var(--space-5); }
 @media (max-width: 640px) {
-  .contact-cards { grid-template-columns: 1fr; gap: 12px; }
-  .contact-card { padding: 15px 17px; }
-  .contact-row { gap: 12px; }
-  .contact-copy a { font-size: 11px; }
+  .contact-cards { grid-template-columns: 1fr; gap: var(--space-5); }
+  .contact-row { gap: var(--space-3); }
 }
 </style>
