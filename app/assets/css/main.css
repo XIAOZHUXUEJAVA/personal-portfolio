@@ -32,10 +32,18 @@
   font-weight: 700;
   font-display: swap;
 }
+@font-face {
+  font-family: "Caveat";
+  src: url("/fonts/caveat/caveat-latin-400-700.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
 
 :root {
   color-scheme: light;
   --font-site: "Maple Mono", "Piggy Chinese", ui-monospace, "Microsoft YaHei", monospace;
+  --font-hand: "Caveat", var(--font-site);
   --background: #fdfdf9;
   --foreground: #272d28;
   --card: #fffffc;
@@ -162,7 +170,24 @@
 
 @layer base {
   * { @apply border-border outline-ring/50; }
-  html { scroll-behavior: smooth; scroll-padding-top: 0; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 0;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--primary) 38%, transparent) transparent;
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--primary) 38%, transparent);
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--primary) 60%, transparent);
+    background-clip: content-box;
+  }
   body {
     @apply bg-background text-foreground;
     margin: 0;
@@ -198,9 +223,8 @@
     display: flex; align-items: flex-end; justify-content: space-between;
     gap: 24px; padding-bottom: 22px; margin-bottom: 36px;
   }
-  .section-eyebrow { color: var(--primary); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .section-eyebrow { color: var(--primary); font-family: var(--font-hand); font-size: 16px; line-height: 1.4; letter-spacing: 0.03em; }
   .section-title { margin-top: 9px; font-size: clamp(24px, 3vw, 30px); font-weight: 400; letter-spacing: 0.08em; }
-  .section-description { max-width: 320px; color: var(--muted-foreground); font-size: 12px; line-height: 1.9; }
   .paper-sheet {
     position: relative; isolation: isolate; filter: drop-shadow(0 3px 3px rgb(60 65 50 / 5%));
   }
@@ -301,11 +325,22 @@
   }
 }
 
+[data-reveal].reveal-pending {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 680ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 680ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+[data-reveal].reveal-pending.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (max-width: 640px) {
   .site-container { width: calc(100% - 40px); }
   .journal-section { padding-block: 40px; scroll-margin-top: 64px; }
   .section-heading { align-items: flex-start; flex-direction: column; gap: 12px; margin-bottom: 32px; padding-bottom: 20px; }
-  .section-description { max-width: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

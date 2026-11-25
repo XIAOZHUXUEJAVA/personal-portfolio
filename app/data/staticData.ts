@@ -139,11 +139,3 @@ export const contactInfo: ContactInfo = {
   twitter: "https://twitter.com/username",
   linkedin: "https://linkedin.com/in/username",
 };
-
-// Quotes for inspiration
-export const inspirationalQuotes = [
-  "Actions > Words",
-  // "每一个不曾起舞的日子，都是对生命的辜负。",
-  // "世界那么大，我想去看看。",
-  // "用心感受生活，用镜头记录美好。",
-];

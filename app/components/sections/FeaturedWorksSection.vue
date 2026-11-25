@@ -1,7 +1,7 @@
 <template>
   <section id="featured-works" class="journal-section site-container">
     <div class="works-inner">
-      <SectionHeading number="02" label="little corners of my life" title="我的小天地" description="把喜欢的东西，放进同一页。" />
+      <SectionHeading number="02" label="little corners of my life" title="我的小天地" />
 
       <!-- 3D Cards Grid -->
       <div class="works-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -42,7 +42,7 @@
                   :alt="work.title"
                   loading="lazy"
                   class="aspect-[3/2] w-full rounded-sm object-cover group-hover/card:shadow-sm transition-shadow duration-300"
-                />
+                >
               </CardItem>
 
               <!-- Tags -->
@@ -133,11 +133,6 @@ const featuredWorks = [
 ];
 
 // Methods
-const showWorkDetails = (work: any) => {
-  // 可以实现弹窗或跳转到详情页
-  console.log("Show details for:", work.title);
-};
-
 const viewLargeImage = (imageUrl: string, title: string) => {
   // 在新窗口中打开大图
   const newWindow = window.open("", "_blank");

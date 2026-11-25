@@ -6,17 +6,16 @@
         <CardBody class="hero-avatar-card h-auto w-fit">
           <CardItem translate-z="50" class="w-full">
             <a href="#about" class="avatar-link" aria-label="认识一下 xiaozhu">
-              <img :src="heroData.avatar" :alt="heroData.name" width="96" height="96" fetchpriority="high" />
+              <img :src="heroData.avatar" :alt="heroData.name" width="96" height="96" fetchpriority="high">
             </a>
           </CardItem>
         </CardBody>
       </CardContainer>
       <h1 id="intro-title"><TextReveal>Hi，我是 <span class="hero-name">{{ heroData.name }}</span><span class="wave" aria-hidden="true">👋</span></TextReveal></h1>
       <p class="hero-description">{{ heroData.description }}</p>
-      <p class="hero-subtitle">写点代码，也收集屏幕之外的小小美好。</p>
       <div class="hero-links">
-        <ThemeButton variant="secondary" @click="scrollToSection('#gallery')">翻翻我的相册 <ArrowDownRight :size="16" /></ThemeButton>
-        <a href="https://piggy-blog.vercel.app/" class="hero-blog" target="_blank" rel="noopener noreferrer">去博客坐坐 <ArrowUpRight :size="15" /></a>
+        <button type="button" class="hero-link" @click="scrollToSection('#gallery')">翻翻我的相册</button>
+        <a href="https://piggy-blog.vercel.app/" class="hero-link" target="_blank" rel="noopener noreferrer">去博客坐坐</a>
       </div>
       <nav class="hero-socials" aria-label="认识我与保持联系">
         <a :href="contactInfo.github" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github :size="18" :stroke-width="1.5" /></a>
@@ -24,7 +23,7 @@
         <a href="#reading" aria-label="看看我的书单"><BookOpen :size="18" :stroke-width="1.5" /></a>
       </nav>
     </div>
-    <div class="hero-margin-note" aria-hidden="true"><span>留一点位置</span><span>给生活 :)</span><svg viewBox="0 0 80 44" fill="none"><path d="M5 5 Q42 1 61 29 M48 25 L63 32 L66 17" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" /></svg></div>
+    <div class="hero-margin-note" aria-hidden="true"><span class="paper-tape" /><span>留一点位置</span><span>给生活 :)</span><svg viewBox="0 0 80 44" fill="none"><path d="M5 5 Q42 1 61 29 M48 25 L63 32 L66 17" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" /></svg></div>
     <svg class="hero-flower" viewBox="0 0 90 110" fill="none" aria-hidden="true">
       <g class="flower-soil">
         <path d="M17 104 Q27 103 34 101 Q43 98 51 101 Q62 102 73 104 Q59 109 43 108 Q28 109 17 104Z" fill="currentColor" opacity="0.12" />
@@ -48,10 +47,9 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowDownRight, ArrowUpRight, BookOpen, Github, Mail } from "lucide-vue-next";
+import { BookOpen, Github, Mail } from "lucide-vue-next";
 import { CardContainer, CardBody, CardItem } from "~/components/ui/card-3d";
 import { TextReveal } from "~/components/ui/text-reveal";
-import { ThemeButton } from "~/components/ui/theme-button";
 import { heroData, contactInfo } from "~/data/staticData";
 const scrollToSection = (href: string) => {
   document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
@@ -60,7 +58,7 @@ const scrollToSection = (href: string) => {
 
 <style scoped>
 .journal-hero { position: relative; padding-top: 122px; padding-bottom: 30px; }
-.hero-edition { display: flex; justify-content: space-between; color: var(--muted-foreground); font-size: 10px; letter-spacing: 0.14em; }
+.hero-edition { display: flex; justify-content: space-between; color: var(--muted-foreground); font-family: var(--font-hand); font-size: 14px; letter-spacing: 0.04em; }
 .hero-edition span { opacity: 0.75; }
 .hero-intro { max-width: 760px; margin: 46px auto 65px; text-align: center; }
 .hero-avatar-card { padding: 0; border: 0; border-radius: 50%; background: transparent; }
@@ -70,23 +68,40 @@ const scrollToSection = (href: string) => {
 .hero-intro h1 :deep(.hero-name) { color: var(--primary); font-weight: 500; }
 .wave { margin-left: 10px; font-size: 0.65em; vertical-align: 4px; }
 .hero-description { margin-top: 16px; color: var(--foreground); font-size: clamp(19px, 2.4vw, 28px); line-height: 1.8; text-wrap: balance; }
-.hero-subtitle { margin-top: 12px; color: var(--muted-foreground); font-size: 13px; }
-.hero-links { display: flex; align-items: center; justify-content: center; gap: 24px; margin-top: 34px; }
-.hero-blog { display: inline-flex; align-items: center; gap: 6px; color: var(--primary); font-size: 12px; }
+.hero-links { display: flex; align-items: center; justify-content: center; gap: 28px; margin-top: 34px; }
+.hero-link {
+  position: relative; padding: 2px 0; border: 0; background: none;
+  color: var(--muted-foreground); font: inherit; font-size: 13px; letter-spacing: 0.04em;
+  cursor: pointer; transition: color 200ms ease;
+}
+.hero-link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: currentColor; opacity: 0.32; transition: opacity 200ms ease;
+}
+.hero-link:hover { color: var(--primary); }
+.hero-link:hover::after { opacity: 0.65; }
+.hero-link:focus-visible { outline: 1px solid var(--primary); outline-offset: 4px; border-radius: 2px; }
 .hero-socials { display: flex; justify-content: center; gap: 12px; margin-top: 25px; }
 .hero-socials a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: var(--muted-foreground); }
 .hero-socials a:hover { color: var(--primary); background: var(--accent); }
-.hero-margin-note { position: absolute; left: 2%; top: 48%; color: var(--primary); font-size: 11px; line-height: 2; transform: rotate(-9deg); opacity: 0.7; }
-.hero-margin-note span { display: block; }
-.hero-margin-note svg { width: 70px; margin-left: 25px; }
+.hero-margin-note {
+  position: absolute; left: 1.5%; top: 44%; width: 132px; padding: 22px 16px 14px;
+  color: var(--primary); font-size: 11px; line-height: 2;
+  background: var(--paper-yellow) url("/paper/article-paper-texture.svg");
+  box-shadow: 0 6px 14px rgb(31 35 40 / 8%);
+  transform: rotate(-6deg);
+}
+.hero-margin-note > span { display: block; }
+.hero-margin-note svg { width: 62px; margin: 4px 0 0 28px; }
+.hero-margin-note .paper-tape { top: -10px; width: 66px; height: 20px; }
 .hero-flower { position: absolute; right: 3%; bottom: 128px; width: 70px; color: var(--primary); opacity: 0.65; }
 .flower-soil { color: var(--wood-fill); }
-@media (max-width: 900px) { .hero-margin-note { display: none; } .hero-flower { width: 48px; right: 0; bottom: 112px; } }
+@media (max-width: 1024px) { .hero-margin-note { display: none; } }
+@media (max-width: 900px) { .hero-flower { width: 48px; right: 0; bottom: 112px; } }
 @media (max-width: 640px) {
   .journal-hero { padding-top: 125px; padding-bottom: 12px; }
   .hero-intro { margin: 38px auto 44px; }
   .hero-intro h1 { margin-top: 23px; }
-  .hero-subtitle { font-size: 12px; max-width: 260px; margin-inline: auto; }
   .hero-links { gap: 17px; margin-top: 26px; }
   .hero-flower { display: none; }
 }

@@ -12,29 +12,20 @@
     />
     <NavigationDock />
     <main id="main-content" class="relative z-10">
-      <HeroSection />
-      <AboutSection />
-      <FeaturedWorksSection />
-      <PhotoGallerySection />
-      <GamingSection />
-      <ReadingSection />
-      <ContactSection />
+      <HeroSection data-reveal />
+      <AboutSection data-reveal />
+      <FeaturedWorksSection data-reveal />
+      <PhotoGallerySection data-reveal />
+      <GamingSection data-reveal />
+      <ReadingSection data-reveal />
+      <ContactSection data-reveal />
     </main>
     <Meteors :count="20" class="relative z-0 opacity-20 pointer-events-none" />
-    <footer class="site-footer site-container handdrawn-rule handdrawn-rule--top">
-      <span>xiaozhu / 生活剪贴簿</span>
-      <span>慢慢生活，慢慢记录。</span>
-      <a href="https://piggy-blog.vercel.app/" target="_blank" rel="noopener noreferrer">去博客坐坐 ↗</a>
-    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useColorMode } from "@vueuse/core";
-import { ParticlesBg } from "~/components/ui/particles-bg";
-import { Meteors } from "~/components/ui/meteors";
-const colorMode = useColorMode();
-const isDark = computed(() => colorMode.value === "dark");
 import PaperBackground from "~/components/layout/PaperBackground.vue";
 import NavigationDock from "~/components/layout/NavigationDock.vue";
 import HeroSection from "~/components/sections/HeroSection.vue";
@@ -44,6 +35,14 @@ import PhotoGallerySection from "~/components/sections/PhotoGallerySection.vue";
 import GamingSection from "~/components/sections/GamingSection.vue";
 import ReadingSection from "~/components/sections/ReadingSection.vue";
 import ContactSection from "~/components/sections/ContactSection.vue";
+import { ParticlesBg } from "~/components/ui/particles-bg";
+import { Meteors } from "~/components/ui/meteors";
+import { useScrollReveal } from "~/composables/useScrollReveal";
+
+const colorMode = useColorMode();
+const isDark = computed(() => colorMode.value === "dark");
+
+useScrollReveal();
 
 useHead({
   title: "xiaozhu · 生活剪贴簿",
@@ -61,7 +60,4 @@ useHead({
 <style scoped>
 .skip-link { position: fixed; top: -80px; left: 20px; padding: 10px 20px; background: var(--card); z-index: 100; }
 .skip-link:focus { top: 12px; }
-.site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-block: 28px 36px; color: var(--muted-foreground); font-size: 10px; }
-.site-footer a { color: var(--primary); }
-@media (max-width: 640px) { .site-footer { flex-direction: column; align-items: center; gap: 8px; } }
 </style>

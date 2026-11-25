@@ -24,7 +24,7 @@
       </svg>
 
       <!-- Section Title -->
-      <SectionHeading number="04" label="press pause, play a little" title="最近游玩" heading-id="gaming-title" description="下班之后，去另一个世界走走。" />
+      <SectionHeading number="04" label="press pause, play a little" title="最近游玩" heading-id="gaming-title" />
 
       <!-- 手绘街机柜 -->
       <div class="arcade-cabinet relative mx-auto max-w-6xl paper-sheet">
@@ -376,6 +376,7 @@
               >
                 ~ press start to play ~
               </span>
+              <span class="terminal-cursor" aria-hidden="true" />
               <!-- 金币 -->
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <circle
@@ -507,6 +508,21 @@ const screwPositions = [
 }
 
 .font-handwriting {
-  font-family: var(--font-site);
+  font-family: var(--font-hand);
+  font-size: 17px;
+  letter-spacing: 0.02em;
+}
+.terminal-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 13px;
+  background: var(--primary);
+  animation: terminal-blink 1.1s steps(1, end) infinite;
+}
+@keyframes terminal-blink {
+  50% { opacity: 0; }
+}
+@media (max-width: 640px) {
+  .font-handwriting { font-size: 15px; }
 }
 </style>

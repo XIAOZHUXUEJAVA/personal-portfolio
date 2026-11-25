@@ -1,7 +1,7 @@
 <template>
   <section id="gallery" class="journal-section site-container">
     <div class="gallery-inner">
-      <SectionHeading number="03" label="moments, collected" title="些许瞬间" description="有些时刻，想再多看一眼。" />
+      <SectionHeading number="03" label="moments, collected" title="些许瞬间" />
 
       <!-- Gallery Tabs -->
       <div class="gallery-tabs-wrap">
@@ -60,8 +60,7 @@
         >
           精选照片
         </h3>
-        <p class="stamp-collection-note">把走过的地方，寄给未来的自己。<span>悬停或点击，翻到背面 ↻</span></p>
-        <div class="stamp-grid">
+        <div ref="stampGrid" class="stamp-grid">
           <FlipCard
             v-for="(photo, index) in highlightPhotosData"
             :key="photo.src"
@@ -69,11 +68,13 @@
           >
             <template #default>
               <div class="stamp-front">
+                <span class="stamp-washi" aria-hidden="true" />
                 <div class="stamp-topline"><span>XIAOZHU / LIFE POST</span><span>NO. {{ String(index + 1).padStart(2, '0') }}</span></div>
                 <div class="stamp-picture">
                   <NuxtImg
                     :src="photo.src"
                     :alt="photo.title"
+                    :data-photo-index="index"
                     class="size-full object-cover"
                     loading="lazy"
                     :placeholder="[40, 40, 75, 5]"
@@ -115,18 +116,24 @@
                     {{ photo.category }}
                   </p>
                 </div>
-                <div class="flex gap-2 mt-auto pt-4">
+                <div class="stamp-actions">
                   <button
-                    class="theme-button theme-button--primary flex-1 px-3 py-2 rounded-lg text-sm font-medium"
+                    type="button"
+                    class="stamp-action"
+                    aria-label="查看原图"
+                    title="查看原图"
                     @click.stop="viewFullPhoto(photo)"
                   >
-                    查看原图
+                    <Eye :size="17" :stroke-width="1.6" />
                   </button>
                   <button
-                    class="theme-button theme-button--secondary flex-1 px-3 py-2 rounded-lg text-sm font-medium"
+                    type="button"
+                    class="stamp-action"
+                    aria-label="分享图片"
+                    title="分享图片"
                     @click.stop="sharePhoto(photo)"
                   >
-                    分享图片
+                    <Share2 :size="17" :stroke-width="1.6" />
                   </button>
                 </div>
               </div>
@@ -142,10 +149,11 @@
 import SectionHeading from "~/components/layout/SectionHeading.vue";
 import { PhotoGallery } from "~/components/ui/photo-gallery";
 import { FlipCard } from "~/components/ui/flip-card";
-import { RotateCcw, Eye, Share2 } from "lucide-vue-next";
+import { Eye, Share2 } from "lucide-vue-next";
 import {
   photoGalleryData,
   highlightPhotosData,
+  type PhotoItem,
 } from "~/data/staticData";
 
 // Categories for filtering
@@ -198,13 +206,35 @@ const filteredPhotos = computed(() => {
     .map((photo) => ({ src: photo.src }));
 });
 
+// 精选照片图片淡入：只在确有未加载图片时才启用，避免禁用 JS 时图片被隐藏
+const stampGrid = ref<HTMLElement | null>(null);
+
+onMounted(() => {
+  nextTick(() => {
+    const grid = stampGrid.value;
+    if (!grid) return;
+    let hasPending = false;
+    grid.querySelectorAll<HTMLImageElement>("img[data-photo-index]").forEach((img) => {
+      const reveal = () => img.classList.add("is-loaded");
+      if (img.complete && img.naturalWidth > 0) {
+        reveal();
+      } else {
+        hasPending = true;
+        img.addEventListener("load", reveal, { once: true });
+        img.addEventListener("error", reveal, { once: true });
+      }
+    });
+    if (hasPending) grid.classList.add("fade-ready");
+  });
+});
+
 // Photo interaction methods
-const viewFullPhoto = (photo: any) => {
+const viewFullPhoto = (photo: PhotoItem) => {
   // 可以实现图片预览功能
   window.open(photo.src, "_blank");
 };
 
-const sharePhoto = async (photo: any) => {
+const sharePhoto = async (photo: PhotoItem) => {
   try {
     // 获取基础URL
     const baseUrl = import.meta.client
@@ -282,7 +312,9 @@ const showCopyToast = (message: string = "操作成功") => {
   overflow-x: auto;
   margin-bottom: 36px;
   padding: 6px 2px;
+  scrollbar-width: none;
 }
+.gallery-tabs-wrap::-webkit-scrollbar { display: none; }
 .gallery-tabs {
   position: relative;
   isolation: isolate;
@@ -364,13 +396,25 @@ const showCopyToast = (message: string = "操作成功") => {
   letter-spacing: 0.08em;
 }
 .selected-photos { margin-top: 48px; }
-.selected-photos-title { margin-bottom: 10px; color: var(--foreground); font-size: 20px; font-weight: 400; letter-spacing: 0.06em; }
-.stamp-collection-note { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; margin: 0 0 28px; color: var(--muted-foreground); font-size: 11px; }
-.stamp-collection-note > span { font-size: 10px; }
-.stamp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; padding: 4px 5px 8px; }
-.stamp-flip { --stamp-ink: var(--primary); transform: rotate(-1deg); }
+.selected-photos-title { margin-bottom: 24px; color: var(--foreground); font-size: 20px; font-weight: 400; letter-spacing: 0.06em; }
+.stamp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; padding: 4px 5px 8px; align-items: start; }
+.stamp-flip { --stamp-ink: var(--primary); transform: rotate(-1deg); transition: transform 380ms cubic-bezier(0.22, 0.61, 0.36, 1), filter 380ms ease; }
 .stamp-flip:nth-child(2) { --stamp-ink: #9a7650; transform: rotate(1deg); }
 .stamp-flip:nth-child(3) { --stamp-ink: #637d89; transform: rotate(-0.6deg); }
+.stamp-washi {
+  position: absolute; top: 0; left: 26px; width: 58px; height: 14px;
+  background: var(--paper-tape); opacity: 0.55; transform: rotate(-3deg);
+  clip-path: polygon(2% 0, 98% 0, 96% 22%, 100% 44%, 97% 68%, 100% 100%, 1% 100%, 3% 70%, 0 45%, 3% 22%);
+  pointer-events: none;
+}
+.stamp-flip:nth-child(2) .stamp-washi { background: var(--paper-rose); transform: rotate(2.5deg); }
+.stamp-flip:nth-child(3) .stamp-washi { background: var(--paper-blue); transform: rotate(-1.5deg); }
+.stamp-grid.fade-ready .stamp-picture :deep(img) { opacity: 0; transform: scale(1.03); transition: opacity 620ms ease, transform 720ms ease; }
+.stamp-grid.fade-ready .stamp-picture :deep(img.is-loaded) { opacity: 1; transform: none; }
+@media (hover: hover) {
+  .stamp-flip:hover { transform: rotate(0deg) translateY(-6px); filter: drop-shadow(0 16px 18px rgb(31 35 40 / 16%)); }
+  .dark .stamp-flip:hover { filter: drop-shadow(0 16px 18px rgb(0 0 0 / 30%)); }
+}
 /* Perforate only the two flat faces. Keep the 3D volume and all flip handlers intact. */
 .stamp-flip :deep([class*="backface-visibility"]) {
   border: 0;
@@ -408,7 +452,16 @@ const showCopyToast = (message: string = "操作成功") => {
 .stamp-back-topline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin-bottom: 7px; color: var(--stamp-ink); font-size: 10px; }
 .stamp-back > p { padding-block: 10px; font-size: 13px; }
 .stamp-back > .text-sm { font-size: 12px; }
-.stamp-back .theme-button { padding-inline: 10px; font-size: 11px; }
+.stamp-actions { display: flex; gap: 8px; margin-top: auto; padding-top: 14px; }
+.stamp-action {
+  display: grid; place-items: center; width: 40px; height: 40px;
+  border: 1px solid color-mix(in srgb, var(--stamp-ink) 30%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--card) 72%, transparent);
+  color: var(--stamp-ink);
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+.stamp-action:hover { background: var(--stamp-ink); color: var(--card); transform: translateY(-1px); }
 @media (max-width: 1023px) { .stamp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) {
   .gallery-tabs { padding-inline: 8px; }
@@ -417,6 +470,5 @@ const showCopyToast = (message: string = "操作成功") => {
   .album-paper-label { flex-wrap: wrap; font-size: 10px; letter-spacing: 0.02em; gap: 8px; }
   .selected-photos { margin-top: 36px; }
   .stamp-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; max-width: 360px; margin-inline: auto; }
-  .stamp-collection-note { font-size: 10px; }
 }
 </style>

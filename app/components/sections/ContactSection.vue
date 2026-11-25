@@ -1,7 +1,7 @@
 <template>
   <section id="contact" class="journal-section site-container">
     <div class="contact-inner">
-      <SectionHeading number="06" label="a letter, perhaps" title="保持联系" description="这一页的最后，留一个可以找到我的地方。" />
+      <SectionHeading number="06" label="a letter, perhaps" title="保持联系" />
       <div class="contact-cards">
         <CardSpotlight :gradient-size="180" class="contact-card" slot-class="w-full">
           <div class="contact-row">

@@ -1,6 +1,6 @@
 <template>
   <section id="about" class="journal-section site-container" aria-labelledby="about-title">
-    <SectionHeading number="01" label="a little about me" title="关于我" heading-id="about-title" description="普通程序员，保持好奇，继续折腾。" />
+    <SectionHeading number="01" label="a little about me" title="关于我" heading-id="about-title" />
     <div class="about-notes">
       <FloatingCard v-for="(item, index) in aboutData" :key="item.title" :rotate-depth="10" :translate-depth="8" class="about-note" :class="`about-note--${index}`">
         <span class="paper-tape" aria-hidden="true" />
@@ -8,11 +8,10 @@
           <div class="note-topline"><component :is="icons[index]" :size="23" :stroke-width="1.4" /><span>PERSONAL NOTE / 0{{ index + 1 }}</span></div>
           <h3>{{ item.title }}</h3>
           <p>{{ item.description }}</p>
-          <div class="note-tags handdrawn-rule handdrawn-rule--top"><span v-for="tag in item.tags" :key="tag"># {{ tag }}</span></div>
+          <div class="note-tags"><span v-for="tag in item.tags" :key="tag"># {{ tag }}</span></div>
         </div>
       </FloatingCard>
     </div>
-    <blockquote v-if="currentQuote" class="personal-quote"><span aria-hidden="true">「</span> {{ currentQuote }} <span aria-hidden="true">」</span></blockquote>
   </section>
 </template>
 
@@ -20,19 +19,18 @@
 import { Code2, Bike, Music2 } from "lucide-vue-next";
 import SectionHeading from "~/components/layout/SectionHeading.vue";
 import { FloatingCard } from "~/components/ui/floating-card";
-import { aboutData, inspirationalQuotes } from "~/data/staticData";
+import { aboutData } from "~/data/staticData";
 const icons = [Code2, Bike, Music2];
-const currentQuote = ref(inspirationalQuotes[0] || "");
-onMounted(() => {
-  if (inspirationalQuotes.length) currentQuote.value = inspirationalQuotes[Math.floor(Math.random() * inspirationalQuotes.length)];
-});
 </script>
 
 <style scoped>
 .about-notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; padding: 12px 5px 0; }
-.about-note { --note-color: var(--paper-blue); transform: rotate(-1deg); }
+.about-note { --note-color: var(--paper-blue); transform: rotate(-1deg); transition: transform 360ms cubic-bezier(0.22, 0.61, 0.36, 1); }
 .about-note--1 { --note-color: var(--paper-yellow); --tape-color: var(--paper-rose); transform: rotate(0.8deg); margin-top: 18px; }
 .about-note--2 { --note-color: var(--paper-rose); transform: rotate(-0.5deg); }
+@media (hover: hover) {
+  .about-note:hover { transform: rotate(0deg) translateY(-6px); }
+}
 .about-note :deep(.floating-card__surface) { border-radius: 0; background: transparent; border: 0; box-shadow: none; }
 .about-note :deep(.floating-card__surface)::before,
 .about-note :deep(.floating-card__surface)::after {
@@ -48,12 +46,16 @@ onMounted(() => {
 }
 .note-content { display: flex; flex-direction: column; height: 100%; padding: 30px 26px 25px; }
 .note-topline { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--primary); }
-.note-topline span { font-size: 10px; letter-spacing: 0.04em; }
+.note-topline span { font-family: var(--font-hand); font-size: 14px; line-height: 1.4; letter-spacing: 0.02em; }
 .note-content h3 { margin-top: 26px; font-size: 19px; font-weight: 500; }
 .note-content > p { margin-top: 13px; padding-bottom: 27px; font-size: 13px; line-height: 2; color: var(--muted-foreground); }
-.note-tags { display: flex; flex-wrap: wrap; gap: 14px; margin-top: auto; padding-top: 16px; font-size: 10px; color: var(--primary); }
-.personal-quote { margin: 36px auto 0; text-align: center; color: var(--muted-foreground); font-size: 13px; line-height: 2; }
-.personal-quote span { color: var(--primary); }
+.note-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 18px; font-size: 10px; color: var(--primary); }
+.note-tags span {
+  padding: 3px 10px; border-radius: 999px; line-height: 1.6;
+  color: color-mix(in srgb, var(--primary) 78%, var(--foreground));
+  background: color-mix(in srgb, var(--note-color) 72%, var(--card));
+  border: 1px solid color-mix(in srgb, var(--note-color) 58%, var(--border));
+}
 @media (max-width: 800px) { .about-notes { gap: 20px; } .note-content { padding: 28px 20px 22px; } .note-topline { flex-wrap: wrap; gap: 8px; } }
-@media (max-width: 640px) { .about-notes { grid-template-columns: 1fr; gap: 30px; padding-inline: 7px; } .about-note--1 { margin-top: 0; } .note-content h3 { margin-top: 18px; } .personal-quote { margin-top: 32px; font-size: 12px; } }
+@media (max-width: 640px) { .about-notes { grid-template-columns: 1fr; gap: 30px; padding-inline: 7px; } .about-note--1 { margin-top: 0; } .note-content h3 { margin-top: 18px; } }
 </style>

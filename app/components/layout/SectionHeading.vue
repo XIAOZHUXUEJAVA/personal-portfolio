@@ -4,7 +4,6 @@
       <p class="section-eyebrow">{{ number }} / {{ label }}</p>
       <h2 :id="headingId" class="section-title">{{ title }}</h2>
     </div>
-    <p v-if="description" class="section-description">{{ description }}</p>
   </header>
 </template>
 
@@ -13,7 +12,6 @@ defineProps<{
   number: string;
   label: string;
   title: string;
-  description?: string;
   headingId?: string;
 }>();
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-4 sm:top-6 left-1/2 transform -translate-x-1/2 z-50">
+  <nav class="fixed top-4 sm:top-6 left-1/2 transform -translate-x-1/2 z-50" aria-label="页面导航">
     <Dock
       direction="middle"
       class="paper-dock bg-transparent backdrop-blur-none border-0 rounded-full px-2 shadow-none"
@@ -7,8 +7,10 @@
       <DockIcon
         v-for="item in navigationItems"
         :key="item.id"
-        class="cursor-pointer text-muted-foreground hover:text-primary hover:bg-accent transition-colors duration-200"
-        @click="scrollToSection(item.href)"
+        class="dock-icon cursor-pointer text-muted-foreground hover:text-primary hover:bg-accent transition-colors duration-200"
+        :class="{ 'is-active': activeId === item.id }"
+        :aria-current="activeId === item.id ? 'page' : undefined"
+        @click="scrollToSection(item.href, item.id)"
       >
         <component
           :is="item.icon"
@@ -30,7 +32,7 @@
         />
       </DockIcon>
     </Dock>
-  </div>
+  </nav>
 </template>
 
 <script setup lang="ts">
@@ -57,12 +59,56 @@ const navigationItems = [
   { id: "contact", label: "联系", href: "#contact", icon: Mail },
 ];
 
-const scrollToSection = (href: string) => {
-  const element = document.querySelector(href);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth" });
+// 游戏和书单不在 Dock 里，经过这两个区块时暂时不高亮任何图标。
+const scrollTargets = [
+  { id: "home", href: "#hero" },
+  { id: "about", href: "#about" },
+  { id: "works", href: "#featured-works" },
+  { id: "gallery", href: "#gallery" },
+  { id: "", href: "#gaming" },
+  { id: "", href: "#reading" },
+  { id: "contact", href: "#contact" },
+];
+
+const activeId = ref("home");
+let frame = 0;
+
+const updateActive = () => {
+  const marker = window.innerHeight * 0.35;
+  let current = scrollTargets[0].id;
+  for (const target of scrollTargets) {
+    const element = document.querySelector<HTMLElement>(target.href);
+    if (element && element.getBoundingClientRect().top <= marker) {
+      current = target.id;
+    }
   }
+  activeId.value = current;
 };
+
+const scheduleActiveUpdate = () => {
+  cancelAnimationFrame(frame);
+  frame = requestAnimationFrame(updateActive);
+};
+
+const scrollToSection = (href: string, id: string) => {
+  activeId.value = id;
+  const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ? "auto"
+    : "smooth";
+  document.querySelector(href)?.scrollIntoView({ behavior });
+};
+
+onMounted(() => {
+  updateActive();
+  window.addEventListener("scroll", scheduleActiveUpdate, { passive: true });
+  window.addEventListener("resize", scheduleActiveUpdate);
+});
+
+onBeforeUnmount(() => {
+  cancelAnimationFrame(frame);
+  window.removeEventListener("scroll", scheduleActiveUpdate);
+  window.removeEventListener("resize", scheduleActiveUpdate);
+});
 
 const toggleColorMode = () => {
   colorMode.value = colorMode.value === "dark" ? "light" : "dark";
@@ -80,4 +126,9 @@ const toggleColorMode = () => {
 }
 .paper-dock::before { inset: 0; z-index: -1; background: var(--card) url('/paper/article-paper-texture.svg'); }
 .paper-dock::after { inset: 3px 4px -2px 4px; z-index: -2; background: var(--paper-back) url('/paper/nav-paper-texture.svg'); }
+.dock-icon.is-active {
+  color: var(--primary);
+  background: var(--accent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 22%, transparent);
+}
 </style>

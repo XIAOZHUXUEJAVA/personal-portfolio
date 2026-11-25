@@ -2,50 +2,62 @@
   <section id="reading" class="journal-section site-container" aria-labelledby="reading-title">
     <div class="reading-inner">
       <div ref="headingRef" class="reading-heading">
-        <SectionHeading number="05" label="between the pages" title="最近在读" heading-id="reading-title" description="翻过几页，也记下一点自己的想法。" />
+        <SectionHeading number="05" label="between the pages" title="最近在读" heading-id="reading-title" />
       </div>
       <div class="reading-sidenote"><span>BOOKS &amp; MARGINALIA</span><span>{{ booksData.length }} 本藏书 / 点击封面翻阅</span></div>
 
       <div id="reading-books" class="reading-grid">
-        <article v-for="(book, index) in visibleBooks" :key="book.id" class="reading-item handdrawn-rule">
-          <Book
-            class="reading-book cursor-pointer"
-            size="md"
-            radius="md"
-            shadow-size="sm"
-            :duration="450"
-            :cover-color="getCoverColor(book.color)"
-            content-class="h-full"
-            role="button"
-            tabindex="0"
-            aria-haspopup="dialog"
-            :aria-label="`查看《${book.title}》详情，${book.author}，${book.status}`"
-            @click="openedBook = book"
-            @keydown.enter.prevent="openedBook = book"
-            @keydown.space.prevent="openedBook = book"
-          >
-            <div class="reading-cover-content">
-              <BookHeader class="reading-cover-header">
-                <span>{{ book.category }}</span>
-                <span class="reading-cover-number">{{ String(index + 1).padStart(2, '0') }}</span>
-              </BookHeader>
-              <div class="reading-cover-rule" aria-hidden="true" />
-              <div class="reading-cover-copy">
-                <BookTitle class="reading-cover-title">{{ book.title }}</BookTitle>
-                <BookDescription class="reading-cover-author">{{ book.author }}</BookDescription>
+        <article v-for="(book, index) in visibleBooks" :key="book.id" class="reading-item" :data-status="book.status">
+          <div class="reading-book-wrap">
+            <Book
+              class="reading-book cursor-pointer"
+              size="md"
+              radius="md"
+              shadow-size="sm"
+              :duration="450"
+              :cover-color="getCoverColor(book.color)"
+              content-class="h-full"
+              role="button"
+              tabindex="0"
+              aria-haspopup="dialog"
+              :aria-label="`查看《${book.title}》详情，${book.author}，${book.status}`"
+              @click="openedBook = book"
+              @keydown.enter.prevent="openedBook = book"
+              @keydown.space.prevent="openedBook = book"
+            >
+              <div class="reading-cover-content">
+                <BookHeader class="reading-cover-header">
+                  <span>{{ book.category }}</span>
+                  <span class="reading-cover-number">{{ String(index + 1).padStart(2, '0') }}</span>
+                </BookHeader>
+                <div class="reading-cover-rule" aria-hidden="true" />
+                <div class="reading-cover-copy">
+                  <BookTitle class="reading-cover-title">{{ book.title }}</BookTitle>
+                  <BookDescription class="reading-cover-author">{{ book.author }}</BookDescription>
+                </div>
+                <div class="reading-cover-footer" aria-hidden="true">
+                  <span>阅读 · 随记</span>
+                  <BookOpen :size="15" :stroke-width="1.3" />
+                </div>
               </div>
-              <div class="reading-cover-footer" aria-hidden="true">
-                <span>阅读 · 随记</span>
-                <BookOpen :size="15" :stroke-width="1.3" />
-              </div>
-            </div>
-          </Book>
+            </Book>
+          </div>
 
           <div class="reading-meta">
             <div class="reading-status-row">
-              <span class="reading-status" :class="{ 'is-reading': book.status === '在读' || book.status === '重温' }">
-                <span v-if="book.status === '在读' || book.status === '重温'" class="reading-status-dot" aria-hidden="true" />
+              <span
+                class="reading-status"
+                :class="{
+                  'is-reading': book.status === '在读' || book.status === '重温',
+                  'is-done': book.status === '已读',
+                  'is-planned': book.status === '计划',
+                }"
+              >
+                <span class="reading-status-dot" aria-hidden="true" />
                 {{ book.status }}
+              </span>
+              <span class="reading-category" :data-category="book.category">
+                <span class="reading-category-dot" aria-hidden="true" />{{ book.category }}
               </span>
               <span class="reading-percentage">{{ book.progress }}%</span>
             </div>
@@ -368,7 +380,7 @@ const toggleExpanded = async () => {
 <style scoped>
 .reading-heading { scroll-margin-top: 120px; }
 .reading-sidenote { display: flex; justify-content: space-between; gap: 20px; margin-bottom: 28px; color: var(--muted-foreground); font-size: 10px; }
-.reading-sidenote > span:first-child { letter-spacing: 0.1em; }
+.reading-sidenote > span:first-child { font-family: var(--font-hand); font-size: 14px; letter-spacing: 0.04em; }
 @media (max-width: 640px) { .reading-sidenote { flex-wrap: wrap; font-size: 10px; gap: 8px 12px; } }
 .reading-grid {
   display: grid;
@@ -378,8 +390,16 @@ const toggleExpanded = async () => {
   padding-top: 12px;
 }
 
-.reading-item { min-width: 0; padding-bottom: 22px;  }
-.reading-book { width: 100%; max-width: 208px; margin-inline: auto; }
+.reading-item { min-width: 0; padding-bottom: 22px; }
+.reading-book-wrap { position: relative; max-width: 208px; margin-inline: auto; }
+.reading-book-wrap::after {
+  content: ""; position: absolute; left: -10px; right: -10px; bottom: -8px; height: 7px;
+  border-radius: 2px; pointer-events: none; opacity: 0.55;
+  background: linear-gradient(color-mix(in srgb, var(--wood-fill) 90%, transparent), color-mix(in srgb, var(--wood-fill) 45%, transparent));
+  box-shadow: 0 3px 5px rgb(31 35 40 / 8%);
+}
+.dark .reading-book-wrap::after { box-shadow: 0 3px 6px rgb(0 0 0 / 25%); }
+.reading-book { width: 100%; }
 .reading-book :deep(.book-front) { padding: 22px 20px 18px; }
 .reading-cover-content {
   display: flex;
@@ -412,14 +432,27 @@ const toggleExpanded = async () => {
 
 .reading-cover-author { margin-top: 10px; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
 .reading-cover-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11px; line-height: 1.5; letter-spacing: 0.1em; }
-.reading-meta { max-width: 208px; margin: 22px auto 0; }
-.reading-status-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; line-height: 1.5; }
+.reading-meta { max-width: 208px; margin: 28px auto 0; }
+.reading-status-row { display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 1.5; }
 .reading-status { display: inline-flex; align-items: center; gap: 6px; color: var(--muted-foreground); }
 .reading-status.is-reading { color: var(--primary); }
+.reading-status.is-done { color: #5f7a5a; }
+.reading-status.is-planned { color: var(--muted-foreground); }
+.dark .reading-status.is-done { color: #9db797; }
 .reading-status-dot { width: 5px; height: 5px; flex-shrink: 0; border-radius: 50%; background: currentColor; }
-.reading-percentage { color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+.reading-category { display: inline-flex; align-items: center; gap: 5px; color: var(--muted-foreground); font-size: 11px; }
+.reading-category-dot { width: 6px; height: 6px; flex-shrink: 0; border-radius: 50%; background: var(--cat-color, var(--muted-foreground)); }
+.reading-category[data-category="文学"] { --cat-color: #b28c87; }
+.reading-category[data-category="技术"] { --cat-color: #667d6d; }
+.reading-category[data-category="武侠"] { --cat-color: #b6a683; }
+.reading-category[data-category="推理"] { --cat-color: #9b91ad; }
+.reading-category[data-category="奇幻"] { --cat-color: #8caaaf; }
+.reading-percentage { margin-left: auto; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
 .reading-progress { height: 3px; margin-top: 9px; border-radius: 2px; overflow: hidden; background: var(--border); }
-.reading-progress > span { display: block; height: 100%; border-radius: inherit; background: var(--primary); }
+.reading-progress > span { display: block; height: 100%; border-radius: inherit; background: var(--primary); transition: width 400ms ease; }
+.reading-item[data-status="已读"] .reading-progress > span { background: #6f8f6a; }
+.reading-item[data-status="计划"] .reading-progress > span { background: var(--muted-foreground); opacity: 0.45; }
+.dark .reading-item[data-status="已读"] .reading-progress > span { background: #92ad8c; }
 
 @media (min-width: 640px) {
   .reading-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 36px; row-gap: 48px; }
